@@ -82,7 +82,7 @@ void Renderer::update() {
 
     if (glfwGetKey(window, GLFW_KEY_F11) == GLFW_PRESS) {
         std::cout << "Fullscreen :" << fullscreen <<std::endl;
-        fullscreen != fullscreen;
+        fullscreen = !fullscreen;
         if (fullscreen) {
             glfwSetWindowMonitor(window, monitor, 0, 0, mode->width, mode->height, mode->refreshRate);
         } else {
