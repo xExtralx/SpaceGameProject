@@ -50,9 +50,9 @@ int Renderer::init() {
     monitor = glfwGetPrimaryMonitor();
     mode = glfwGetVideoMode(monitor);
 
-    fileManager.init();
+    //fileManager.init();
 
-    shader = new Shader(fileManager.LoadTextFile("shader/default.vert"), fileManager.LoadTextFile("shader/default.vert"));
+    shader = new Shader(FileManager::LoadTextFile("shader/default.vert"), FileManager::LoadTextFile("shader/default.vert"));
 
     return true;
 }
