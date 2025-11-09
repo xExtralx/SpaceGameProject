@@ -5,8 +5,8 @@
 #include "game.h"
 
 Game::Game():
-    width(1440),
-    height(1080),
+    width(1280),
+    height(720),
     renderer(width,height)
 {
 }
@@ -30,7 +30,7 @@ void Game::update() {
 
 void Game::render() {
     renderer.clear();
-    renderer.addTriangle({0.0f,0.0f}, {1.0f,0.0f}, {0.0f,1.0f},{0.0f,1.0f,0.05f,1.0f},1.0f);
+    renderer.addTriangle({0.0f,0.0f}, {.0f,0.0f}, {0.0f,1.0f},{0.0f,1.0f,0.05f,1.0f},1.0f);
     renderer.uploadGeometry();
     renderer.draw();
     renderer.present();

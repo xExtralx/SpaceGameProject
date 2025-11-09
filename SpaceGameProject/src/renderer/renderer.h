@@ -49,7 +49,12 @@ private:
     int width = 0;
     int height = 0;
 
+    bool fullscreen = false;
+
     GLFWwindow* window;
+
+    GLFWmonitor* monitor;
+    const GLFWvidmode* mode;
 
     Shader* shader;
     unsigned int VAO,VBO;
