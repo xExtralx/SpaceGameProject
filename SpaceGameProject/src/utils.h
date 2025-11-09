@@ -181,8 +181,6 @@ public:
     static void init() {
         namespace fs = std::filesystem;
         fs::path execPath = fs::current_path();
-        if (execPath.filename() == "build")
-            execPath = execPath.parent_path();
         basePath = execPath.string();
         std::cout << "[FileManager] Base path: " << basePath << std::endl;
     }
