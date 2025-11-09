@@ -42,7 +42,7 @@ bool Game::shouldClose() const {
 }
 
 void Game::moveEvent(int x, int y) {
-    std::cout << "Mouse at : (" << x << ", " << y << ")" << std::endl;
+    // Logique de déplacement
 }
 
 void Game::clickEvent(int x, int y) {
