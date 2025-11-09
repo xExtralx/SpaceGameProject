@@ -1,0 +1,134 @@
+//
+// Created by raphael on 02/11/2025.
+//
+
+#include <iostream>
+#include "renderer.h"
+#include "../game/game.h"
+
+Renderer::Renderer(int w, int h) : width(w), height(h), window(nullptr), shader(nullptr), VAO(0), VBO(0) {}
+
+Renderer::~Renderer() {
+    glfwTerminate();
+}
+
+int Renderer::init() {
+    if (!glfwInit()) {
+        std::cout << "failed to Init GLFW" << std::endl;
+        return false;
+    }
+
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+    window = glfwCreateWindow(width,height,"My Game",nullptr,nullptr);
+    if (!window) {
+        std::cout << "failed to Create window" << std::endl;
+        glfwTerminate();
+        return false;
+    }
+
+    glfwMakeContextCurrent(window);
+
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+        std::cout << "failed to Load Glad" << std::endl;
+        return false;
+    }
+
+    glViewport(0,0,width,height);
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glDisable(GL_DEPTH_TEST);
+
+    glfwSwapInterval(1);
+    glfwSetWindowUserPointer(window,this);
+    glfwSetMouseButtonCallback(window, Renderer::mouse_button_callback);
+
+    shader = new Shader("assets/shader/default.vert", "assets/shader/default.frag");
+
+    return true;
+}
+
+void Renderer::clear() {
+    glClearColor(0.05f,0.05f,0.08f,1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+    vertices.clear();
+}
+
+void Renderer::draw() const {
+    shader->use();
+    shader->setFloat("uTime", (float) glfwGetTime());
+    shader->setVec2("uResolution",(float) width,(float) height);
+
+    glBindVertexArray(VAO);
+    glDrawArrays(GL_TRIANGLES, 0, static_cast<GLsizei>(vertices.size()));
+    glBindVertexArray(0);
+}
+
+void Renderer::present() const {
+    glfwSwapBuffers(window);
+    glfwPollEvents();
+
+    const auto game = static_cast<Game*>(glfwGetWindowUserPointer(window));
+
+    double xpos, ypos;
+    glfwGetCursorPos(window, &xpos, &ypos);
+    const float worldX = xpos;
+    const float worldY = game->getRenderer().getHeight() - ypos;
+
+    game->moveEvent(worldX,worldY);
+}
+
+bool Renderer::shouldClose() const {
+    return glfwWindowShouldClose(window);
+}
+
+void Renderer::uploadGeometry() {
+    if (VAO == 0) {
+        glGenVertexArrays(1, &VAO);
+        glGenBuffers(1, &VBO);
+
+        glBindVertexArray(VAO);
+        glBindBuffer(GL_ARRAY_BUFFER,VBO);
+        glBufferData(GL_ARRAY_BUFFER,0,nullptr,GL_DYNAMIC_DRAW);
+
+        glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,sizeof(Vertex),(void*)offsetof(Vertex,pos));
+        glEnableVertexAttribArray(0);
+        glVertexAttribPointer(1,4,GL_FLOAT,GL_FALSE,sizeof(Vertex),(void*)offsetof(Vertex,color));
+        glEnableVertexAttribArray(1);
+
+        glBindVertexArray(0);
+    }
+
+    glBindBuffer(GL_ARRAY_BUFFER,VBO);
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), vertices.data(),GL_DYNAMIC_DRAW);
+}
+
+void Renderer::addTriangle(Vec2 v1, Vec2 v2, Vec2 v3, Vec4 color,float depth) {
+    vertices.push_back({{v1[0],v1[1],depth},color});
+    vertices.push_back({{v2[0],v2[1],depth},color});
+    vertices.push_back({{v3[0],v3[1],depth},color});
+}
+
+void Renderer::addQuad(Vec2 pos,Vec2 size,Vec4 color,float depth) {
+    addTriangle(pos,{pos[0] + size[0],pos[1]},{pos[0],pos[1] + size[1]},color,depth);
+    addTriangle({pos[0] + size[0],pos[1] + size[1]},{pos[0] + size[0],pos[1]},{pos[0],pos[1] + size[1]},color,depth);
+}
+
+void Renderer::mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
+    const auto game = static_cast<Game*>(glfwGetWindowUserPointer(window));
+    if (!game) return;
+
+    double xpos, ypos;
+    glfwGetCursorPos(window, &xpos, &ypos);
+    const float worldX = xpos;
+    const float worldY = game->getRenderer().getHeight() - ypos;
+
+    if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
+        game->clickEvent(static_cast<int>(worldX),static_cast<int>(worldY));
+    }
+}
+
+
