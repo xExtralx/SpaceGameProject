@@ -80,16 +80,6 @@ void Renderer::update() {
     const float worldY = game->getRenderer().getHeight() - ypos;
 
     game->moveEvent(worldX,worldY);
-
-    if (glfwGetKey(window, GLFW_KEY_F11) == GLFW_PRESS) {
-        std::cout << "Fullscreen :" << fullscreen <<std::endl;
-        fullscreen = !fullscreen;
-        if (fullscreen) {
-            glfwSetWindowMonitor(window, monitor, 0, 0, mode->width, mode->height, mode->refreshRate);
-        } else {
-            glfwSetWindowMonitor(window, nullptr, 0, 0, width, height, 60);
-        }
-    }
 }
 
 void Renderer::present() const {
