@@ -50,9 +50,10 @@ int Renderer::init() {
     monitor = glfwGetPrimaryMonitor();
     mode = glfwGetVideoMode(monitor);
 
-    //fileManager.init();
-
-    shader = new Shader(FileManager::LoadTextFile("shader/default.vert"), FileManager::LoadTextFile("shader/default.vert"));
+    shader = new Shader(
+        FileManager::LoadTextFile("shader/default.vert"),
+        FileManager::LoadTextFile("shader/default.frag")
+    );
 
     return true;
 }
