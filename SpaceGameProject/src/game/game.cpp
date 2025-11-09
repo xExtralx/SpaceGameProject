@@ -30,7 +30,7 @@ void Game::update() {
 
 void Game::render() {
     renderer.clear();
-    renderer.addTriangle({0.0f,0.0f,0.0f},{100.0f,0.0f,0.0f},{0.0f,100.0f,0.0f},{1.0f,0.0f,0.0f,1.0f});
+    renderer.addTriangle({0.0f,0.0f}, {1.0f,0.0f}, {0.0f,1.0f},{0.0f,1.0f,0.05f,1.0f},1.0f);
     renderer.uploadGeometry();
     renderer.draw();
     renderer.present();
