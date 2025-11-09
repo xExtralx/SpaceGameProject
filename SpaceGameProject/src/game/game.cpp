@@ -34,6 +34,7 @@ void Game::render() {
     renderer.uploadGeometry();
     renderer.draw();
     renderer.present();
+    renderer.update();
 }
 
 bool Game::shouldClose() const {
