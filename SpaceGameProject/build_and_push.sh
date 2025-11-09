@@ -48,7 +48,7 @@ fi
 
 # ⚙️ 5. Commit + push
 COMMIT_MSG="${1:-Auto build $(date '+%Y-%m-%d %H:%M:%S')}"
-echo -e "${CYAN}💬 Commit message :${RED} ${COMMIT_MSG}"
+echo -e "${CYAN}💬 Commit message :${RED} ${COMMIT_MSG} ${NC}"
 
 git add .
 git commit -m "$COMMIT_MSG"
