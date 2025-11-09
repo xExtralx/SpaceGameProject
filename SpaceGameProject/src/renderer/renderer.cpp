@@ -122,8 +122,17 @@ void Renderer::addTriangle(Vec2 v1, Vec2 v2, Vec2 v3, Vec4 color,float depth) {
 }
 
 void Renderer::addQuad(Vec2 pos,Vec2 size,Vec4 color,float depth) {
-    addTriangle(pos,{pos[0] + size[0],pos[1]},{pos[0],pos[1] + size[1]},color,depth);
-    addTriangle({pos[0] + size[0],pos[1] + size[1]},{pos[0] + size[0],pos[1]},{pos[0],pos[1] + size[1]},color,depth);
+    addTriangle(
+        pos,
+        {pos[0] + size[0],pos[1]},
+        {pos[0],pos[1] + size[1]},
+        color,depth );
+
+    addTriangle(
+        {pos[0] + size[0],pos[1] + size[1]},
+        {pos[0] + size[0],pos[1]},
+        {pos[0],pos[1] + size[1]},
+        color,depth );
 }
 
 void Renderer::mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
