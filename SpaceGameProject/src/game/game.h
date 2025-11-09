@@ -34,6 +34,7 @@ private:
     int height = 0;
 
     Renderer renderer;
+    FileManager fileManager;
 };
 
 

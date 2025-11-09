@@ -2,7 +2,7 @@
 // Created by raphael on 02/11/2025.
 //
 
-#include <iostream>
+#include <string>
 #include "renderer.h"
 #include "../game/game.h"
 
@@ -47,10 +47,12 @@ int Renderer::init() {
     glfwSetMouseButtonCallback(window, Renderer::mouse_button_callback);
     glfwSetKeyCallback(window, Renderer::key_callback);
 
-    shader = new Shader("assets/shader/default.vert", "assets/shader/default.frag");
-
     monitor = glfwGetPrimaryMonitor();
     mode = glfwGetVideoMode(monitor);
+
+    fileManager.init();
+
+    shader = new Shader(fileManager.LoadTextFile("shader/default.vert"), fileManager.LoadTextFile("shader/default.vert"));
 
     return true;
 }

@@ -55,6 +55,8 @@ private:
 
     GLFWwindow* window;
 
+    FileManager fileManager;
+
     GLFWmonitor* monitor;
     const GLFWvidmode* mode;
 

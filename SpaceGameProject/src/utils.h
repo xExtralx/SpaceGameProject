@@ -6,6 +6,7 @@
 #include <chrono>
 #include <array>
 #include <fstream>
+#include "nlohmann/json.hpp"
 
 // ------------------------
 //   TEMPLATE VECTOR CLASS
@@ -168,4 +169,63 @@ public:
     }
 };
 
+// ------------------------
+//   FILE CLASS
+// ------------------------
+
+class FileManager {
+public:
+    using json = nlohmann::json;
+
+    // Initialise la racine (automatiquement ou manuellement)
+    static void init() {
+        namespace fs = std::filesystem;
+        fs::path execPath = fs::current_path();
+        if (execPath.filename() == "build")
+            execPath = execPath.parent_path();
+        basePath = execPath.string();
+        std::cout << "[FileManager] Base path: " << basePath << std::endl;
+    }
+
+    static void SetBasePath(const std::string& path) { basePath = path; }
+    static const std::string& GetBasePath() { return basePath; }
+
+    // 🔹 Charge un fichier texte
+    static std::string LoadTextFile(const std::string& relativePath) {
+        namespace fs = std::filesystem;
+        fs::path fullPath = fs::path(basePath) / "assets" / relativePath;
+        std::ifstream file(fullPath);
+        if (!file.is_open()) {
+            throw std::runtime_error("[FileManager] Cannot open text file: " + fullPath.string());
+        }
+        return std::string((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+    }
+
+    // 🔹 Charge un fichier binaire (ex: image, modèle)
+    static std::vector<unsigned char> LoadBinaryFile(const std::string& relativePath) {
+        namespace fs = std::filesystem;
+        fs::path fullPath = fs::path(basePath) / "assets" / relativePath;
+        std::ifstream file(fullPath, std::ios::binary);
+        if (!file.is_open()) {
+            throw std::runtime_error("[FileManager] Cannot open binary file: " + fullPath.string());
+        }
+        return std::vector<unsigned char>((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+    }
+
+    // 🔹 Charge et parse un fichier JSON
+    static json LoadJSONFile(const std::string& relativePath) {
+        return json::parse(LoadTextFile(relativePath));
+    }
+
+    // ✅ Convertit un objet JSON déjà chargé en un type C++
+    template<typename T>
+    static T LoadJSON(const json& j) {
+        return j.get<T>(); // nécessite une fonction from_json() pour le type T
+    }
+
+private:
+    static inline std::string basePath = "";
+};
+
 #endif // UTILS_H
+

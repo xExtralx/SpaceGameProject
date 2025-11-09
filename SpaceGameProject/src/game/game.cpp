@@ -17,6 +17,8 @@ void Game::init() {
         return;
     }
 
+    fileManager.init();
+
     std::cout << "Game Initialized" << std::endl;
 
     glfwSetWindowUserPointer(renderer.getWindow(), this);
