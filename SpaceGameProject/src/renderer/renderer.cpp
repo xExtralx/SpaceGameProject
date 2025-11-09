@@ -45,6 +45,7 @@ int Renderer::init() {
     glfwSwapInterval(1);
     glfwSetWindowUserPointer(window,this);
     glfwSetMouseButtonCallback(window, Renderer::mouse_button_callback);
+    glfwSetKeyCallback(window, Renderer::key_callback);
 
     shader = new Shader("assets/shader/default.vert", "assets/shader/default.frag");
 
@@ -143,6 +144,18 @@ void Renderer::mouse_button_callback(GLFWwindow* window, int button, int action,
 
     if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
         game->clickEvent(static_cast<int>(worldX),static_cast<int>(worldY));
+    }
+}
+
+void Renderer::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+    const auto game = static_cast<Game*>(glfwGetWindowUserPointer(window));
+    if (!game) return;
+
+    if (action == GLFW_PRESS) {
+        game->keyPressEvent(key);
+    }
+    else if (action == GLFW_RELEASE) {
+        game->keyReleaseEvent(key);
     }
 }
 

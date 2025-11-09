@@ -49,6 +49,23 @@ void Game::clickEvent(int x, int y) {
     std::cout << "Click at : (" << x << ", " << y << ")" << std::endl;
 }
 
+void Game::keyPressEvent(int key) {
+    std::cout << "Key Pressed : " << key << std::endl;
+
+    if (key == GLFW_KEY_F11) {
+        renderer.fullscreen = !renderer.fullscreen;
+        if (renderer.fullscreen) {
+            glfwSetWindowMonitor(renderer.getWindow(), glfwGetPrimaryMonitor(), 0, 0, 1920, 1080, GLFW_DONT_CARE);
+        } else {
+            glfwSetWindowMonitor(renderer.getWindow(), NULL, 0, 0, 800, 600, GLFW_DONT_CARE);
+        }
+    }
+}
+
+void Game::keyReleaseEvent(int key) {
+    std::cout << "Key Released : " << key << std::endl;
+}
+
 void Game::stop() {
     std::cout << "Game Stopped" << std::endl;
 }
