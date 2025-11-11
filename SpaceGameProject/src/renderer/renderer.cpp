@@ -135,6 +135,7 @@ void Renderer::addQuad(Vec2 pos,Vec2 size,Vec4 color,float depth) {
         color,depth );
 }
 
+
 void Renderer::mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
     const auto game = static_cast<Game*>(glfwGetWindowUserPointer(window));
     if (!game) return;
