@@ -12,8 +12,8 @@ include(FetchContent)
 # === Dépendances externes ===
 
 ## --- GLAD ---
-add_library(glad STATIC external/glad/src/glad.c)
-target_include_directories(glad PUBLIC external/glad/include)
+add_library(glad STATIC include/glad/src/glad.c)
+target_include_directories(glad PUBLIC include/glad/include)
 
 ## --- GLFW (via FetchContent) ---
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
