@@ -174,12 +174,26 @@ public:
     }
 
     void generateBlankTileMap() {
-        TileMap* map = new TileMap(16,16,16,16, 1, 0);
-        map->chunks[0] = new Chunk(0, 0, 2,16, 16);
-        map->chunks[0]->layers[0] = new TileLayer(16, 16);
-        map->chunks[0]->layers[1] = new TileLayer(16, 16);
+        // Crée la tilemap : (chunks de 16x16 tiles, tiles de 16x16 pixels, 1 type, texture ID = 0)
+        auto* map = new TileMap(16, 16, 16, 16, 1, 0);
+
+        // Ajoute un chunk en (0,0) avec 2 layers (sol et décor)
+        uint64_t key = map->hashChunkPos(0, 0);
+        map->chunks[key] = new Chunk(16, 16, 2, 0, 0);
+
+        // (Optionnel) remplir les tiles du premier layer avec un type spécifique :
+        auto* layer = map->chunks[key]->layers[0];
+        for (int y = 0; y < layer->height; ++y) {
+            for (int x = 0; x < layer->width; ++x) {
+                Tile& tile = layer->getTile(x, y);
+                tile.setType(1);                // type 1
+                tile.setFlag(TILE_VISIBLE);     // visible
+            }
+        }
+
         tileMaps[0] = map;
     }
+
 
 
 private:
