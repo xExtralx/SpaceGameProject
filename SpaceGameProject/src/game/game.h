@@ -6,6 +6,7 @@
 #define GAME_H
 
 #include "../renderer/renderer.h"
+#include "tile/tile.h"
 
 class Game {
 public:
@@ -35,6 +36,7 @@ private:
 
     Renderer renderer;
     FileManager fileManager;
+    TileManager tileManager;
 };
 
 

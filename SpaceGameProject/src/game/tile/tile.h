@@ -5,6 +5,8 @@
 #include <vector>
 #include <unordered_map>
 
+#include "../../renderer/renderer.h"
+
 // 🔹 Flags pour les tiles (1 bit chacun dans uint8_t)
 #define TILE_SOLID      0x01
 #define TILE_ANIMATED   0x02
@@ -145,13 +147,45 @@ public:
     }
 
     // Update GPU-ready (SSBO / compute shader)
-    void updateTileMap(TileMap* map, float dt) {
+    void updateTileMap(float dt) {
         // Envoi des tiles dynamiques au GPU et dispatch compute shader
         // Par exemple via glBindBufferBase + glDispatchCompute
     }
 
+    void drawTileMap(TileMap* map) {
+        for (auto& [key, chunk] : map->chunks) {
+            if (!chunk->active) continue;
+            for (auto& layer : chunk->layers) {
+                for (int y = 0; y < layer->height; ++y) {
+                    for (int x = 0; x < layer->width; ++x) {
+                        Tile& tile = layer->getTile(x, y);
+                        uint8_t type = tile.getType();
+                        if (tile.checkFlag(TILE_VISIBLE)) {
+                            printf("[%d]", type); // affichage console
+                        } else {
+                            printf(" . ");
+                        }
+                    }
+                    printf("\n");
+                }
+                printf("\n--- Layer suivant ---\n");
+            }
+        }
+    }
+
+    void generateBlankTileMap() {
+        TileMap* map = new TileMap(16,16,16,16, 1, 0);
+        map->chunks[0] = new Chunk(0, 0, 2,16, 16);
+        map->chunks[0]->layers[0] = new TileLayer(16, 16);
+        map->chunks[0]->layers[1] = new TileLayer(16, 16);
+        tileMaps[0] = map;
+    }
+
+
 private:
     std::unordered_map<int, TileMap*> tileMaps;
+
+    int tileSize;
 };
 
 #endif // TILE_H
