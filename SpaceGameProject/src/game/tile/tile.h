@@ -4,242 +4,263 @@
 #include <cstdint>
 #include <vector>
 #include <unordered_map>
+#include <memory>
+#include <cstring>      // memcpy
+#include <glad/glad.h>  // assure que glad est chargé avant d'utiliser OpenGL
 
-#include "../../renderer/renderer.h"
+#include "../../renderer/renderer.h" // doit définir : Vertex { pos,color }, Vec2, Vec4, Renderer::Shader etc.
 
-// 🔹 Flags pour les tiles (1 bit chacun dans uint8_t)
-#define TILE_SOLID      0x01
-#define TILE_ANIMATED   0x02
-#define TILE_VISIBLE    0x04
-#define TILE_FIRE       0x08
-// jusqu'à 8 flags dans un uint8_t, peut étendre si besoin
+// -------------------- bit masks (layout clair) --------------------
+constexpr uint32_t TILE_MASK_FLAGS     = 0x000000FFu; // bits 0..7
+constexpr uint32_t TILE_MASK_TYPE      = 0x0000FF00u; // bits 8..15
+constexpr uint32_t TILE_MASK_ANIMFR    = 0x00FF0000u; // bits 16..23
+constexpr uint32_t TILE_MASK_ANIMMAX   = 0xFF000000u; // bits 24..31
 
-// 🔹 Structure ultra-compacte pour 1 tile (32 bits)
+// Flags
+#define TILE_SOLID      0x01u
+#define TILE_ANIMATED   0x02u
+#define TILE_VISIBLE    0x04u
+#define TILE_FIRE       0x08u
+
+// -------------------- Tile (32 bits compact) --------------------
 struct Tile {
-    uint32_t data; 
-    /*
-        bits 0-7   : flags
-        bits 8-15  : type (0-255 types)
-        bits 16-23 : animationFrame
-        bits 24-31 : animationMaxFrames
-    */
+    uint32_t data = 0u;
 
-    inline void setFlag(uint8_t flag)   { data |= flag; }
-    inline void clearFlag(uint8_t flag) { data &= ~flag; }
-    inline bool checkFlag(uint8_t flag) const { return (data & flag) != 0; }
+    inline void setFlag(uint8_t flag)   { data |= (uint32_t)flag; }
+    inline void clearFlag(uint8_t flag) { data &= ~((uint32_t)flag); }
+    inline bool checkFlag(uint8_t flag) const { return (data & (uint32_t)flag) != 0u; }
 
-    inline void setType(uint8_t t) { data = (data & 0xFF00FFFF) | (t << 8); }
-    inline uint8_t getType() const { return (data >> 8) & 0xFF; }
-
-    inline void setAnimFrame(uint8_t f) { data = (data & 0xFF00FFFF) | (f << 16); }
-    inline uint8_t getAnimFrame() const { return (data >> 16) & 0xFF; }
-
-    inline void setAnimMax(uint8_t f) { data = (data & 0x00FFFFFF) | (f << 24); }
-    inline uint8_t getAnimMax() const { return (data >> 24) & 0xFF; }
-};
-
-// 🔹 Layer de tiles
-struct TileLayer {
-    Tile* tiles;  
-    int width;
-    int height;
-
-    TileLayer(int w, int h) : width(w), height(h) {
-        tiles = new Tile[w*h](); // contigu et zero-init
+    inline void setType(uint8_t t) {
+        data = (data & ~TILE_MASK_TYPE) | (static_cast<uint32_t>(t) << 8);
+    }
+    inline uint8_t getType() const {
+        return static_cast<uint8_t>((data & TILE_MASK_TYPE) >> 8);
     }
 
-    ~TileLayer() { delete[] tiles; }
+    inline void setAnimFrame(uint8_t f) {
+        data = (data & ~TILE_MASK_ANIMFR) | (static_cast<uint32_t>(f) << 16);
+    }
+    inline uint8_t getAnimFrame() const {
+        return static_cast<uint8_t>((data & TILE_MASK_ANIMFR) >> 16);
+    }
 
-    inline Tile& getTile(int x, int y) { return tiles[y*width + x]; }
+    inline void setAnimMax(uint8_t f) {
+        data = (data & ~TILE_MASK_ANIMMAX) | (static_cast<uint32_t>(f) << 24);
+    }
+    inline uint8_t getAnimMax() const {
+        return static_cast<uint8_t>((data & TILE_MASK_ANIMMAX) >> 24);
+    }
 };
 
-// 🔹 Chunk de la map
+// -------------------- TileLayer --------------------
+struct TileLayer {
+    std::vector<Tile> tiles;
+    int width = 0;
+    int height = 0;
+
+    TileLayer(int w = 0, int h = 0) : tiles(static_cast<size_t>(w)*static_cast<size_t>(h)), width(w), height(h) {}
+
+    inline Tile& getTile(int x, int y) { return tiles[y * width + x]; }
+    inline const Tile& getTile(int x, int y) const { return tiles[y * width + x]; }
+};
+
+// -------------------- Chunk --------------------
 struct Chunk {
-    std::vector<TileLayer*> layers; // plusieurs layers (sol, déco, collisions)
-    int width, height;              // tiles par chunk
-    int chunkX, chunkY;             // position dans la map
-    bool loaded;                    // alloué en mémoire
-    bool active;                    // dans le rayon du joueur, à updater/rendre
+    std::vector<std::unique_ptr<TileLayer>> layers;
+    int width = 0;
+    int height = 0;
+    int chunkX = 0;
+    int chunkY = 0;
+    bool active = false;
 
-    std::vector<Vertex> vertices; // pré-calculés pour toutes les tiles visibles
-    GLuint VBO = 0, VAO = 0;      // VBO et VAO pour les tiles visibles
+    // GPU mesh
+    std::vector<Vertex> vertices;
+    GLuint VAO = 0;
+    GLuint VBO = 0;
 
-    Chunk(int w, int h, int layerCount, int cx, int cy)
-        : width(w), height(h), chunkX(cx), chunkY(cy), loaded(true), active(false) {
-        for(int i=0; i<layerCount; i++)
-            layers.push_back(new TileLayer(w,h));
+    Chunk(int w = 0, int h = 0, int layerCount = 1, int cx = 0, int cy = 0)
+        : width(w), height(h), chunkX(cx), chunkY(cy)
+    {
+        layers.reserve(layerCount);
+        for (int i = 0; i < layerCount; ++i)
+            layers.emplace_back(std::make_unique<TileLayer>(w, h));
     }
 
     ~Chunk() {
-        for(auto l : layers) delete l;
+        if (VBO) { glDeleteBuffers(1, &VBO); VBO = 0; }
+        if (VAO) { glDeleteVertexArrays(1, &VAO); VAO = 0; }
     }
 
-    inline void addTileToMesh(std::vector<Vertex>& out, Vec2 pos, Vec2 size, Vec4 color, float depth) {
-        Vec2 b = {pos[0], pos[1] - (size[1] / 2)};
-        Vec2 t = {pos[0], pos[1] + (size[1] / 2)};
-        Vec2 l = {pos[0] - (size[0] / 2), pos[1]};
-        Vec2 r = {pos[0] + (size[0] / 2), pos[1]};
+    // ajoute deux triangles en losange isométrique
+    inline void addTileToMesh(const Vec2& center, const Vec2& size, const Vec4& color, float depth) {
+        Vec2 b = { center[0], center[1] - size[1] * 0.5f };
+        Vec2 t = { center[0], center[1] + size[1] * 0.5f };
+        Vec2 l = { center[0] - size[0] * 0.5f, center[1] };
+        Vec2 r = { center[0] + size[0] * 0.5f, center[1] };
 
-        out.push_back({{b[0], b[1], depth}, color});
-        out.push_back({{l[0], l[1], depth}, color});
-        out.push_back({{t[0], t[1], depth}, color});
-        out.push_back({{b[0], b[1], depth}, color});
-        out.push_back({{r[0], r[1], depth}, color});
-        out.push_back({{t[0], t[1], depth}, color});
+        vertices.push_back(Vertex{ {b[0], b[0], depth}, color });
+        vertices.push_back(Vertex{ {l[0], l[0], depth}, color });
+        vertices.push_back(Vertex{ {t[0], t[0], depth}, color });
+
+        vertices.push_back(Vertex{ {b[0], b[0], depth}, color });
+        vertices.push_back(Vertex{ {r[0], r[0], depth}, color });
+        vertices.push_back(Vertex{ {t[0], t[0], depth}, color });
     }
 
-    void buildMesh(int tileSize) {
+    // build mesh (iso) et upload GPU - appeler quand chunk changé
+    void buildMeshIsometric(int tileSize) {
         vertices.clear();
-        for (auto& layer : layers) {
-            for (int y = 0; y < layer->height; ++y) {
-                for (int x = 0; x < layer->width; ++x) {
-                    Tile& tile = layer->getTile(x, y);
-                    if (tile.checkFlag(TILE_VISIBLE)) {
-                        Vec2 pos = {x * tileSize, y * tileSize};
-                        Vec4 color = {1, 1, 1, 1};
-                        addTileToMesh(vertices, pos, {tileSize, tileSize}, color, 0.0f);
-                    }
+        // parcourir layers (ordre important: draw layers bottom->top)
+        for (const auto& layerPtr : layers) {
+            const TileLayer& layer = *layerPtr;
+            for (int y = 0; y < layer.height; ++y) {
+                for (int x = 0; x < layer.width; ++x) {
+                    const Tile& tile = layer.getTile(x, y);
+                    if (!tile.checkFlag(TILE_VISIBLE)) continue;
+
+                    // position globale en tuiles
+                    int gx = chunkX * width + x;
+                    int gy = chunkY * height + y;
+
+                    // isometric projection
+                    float fx = static_cast<float>(gx);
+                    float fy = static_cast<float>(gy);
+                    float isoX = (fx - fy) * (tileSize * 0.5f);
+                    float isoY = (fx + fy) * (tileSize * 0.25f);
+
+                    Vec2 center = { isoX, isoY };
+                    Vec2 size = { static_cast<float>(tileSize), static_cast<float>(tileSize) * 0.5f };
+
+                    // debug color from type
+                    uint8_t ttype = tile.getType();
+                    Vec4 color = {
+                        (ttype % 3 == 0) ? 1.0f : 0.35f,
+                        (ttype % 3 == 1) ? 1.0f : 0.35f,
+                        (ttype % 3 == 2) ? 1.0f : 0.35f,
+                        1.0f
+                    };
+
+                    addTileToMesh(center, size, color, 0.0f);
                 }
             }
         }
 
-        // Upload GPU (une seule fois)
-        if (VAO == 0) {
-            glGenVertexArrays(1, &VAO);
-            glGenBuffers(1, &VBO);
-        }
+        // upload to GPU (single upload)
+        if (VAO == 0) glGenVertexArrays(1, &VAO);
+        if (VBO == 0) glGenBuffers(1, &VBO);
 
         glBindVertexArray(VAO);
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
+        if (!vertices.empty()) {
+            glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
+        } else {
+            // upload empty small buffer to avoid undefined bindings
+            glBufferData(GL_ARRAY_BUFFER, 1, nullptr, GL_STATIC_DRAW);
+        }
 
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, pos));
+        // attribute layout must match renderer::Vertex
         glEnableVertexAttribArray(0);
-        glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, color));
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, pos));
         glEnableVertexAttribArray(1);
+        glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, color));
+
         glBindVertexArray(0);
     }
-
 };
 
-// 🔹 Map complète avec chunks persistants
+// -------------------- TileMap --------------------
 struct TileMap {
-    std::unordered_map<uint64_t, Chunk*> chunks; // clé = (x<<32)|y
-    int chunkWidth, chunkHeight; // taille des chunks en tiles
-    int tileWidth, tileHeight;   // pixels
-    int tileCount;               // nombre de types de tiles dans atlas
-    unsigned int textureID;      // OpenGL atlas texture
+    std::unordered_map<uint64_t, std::unique_ptr<Chunk>> chunks;
+    int chunkWidth = 16;
+    int chunkHeight = 16;
+    int tileWidth = 16;
+    int tileHeight = 16;
 
-    TileMap(int cW, int cH, int tW, int tH, int tCount, unsigned int texID)
-        : chunkWidth(cW), chunkHeight(cH), tileWidth(tW), tileHeight(tH),
-          tileCount(tCount), textureID(texID) {}
+    TileMap(int cW = 16, int cH = 16, int tW = 16, int tH = 16)
+        : chunkWidth(cW), chunkHeight(cH), tileWidth(tW), tileHeight(tH) {}
 
     inline uint64_t hashChunkPos(int x, int y) const {
-        return (static_cast<uint64_t>(x) << 32) | static_cast<uint32_t>(y);
+        return (static_cast<uint64_t>(static_cast<uint32_t>(x)) << 32) | static_cast<uint32_t>(y);
     }
 
-    void addChunk(int cx, int cy, int layers=1) {
+    Chunk* getOrCreateChunk(int cx, int cy, int layers = 2) {
         uint64_t key = hashChunkPos(cx, cy);
-        if(chunks.find(key)==chunks.end())
-            chunks[key] = new Chunk(chunkWidth, chunkHeight, layers, cx, cy);
+        auto it = chunks.find(key);
+        if (it == chunks.end()) {
+            chunks[key] = std::make_unique<Chunk>(chunkWidth, chunkHeight, layers, cx, cy);
+            return chunks[key].get();
+        }
+        return it->second.get();
     }
 
     Chunk* getChunk(int cx, int cy) {
         uint64_t key = hashChunkPos(cx, cy);
         auto it = chunks.find(key);
-        return (it != chunks.end()) ? it->second : nullptr;
-    }
-
-    // Décharge pas, juste désactive
-    void deactivateChunksOutside(int minCx, int maxCx, int minCy, int maxCy) {
-        for(auto& kv : chunks) {
-            Chunk* c = kv.second;
-            c->active = !(c->chunkX < minCx || c->chunkX > maxCx || c->chunkY < minCy || c->chunkY > maxCy) ? true : false;
-        }
+        return (it != chunks.end()) ? it->second.get() : nullptr;
     }
 };
 
-// 🔹 TileManager ultra-optimisé
+// -------------------- TileManager --------------------
 class TileManager {
 public:
-    TileManager() {}
-    ~TileManager() {
-        for(auto& kv : tileMaps) delete kv.second;
+    std::unordered_map<int, std::unique_ptr<TileMap>> tileMaps;
+
+    TileManager() = default;
+    ~TileManager() = default;
+
+    TileMap* createTileMap(int id, int cW, int cH, int tW, int tH) {
+        auto map = std::make_unique<TileMap>(cW, cH, tW, tH);
+        TileMap* ptr = map.get();
+        tileMaps[id] = std::move(map);
+        return ptr;
     }
 
-    void addTileMap(int id, TileMap* map) { tileMaps[id] = map; }
     TileMap* getTileMap(int id) {
         auto it = tileMaps.find(id);
-        return (it != tileMaps.end()) ? it->second : nullptr;
+        return (it != tileMaps.end()) ? it->second.get() : nullptr;
     }
 
-    // Streaming : active les chunks autour du joueur
-    void streamChunks(TileMap* map, int playerX, int playerY, int radius) {
-        int minCx = playerX - radius;
-        int maxCx = playerX + radius;
-        int minCy = playerY - radius;
-        int maxCy = playerY + radius;
+    // streaming : active chunks dans le carré [playerCx-radius .. playerCx+radius]
+    void streamChunks(TileMap* map, int playerCx, int playerCy, int radius) {
+        int minCx = playerCx - radius, maxCx = playerCx + radius;
+        int minCy = playerCy - radius, maxCy = playerCy + radius;
 
-        // Ajouter chunks inexistants et activer ceux dans le rayon
-        for(int cx=minCx; cx<=maxCx; cx++) {
-            for(int cy=minCy; cy<=maxCy; cy++) {
-                Chunk* c = map->getChunk(cx, cy);
-                if(!c) {
-                    map->addChunk(cx, cy, 2);
-                    c = map->getChunk(cx, cy);
-                }
+        // ensure chunks exist and mark active
+        for (int cx = minCx; cx <= maxCx; ++cx) {
+            for (int cy = minCy; cy <= maxCy; ++cy) {
+                Chunk* c = map->getOrCreateChunk(cx, cy, 2);
                 c->active = true;
             }
         }
 
-        // Désactive les chunks hors rayon
-        map->deactivateChunksOutside(minCx, maxCx, minCy, maxCy);
+        // deactivate others
+        for (auto& kv : map->chunks) {
+            Chunk* c = kv.second.get();
+            if (c->chunkX < minCx || c->chunkX > maxCx || c->chunkY < minCy || c->chunkY > maxCy)
+                c->active = false;
+        }
     }
 
-    // Update GPU-ready (SSBO / compute shader)
-    void updateTileMap(float dt) {
-        // Envoi des tiles dynamiques au GPU et dispatch compute shader
-        // Par exemple via glBindBufferBase + glDispatchCompute
+    // build mesh for all active chunks (call after you modify tiles)
+    void buildActiveChunkMeshes(TileMap* map, int tileSize) {
+        for (auto& kv : map->chunks) {
+            Chunk* c = kv.second.get();
+            if (c->active) c->buildMeshIsometric(tileSize);
+        }
     }
 
+    // draw (renderer must have shader already set-up)
     void drawTileMap(TileMap* map, Renderer& renderer) {
-        renderer.getShader()->use();
-        for (auto& [key, chunk] : map->chunks) {
-            if (!chunk->active) continue;
-
-            glBindVertexArray(chunk->VAO);
-            glDrawArrays(GL_TRIANGLES, 0, static_cast<GLsizei>(chunk->vertices.size()));
+        // renderer should have shader bound and projection set
+        for (auto& kv : map->chunks) {
+            Chunk* c = kv.second.get();
+            if (!c->active) continue;
+            if (c->vertices.empty()) continue;
+            glBindVertexArray(c->VAO);
+            glDrawArrays(GL_TRIANGLES, 0, static_cast<GLsizei>(c->vertices.size()));
         }
+        glBindVertexArray(0);
     }
-
-
-    void generateBlankTileMap() {
-        // Crée la tilemap : (chunks de 16x16 tiles, tiles de 16x16 pixels, 1 type, texture ID = 0)
-        auto* map = new TileMap(16, 16, 16, 16, 1, 0);
-
-        // Ajoute un chunk en (0,0) avec 2 layers (sol et décor)
-        uint64_t key = map->hashChunkPos(0, 0);
-        map->chunks[key] = new Chunk(16, 16, 2, 0, 0);
-
-        // (Optionnel) remplir les tiles du premier layer avec un type spécifique :
-        auto* layer = map->chunks[key]->layers[0];
-        for (int y = 0; y < layer->height; ++y) {
-            for (int x = 0; x < layer->width; ++x) {
-                Tile& tile = layer->getTile(x, y);
-                tile.setType(1);                // type 1
-                tile.setFlag(TILE_VISIBLE);     // visible
-            }
-        }
-
-        tileMaps[0] = map;
-    }
-
-
-
-private:
-    std::unordered_map<int, TileMap*> tileMaps;
-
-    int tileSize;
 };
 
 #endif // TILE_H

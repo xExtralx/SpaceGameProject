@@ -18,7 +18,7 @@ void Game::init() {
     }
 
     fileManager.init();
-    tileManager.generateBlankTileMap();
+    tileManager.createTileMap(0,16,16,16,16);
 
     std::cout << "Game Initialized" << std::endl;
 
@@ -29,7 +29,6 @@ void Game::init() {
 void Game::update() {
     deltaTime = (float)glfwGetTime() - lastFrame;
     lastFrame = glfwGetTime();
-    tileManager.updateTileMap(deltaTime);
     tileManager.streamChunks(tileManager.getTileMap(0),0,0,3);
 }
 
