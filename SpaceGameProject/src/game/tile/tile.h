@@ -5,6 +5,7 @@
 #include <vector>
 #include <unordered_map>
 #include <memory>
+#include <random>
 #include <cstring>      // memcpy
 #include <glad/glad.h>  // assure que glad est chargé avant d'utiliser OpenGL
 
@@ -261,6 +262,66 @@ public:
         }
         glBindVertexArray(0);
     }
+
+    // Exemple : génère une tilemap pour test
+    TileMap* generateDebugMap(int id = 0)
+    {
+        // paramètres de base
+        const int chunkW = 16;
+        const int chunkH = 16;
+        const int tileSize = 16;
+        const int layers = 2;
+
+        // création de la TileMap
+        TileMap* map = createTileMap(id, chunkW, chunkH, tileSize, tileSize);
+
+        // générateur pseudo-aléatoire
+        std::mt19937 rng(12345); // seed fixe pour test
+        std::uniform_int_distribution<int> typeDist(0, 3);
+        std::uniform_real_distribution<float> visibleChance(0.0f, 1.0f);
+
+        // on va créer un carré de 3x3 chunks autour du centre
+        const int radius = 1;
+        for (int cx = -radius; cx <= radius; ++cx)
+        {
+            for (int cy = -radius; cy <= radius; ++cy)
+            {
+                Chunk* chunk = map->getOrCreateChunk(cx, cy, layers);
+                chunk->active = true;
+
+                // remplir chaque layer
+                for (int l = 0; l < layers; ++l)
+                {
+                    TileLayer& layer = *chunk->layers[l];
+                    for (int y = 0; y < layer.height; ++y)
+                    {
+                        for (int x = 0; x < layer.width; ++x)
+                        {
+                            Tile& tile = layer.getTile(x, y);
+                            tile.setType(typeDist(rng));
+                            tile.clearFlag(0xFF); // reset flags
+
+                            // visibilité aléatoire
+                            if (visibleChance(rng) > 0.25f)
+                                tile.setFlag(TILE_VISIBLE);
+
+                            // aléatoirement solide ou feu
+                            if (visibleChance(rng) > 0.85f)
+                                tile.setFlag(TILE_SOLID);
+                            if (visibleChance(rng) > 0.95f)
+                                tile.setFlag(TILE_FIRE);
+                        }
+                    }
+                }
+
+                // construire le mesh GPU pour ce chunk
+                chunk->buildMeshIsometric(tileSize);
+            }
+        }
+
+        return map;
+    }
+
 };
 
 #endif // TILE_H
