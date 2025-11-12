@@ -135,6 +135,15 @@ void Renderer::addQuad(Vec2 pos,Vec2 size,Vec4 color,float depth) {
         color,depth );
 }
 
+void Renderer::addTile(Vec2 pos,Vec2 size,Vec4 color,float depth) {
+    Vec2 b = {pos[0],(pos[1] - (size[1] / 2))};
+    Vec2 t = {pos[0],(pos[1] + (size[1] / 2))};
+    Vec2 l = {(pos[0] - (size[0] / 2)),pos[1]};
+    Vec2 r = {(pos[0] + (size[0] / 2)),pos[1]};
+
+    addTriangle(b,l,t,color,depth);
+    addTriangle(b,r,t,color,depth);
+}
 
 void Renderer::mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
     const auto game = static_cast<Game*>(glfwGetWindowUserPointer(window));

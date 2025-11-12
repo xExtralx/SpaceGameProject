@@ -152,7 +152,7 @@ public:
         // Par exemple via glBindBufferBase + glDispatchCompute
     }
 
-    void drawTileMap(TileMap* map) {
+    void drawTileMap(TileMap* map,Renderer& renderer) {
         for (auto& [key, chunk] : map->chunks) {
             if (!chunk->active) continue;
             for (auto& layer : chunk->layers) {
@@ -161,14 +161,12 @@ public:
                         Tile& tile = layer->getTile(x, y);
                         uint8_t type = tile.getType();
                         if (tile.checkFlag(TILE_VISIBLE)) {
-                            printf("[%d]", type); // affichage console
+                            renderer.addTile({x,y},{tileSize, tileSize},{1.0f,1.0f,1.0f,1.0f},1.0f);
                         } else {
-                            printf(" . ");
+                            renderer.addTile({x,y},{tileSize, tileSize},{0.0f,0.0f,1.0f,1.0f},0.0f);
                         }
                     }
-                    printf("\n");
                 }
-                printf("\n--- Layer suivant ---\n");
             }
         }
     }
