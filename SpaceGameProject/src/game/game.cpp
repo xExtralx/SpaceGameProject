@@ -30,6 +30,7 @@ void Game::update() {
     deltaTime = (float)glfwGetTime() - lastFrame;
     lastFrame = glfwGetTime();
     tileManager.updateTileMap(deltaTime);
+    tileManager.streamChunks(tileManager.getTileMap(0),0,0,3);
 }
 
 void Game::render() {
