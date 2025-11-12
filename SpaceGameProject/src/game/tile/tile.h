@@ -61,6 +61,9 @@ struct Chunk {
     bool loaded;                    // alloué en mémoire
     bool active;                    // dans le rayon du joueur, à updater/rendre
 
+    std::vector<Vertex> vertices; // pré-calculés pour toutes les tiles visibles
+    GLuint VBO = 0, VAO = 0;      // VBO et VAO pour les tiles visibles
+
     Chunk(int w, int h, int layerCount, int cx, int cy)
         : width(w), height(h), chunkX(cx), chunkY(cy), loaded(true), active(false) {
         for(int i=0; i<layerCount; i++)
@@ -70,6 +73,53 @@ struct Chunk {
     ~Chunk() {
         for(auto l : layers) delete l;
     }
+
+    inline void addTileToMesh(std::vector<Vertex>& out, Vec2 pos, Vec2 size, Vec4 color, float depth) {
+        Vec2 b = {pos[0], pos[1] - (size[1] / 2)};
+        Vec2 t = {pos[0], pos[1] + (size[1] / 2)};
+        Vec2 l = {pos[0] - (size[0] / 2), pos[1]};
+        Vec2 r = {pos[0] + (size[0] / 2), pos[1]};
+
+        out.push_back({{b[0], b[1], depth}, color});
+        out.push_back({{l[0], l[1], depth}, color});
+        out.push_back({{t[0], t[1], depth}, color});
+        out.push_back({{b[0], b[1], depth}, color});
+        out.push_back({{r[0], r[1], depth}, color});
+        out.push_back({{t[0], t[1], depth}, color});
+    }
+
+    void buildMesh(int tileSize) {
+        vertices.clear();
+        for (auto& layer : layers) {
+            for (int y = 0; y < layer->height; ++y) {
+                for (int x = 0; x < layer->width; ++x) {
+                    Tile& tile = layer->getTile(x, y);
+                    if (tile.checkFlag(TILE_VISIBLE)) {
+                        Vec2 pos = {x * tileSize, y * tileSize};
+                        Vec4 color = {1, 1, 1, 1};
+                        addTileToMesh(vertices, pos, {tileSize, tileSize}, color, 0.0f);
+                    }
+                }
+            }
+        }
+
+        // Upload GPU (une seule fois)
+        if (VAO == 0) {
+            glGenVertexArrays(1, &VAO);
+            glGenBuffers(1, &VBO);
+        }
+
+        glBindVertexArray(VAO);
+        glBindBuffer(GL_ARRAY_BUFFER, VBO);
+        glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
+
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, pos));
+        glEnableVertexAttribArray(0);
+        glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, color));
+        glEnableVertexAttribArray(1);
+        glBindVertexArray(0);
+    }
+
 };
 
 // 🔹 Map complète avec chunks persistants
@@ -152,24 +202,16 @@ public:
         // Par exemple via glBindBufferBase + glDispatchCompute
     }
 
-    void drawTileMap(TileMap* map,Renderer& renderer) {
+    void drawTileMap(TileMap* map, Renderer& renderer) {
+        renderer.getShader()->use();
         for (auto& [key, chunk] : map->chunks) {
             if (!chunk->active) continue;
-            for (auto& layer : chunk->layers) {
-                for (int y = 0; y < layer->height; ++y) {
-                    for (int x = 0; x < layer->width; ++x) {
-                        Tile& tile = layer->getTile(x, y);
-                        uint8_t type = tile.getType();
-                        if (tile.checkFlag(TILE_VISIBLE)) {
-                            renderer.addTile({x,y},{tileSize, tileSize},{1.0f,1.0f,1.0f,1.0f},1.0f);
-                        } else {
-                            renderer.addTile({x,y},{tileSize, tileSize},{0.0f,0.0f,1.0f,1.0f},0.0f);
-                        }
-                    }
-                }
-            }
+
+            glBindVertexArray(chunk->VAO);
+            glDrawArrays(GL_TRIANGLES, 0, static_cast<GLsizei>(chunk->vertices.size()));
         }
     }
+
 
     void generateBlankTileMap() {
         // Crée la tilemap : (chunks de 16x16 tiles, tiles de 16x16 pixels, 1 type, texture ID = 0)

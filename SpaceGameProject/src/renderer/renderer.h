@@ -43,6 +43,7 @@ public:
     int getHeight() { return this->height; }
 
     GLFWwindow* getWindow() { return this->window; }
+    Shader* getShader() { return this->shader; }
 
     static void key_callback(GLFWwindow* window,int key,int scancode,int action,int mods);
     static void mouse_button_callback(GLFWwindow* window,int button,int action,int mods);

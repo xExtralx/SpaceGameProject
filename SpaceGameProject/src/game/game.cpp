@@ -35,7 +35,6 @@ void Game::update() {
 
 void Game::render() {
     renderer.clear();
-    renderer.addTriangle({100.0f,100.0f}, {200.0f,100.0f}, {150.0f,150.0f},{1.0f,1.0f,0.05f,1.0f},1.0f);
     tileManager.drawTileMap(tileManager.getTileMap(0),renderer);
     renderer.uploadGeometry();
     renderer.draw();
