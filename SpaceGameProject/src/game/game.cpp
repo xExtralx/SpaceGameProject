@@ -63,6 +63,8 @@ void Game::keyPressEvent(int key) {
         } else {
             glfwSetWindowMonitor(renderer.getWindow(), NULL, 0, 0, 800, 600, GLFW_DONT_CARE);
         }
+    } else if (key == GLFW_KEY_B) {
+        tileManager.buildActiveChunkMeshes(tileManager.getTileMap(0),16);
     }
 }
 
