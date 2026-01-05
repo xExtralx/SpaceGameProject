@@ -99,13 +99,13 @@ struct Chunk {
         Vec2 l = { center[0] - size[0] * 0.5f, center[1] };
         Vec2 r = { center[0] + size[0] * 0.5f, center[1] };
 
-        vertices.push_back(Vertex{ {b[0], b[0], depth}, color });
-        vertices.push_back(Vertex{ {l[0], l[0], depth}, color });
-        vertices.push_back(Vertex{ {t[0], t[0], depth}, color });
+        vertices.push_back(Vertex{ {b[0], b[1], depth}, color });
+        vertices.push_back(Vertex{ {l[0], l[1], depth}, color });
+        vertices.push_back(Vertex{ {t[0], t[1], depth}, color });
 
-        vertices.push_back(Vertex{ {b[0], b[0], depth}, color });
-        vertices.push_back(Vertex{ {r[0], r[0], depth}, color });
-        vertices.push_back(Vertex{ {t[0], t[0], depth}, color });
+        vertices.push_back(Vertex{ {b[0], b[1], depth}, color });
+        vertices.push_back(Vertex{ {r[0], r[1], depth}, color });
+        vertices.push_back(Vertex{ {t[0], t[1], depth}, color });
     }
 
     // build mesh (iso) et upload GPU - appeler quand chunk changé
