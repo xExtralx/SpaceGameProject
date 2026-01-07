@@ -19,6 +19,7 @@ void Game::init() {
 
     fileManager.init();
     TileMap* debugMap = tileManager.generateDebugMap();
+    tileManager.debug = true;
 
     std::cout << "Game Initialized" << std::endl;
 
