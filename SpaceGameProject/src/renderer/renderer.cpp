@@ -67,6 +67,13 @@ void Renderer::clear() {
 void Renderer::draw() const {
     shader->use();
     shader->setFloat("uTime", (float) glfwGetTime());
+    
+    float scale = 100.0f;
+    shader->setFloat("uScale", (float) scale);
+    shader->setVec2("uResolution",(float) width,(float) height);
+
+    glBindVertexArray(VAO);
+    shader->setFloat("uScale", (float) scale);
     shader->setVec2("uResolution",(float) width,(float) height);
 
     glBindVertexArray(VAO);
