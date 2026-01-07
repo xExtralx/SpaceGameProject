@@ -264,7 +264,7 @@ public:
 
                 // start et end en Vec2
                 Vec2 start = { c->chunkX, c->chunkY };
-                Vec2 end   = { c->chunkX + 1.0f, c->chunkY }; // exemple d'une ligne horizontale
+                Vec2 end   = { (int) c->chunkX + c->width,(int) c->chunkY + c->height }; // exemple d'une ligne horizontale
 
                 renderer.addLine(start, end, 5.0f, color, 0.0f);
 
