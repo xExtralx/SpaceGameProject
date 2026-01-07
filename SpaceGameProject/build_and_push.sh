@@ -37,8 +37,7 @@ echo -e "${GREEN}✅ Linux OK${NC}"
 # =============================
 echo -e "${CYAN}📦 Ajout des binaires...${NC}"
 
-git add -f \
-  $BUILD_LINUX/$PROJECT_NAME
+git add .
 
 git commit -m "$COMMIT_MSG"
 git push
