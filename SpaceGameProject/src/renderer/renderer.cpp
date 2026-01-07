@@ -72,7 +72,6 @@ void Renderer::draw() const {
     shader->setFloat("uScale", (float) scale);
     shader->setVec2("uResolution",(float) width,(float) height);
 
-    glBindVertexArray(VAO);
     shader->setFloat("uScale", (float) scale);
     shader->setVec2("uResolution",(float) width,(float) height);
 
