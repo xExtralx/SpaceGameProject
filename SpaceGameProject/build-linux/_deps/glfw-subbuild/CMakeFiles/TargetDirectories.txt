@@ -1,0 +1,3 @@
+/home/ubuntu/Games/SpaceGameProject/SpaceGameProject/build-linux/_deps/glfw-subbuild/CMakeFiles/glfw-populate.dir
+/home/ubuntu/Games/SpaceGameProject/SpaceGameProject/build-linux/_deps/glfw-subbuild/CMakeFiles/edit_cache.dir
+/home/ubuntu/Games/SpaceGameProject/SpaceGameProject/build-linux/_deps/glfw-subbuild/CMakeFiles/rebuild_cache.dir
