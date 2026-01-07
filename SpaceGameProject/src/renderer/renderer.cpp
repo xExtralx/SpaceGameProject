@@ -66,19 +66,17 @@ void Renderer::clear() {
 
 void Renderer::draw() const {
     shader->use();
-    shader->setFloat("uTime", (float) glfwGetTime());
-    
-    float scale = 100.0f;
-    shader->setFloat("uScale", (float) scale);
-    shader->setVec2("uResolution",(float) width,(float) height);
 
-    shader->setFloat("uScale", (float) scale);
-    shader->setVec2("uResolution",(float) width,(float) height);
+    shader->setFloat("uTime", (float)glfwGetTime());
+    shader->setFloat("uScale", 100.0f);
+    shader->setVec2("uResolution", (float)width, (float)height);
 
     glBindVertexArray(VAO);
-    glDrawArrays(GL_TRIANGLES, 0, static_cast<GLsizei>(vertices.size()));
+    glDrawArrays(GL_TRIANGLES, 0,
+        static_cast<GLsizei>(vertices.size() / 5));
     glBindVertexArray(0);
 }
+
 
 void Renderer::update() {
     const auto game = static_cast<Game*>(glfwGetWindowUserPointer(window));
