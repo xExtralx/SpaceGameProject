@@ -104,12 +104,23 @@ void Renderer::uploadGeometry() {
         glGenBuffers(1, &VBO);
 
         glBindVertexArray(VAO);
-        glBindBuffer(GL_ARRAY_BUFFER,VBO);
-        glBufferData(GL_ARRAY_BUFFER,0,nullptr,GL_DYNAMIC_DRAW);
+        glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
-        glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,sizeof(Vertex),(void*)offsetof(Vertex,pos));
+        glBufferData(
+            GL_ARRAY_BUFFER,
+            vertices.size() * sizeof(Vertex),
+            vertices.data(),
+            GL_DYNAMIC_DRAW
+        );
+
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,
+                          sizeof(Vertex),
+                          (void*)offsetof(Vertex, pos));
         glEnableVertexAttribArray(0);
-        glVertexAttribPointer(1,4,GL_FLOAT,GL_FALSE,sizeof(Vertex),(void*)offsetof(Vertex,color));
+
+        glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE,
+                          sizeof(Vertex),
+                          (void*)offsetof(Vertex, color));
         glEnableVertexAttribArray(1);
 
         glBindVertexArray(0);
