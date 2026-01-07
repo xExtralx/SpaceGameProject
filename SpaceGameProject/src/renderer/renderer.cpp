@@ -75,6 +75,8 @@ void Renderer::draw() const {
     glDrawArrays(GL_TRIANGLES, 0,
         static_cast<GLsizei>(vertices.size() / 5));
     glBindVertexArray(0);
+
+    std::cout << "Drawing" << std::endl;
 }
 
 
