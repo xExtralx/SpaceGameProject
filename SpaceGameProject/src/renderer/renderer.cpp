@@ -71,7 +71,10 @@ void Renderer::draw() const {
     shader->setFloat("uScale", 100.0f);
     shader->setVec2("uResolution", (float)width, (float)height);
 
-    glBindVertexArray(VAO);
+    int loc = glGetUniformLocation(shader->ID, "uScale");
+    std::cout << "uScale location = " << loc << std::endl;
+
+    glBindVertexArray(VAO); 
     glDrawArrays(GL_TRIANGLES, 0,
         static_cast<GLsizei>(vertices.size() / 5));
     glBindVertexArray(0);
