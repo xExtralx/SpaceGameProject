@@ -26,7 +26,7 @@ public:
     int init();
     void update();
     void uploadGeometry();
-    void draw() const;
+    void draw();
     void clear();
     void present() const;
 

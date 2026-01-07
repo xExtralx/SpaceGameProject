@@ -64,7 +64,7 @@ void Renderer::clear() {
     vertices.clear();
 }
 
-void Renderer::draw() const {
+void Renderer::draw() {
     std::cout << "Drawing" << std::endl;
     shader->use();
 
