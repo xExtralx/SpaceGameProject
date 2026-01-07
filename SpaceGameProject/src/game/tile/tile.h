@@ -209,6 +209,8 @@ public:
     TileManager() = default;
     ~TileManager() = default;
 
+    bool debug = false;
+
     TileMap* createTileMap(int id, int cW, int cH, int tW, int tH) {
         auto map = std::make_unique<TileMap>(cW, cH, tW, tH);
         TileMap* ptr = map.get();
@@ -257,6 +259,16 @@ public:
             Chunk* c = kv.second.get();
             if (!c->active) continue;
             if (c->vertices.empty()) continue;
+            if(debug) {
+                Vec4 color = {0.7f,0.7f,0.0f,1.0f};
+
+                // start et end en Vec2
+                Vec2 start = { c->chunkX, c->chunkY };
+                Vec2 end   = { c->chunkX + 1.0f, c->chunkY }; // exemple d'une ligne horizontale
+
+                renderer.addLine(start, end, 5.0f, color, 0.0f);
+
+            }
             glBindVertexArray(c->VAO);
             glDrawArrays(GL_TRIANGLES, 0, static_cast<GLsizei>(c->vertices.size()));
         }

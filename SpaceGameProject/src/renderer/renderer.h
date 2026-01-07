@@ -34,6 +34,7 @@ public:
 
     void addTriangle(Vec2 v1, Vec2 v2, Vec2 v3, Vec4 color, float depth);
     void addQuad(Vec2 pos,Vec2 size, Vec4 color, float depth);
+    void addLine(Vec2 start, Vec2 end, float thickness, Vec4 color, float depth);
     void addTile(Vec2 pos, Vec2 size,Vec4 color ,float depth);
 
     bool shouldClose() const;

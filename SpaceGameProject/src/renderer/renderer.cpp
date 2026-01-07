@@ -65,7 +65,6 @@ void Renderer::clear() {
 }
 
 void Renderer::draw() {
-    std::cout << "Drawing" << std::endl;
     shader->use();
 
     shader->setFloat("uTime", (float)glfwGetTime());
@@ -81,9 +80,6 @@ void Renderer::draw() {
 
 void Renderer::update() {
     const auto game = static_cast<Game*>(glfwGetWindowUserPointer(window));
-
-    int loc = glGetUniformLocation(shader->ID, "uScale");
-    std::cout << "uScale location = " << loc << std::endl;
 
     double xpos, ypos;
     glfwGetCursorPos(window, &xpos, &ypos);
@@ -154,6 +150,30 @@ void Renderer::addQuad(Vec2 pos,Vec2 size,Vec4 color,float depth) {
         color,depth );
 }
 
+void Renderer::addLine(Vec2 start, Vec2 end, float thickness, Vec4 color, float depth) {
+    // Calcul du vecteur perpendiculaire normalisé
+    Vec2 dir = { end[0] - start[0], end[1] - start[1] };
+    float length = std::sqrt(dir[0]*dir[0] + dir[1]*dir[1]);
+    if(length == 0.0f) return; // ligne nulle
+
+    dir[0] /= length;
+    dir[1] /= length;
+
+    // vecteur perpendiculaire
+    Vec2 perp = {-dir[1] * thickness * 0.5f, dir[0] * thickness * 0.5f};
+
+    // 4 coins du rectangle
+    Vec2 v0 = { start[0] + perp[0], start[1] + perp[1] };
+    Vec2 v1 = { start[0] - perp[0], start[1] - perp[1] };
+    Vec2 v2 = { end[0] + perp[0], end[1] + perp[1] };
+    Vec2 v3 = { end[0] - perp[0], end[1] - perp[1] };
+
+    // deux triangles
+    addTriangle(v0, v1, v2, color, depth);
+    addTriangle(v2, v1, v3, color, depth);
+}
+
+
 void Renderer::addTile(Vec2 pos,Vec2 size,Vec4 color,float depth) {
     Vec2 b = {pos[0],(pos[1] - (size[1] / 2))};
     Vec2 t = {pos[0],(pos[1] + (size[1] / 2))};
@@ -163,6 +183,8 @@ void Renderer::addTile(Vec2 pos,Vec2 size,Vec4 color,float depth) {
     addTriangle(b,l,t,color,depth);
     addTriangle(b,r,t,color,depth);
 }
+
+
 
 void Renderer::mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
     const auto game = static_cast<Game*>(glfwGetWindowUserPointer(window));
