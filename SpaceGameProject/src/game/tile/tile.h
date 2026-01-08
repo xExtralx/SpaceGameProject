@@ -135,7 +135,7 @@ struct Chunk {
                     };
 
                     float baseZ = layerIndex * 100000.0f;
-                    float topZ  = baseZ;
+                    float topZ  = baseZ + 1000.0f * gx;
 
                     addTileToMesh({ static_cast<float>(gx), static_cast<float>(gy) }, color, topZ);
                 }
