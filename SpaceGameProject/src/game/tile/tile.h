@@ -128,9 +128,9 @@ struct Chunk {
 
                     uint8_t ttype = tile.getType();
                     Vec4 color = {
-                        (ttype % 3 == 0) ? 1.0f : 0.35f,
-                        (ttype % 3 == 1) ? 1.0f : 0.35f,
-                        (ttype % 3 == 2) ? 1.0f : 0.35f,
+                        ttype * 32.0f,
+                        ttype * 32.0f,
+                        ttype * 32.0f,
                         1.0f
                     };
 
