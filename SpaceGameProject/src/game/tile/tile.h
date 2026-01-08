@@ -313,7 +313,7 @@ public:
                         for (int x = 0; x < layer.width; ++x)
                         {
                             Tile& tile = layer.getTile(x, y);
-                            tile.setType(typeDist(rng));
+                            tile.setType(l);
                             tile.clearFlag(0xFF); // reset flags
 
                             // visibilité aléatoire
