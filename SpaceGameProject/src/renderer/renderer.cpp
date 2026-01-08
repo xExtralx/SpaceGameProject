@@ -51,8 +51,8 @@ int Renderer::init() {
     mode = glfwGetVideoMode(monitor);
 
     shader = new Shader(
-        FileManager::LoadTextFile("shader/default.vert"),
-        FileManager::LoadTextFile("shader/default.frag")
+        FileManager::LoadTextFile("shader/iso.vert"),
+        FileManager::LoadTextFile("shader/iso.frag")
     );
 
     return true;
@@ -98,8 +98,14 @@ bool Renderer::shouldClose() const {
     return glfwWindowShouldClose(window);
 }
 
-void Renderer::uploadGeometry() {
-    if (VAO == 0) {
+void Renderer::uploadGeometry(
+    const void* vertexData,
+    size_t vertexCount,
+    const VertexLayout& layout
+)
+{
+    if (VAO == 0)
+    {
         glGenVertexArrays(1, &VAO);
         glGenBuffers(1, &VBO);
 
@@ -108,33 +114,48 @@ void Renderer::uploadGeometry() {
 
         glBufferData(
             GL_ARRAY_BUFFER,
-            vertices.size() * sizeof(Vertex),
-            vertices.data(),
+            vertexCount * layout.stride,
+            vertexData,
             GL_DYNAMIC_DRAW
         );
 
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,
-                          sizeof(Vertex),
-                          (void*)offsetof(Vertex, pos));
-        glEnableVertexAttribArray(0);
-
-        glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE,
-                          sizeof(Vertex),
-                          (void*)offsetof(Vertex, color));
-        glEnableVertexAttribArray(1);
+        for (const auto& attrib : layout.attributes)
+        {
+            glVertexAttribPointer(
+                attrib.index,
+                attrib.count,
+                GL_FLOAT,
+                GL_FALSE,
+                layout.stride,
+                (void*)attrib.offset
+            );
+            glEnableVertexAttribArray(attrib.index);
+        }
 
         glBindVertexArray(0);
     }
 
-    glBindBuffer(GL_ARRAY_BUFFER,VBO);
-    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), vertices.data(),GL_DYNAMIC_DRAW);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(
+        GL_ARRAY_BUFFER,
+        vertexCount * layout.stride,
+        vertexData,
+        GL_DYNAMIC_DRAW
+    );
 }
 
-void Renderer::addTriangle(Vec2 v1, Vec2 v2, Vec2 v3, Vec4 color,float depth) {
-    vertices.push_back({{v1[0],v1[1],depth},color});
-    vertices.push_back({{v2[0],v2[1],depth},color});
-    vertices.push_back({{v3[0],v3[1],depth},color});
+void Renderer::addTriangle(
+    const Vec2& v1,
+    const Vec2& v2,
+    const Vec2& v3,
+    const Vec4& color,
+    float z
+) {
+    vertices.push_back(Vertex{ z, {0, 0}, v1, color });
+    vertices.push_back(Vertex{ z, {0, 0}, v2, color });
+    vertices.push_back(Vertex{ z, {0, 0}, v3, color });
 }
+
 
 void Renderer::addQuad(Vec2 pos,Vec2 size,Vec4 color,float depth) {
     addTriangle(

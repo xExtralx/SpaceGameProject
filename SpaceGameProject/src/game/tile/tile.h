@@ -92,21 +92,24 @@ struct Chunk {
         if (VAO) { glDeleteVertexArrays(1, &VAO); VAO = 0; }
     }
 
-    // ajoute deux triangles en losange isométrique
-    inline void addTileToMesh(const Vec2& center, const Vec2& size, const Vec4& color, float depth) {
-        Vec2 b = { center[0], center[1] - size[1] * 0.5f };
-        Vec2 t = { center[0], center[1] + size[1] * 0.5f };
-        Vec2 l = { center[0] - size[0] * 0.5f, center[1] };
-        Vec2 r = { center[0] + size[0] * 0.5f, center[1] };
+    inline void addTileToMesh(
+        const Vec2& tilePos,   // (x, y) en grille
+        const Vec4& color,
+        float layerZ
+    )
+    {
+        float z = layerZ;
 
-        vertices.push_back(Vertex{ {b[0], b[1], depth}, color });
-        vertices.push_back(Vertex{ {l[0], l[1], depth}, color });
-        vertices.push_back(Vertex{ {t[0], t[1], depth}, color });
+        // quad logique (2 triangles)
+        vertices.push_back(Vertex{z, {0,0}, { tilePos[0],     tilePos[1]     }, color });
+        vertices.push_back(Vertex{z, {1,0}, { tilePos[0] + 1, tilePos[1]     }, color });
+        vertices.push_back(Vertex{z, {1,1}, { tilePos[0] + 1, tilePos[1] + 1 }, color });
 
-        vertices.push_back(Vertex{ {b[0], b[1], depth}, color });
-        vertices.push_back(Vertex{ {r[0], r[1], depth}, color });
-        vertices.push_back(Vertex{ {t[0], t[1], depth}, color });
+        vertices.push_back(Vertex{z, {0,0}, { tilePos[0],     tilePos[1]     }, color });
+        vertices.push_back(Vertex{z, {1,1}, { tilePos[0] + 1, tilePos[1] + 1 }, color });
+        vertices.push_back(Vertex{z, {0,1}, { tilePos[0],     tilePos[1] + 1 }, color });
     }
+
 
     // build mesh (iso) et upload GPU - appeler quand chunk changé
     void buildMeshIsometric(int tileSize) {
@@ -123,14 +126,10 @@ struct Chunk {
                     int gx = chunkX * width + x;
                     int gy = chunkY * height + y;
 
-                    // isometric projection
                     float fx = static_cast<float>(gx);
                     float fy = static_cast<float>(gy);
-                    float isoX = (fx - fy) * (tileSize * 0.5f);
-                    float isoY = (fx + fy) * (tileSize * 0.25f);
 
-                    Vec2 center = { isoX, isoY };
-                    Vec2 size = { static_cast<float>(tileSize), static_cast<float>(tileSize) * 0.5f };
+                    float size = static_cast<float>(tileSize);
 
                     // debug color from type
                     uint8_t ttype = tile.getType();
@@ -141,7 +140,7 @@ struct Chunk {
                         1.0f
                     };
 
-                    addTileToMesh(center, size, color, 0.0f);
+                    addTileToMesh({ fx, fy }, color, 0.0f);
                 }
             }
         }
@@ -263,10 +262,15 @@ public:
                 Vec4 color = {0.7f,0.7f,0.0f,1.0f};
 
                 // start et end en Vec2
-                Vec2 start = { c->chunkX, c->chunkY };
-                Vec2 end   = { (int) c->chunkX + c->width,(int) c->chunkY + c->height }; // exemple d'une ligne horizontale
+                Vec2 tl = { c->chunkX, c->chunkY };
+                Vec2 tr = { (int) c->chunkX + c->width,(int) c->chunkY };
+                Vec2 br = { (int) c->chunkX + c->width,(int) c->chunkY + c->height };
+                Vec2 bl = { (int) c->chunkX,(int) c->chunkY + c->height };
 
-                renderer.addLine(start, end, 5.0f, color, 0.0f);
+                renderer.addLine(tl, tr, 5.0f, color, 0.0f);
+                renderer.addLine(tr, br, 5.0f, color, 0.0f);
+                renderer.addLine(bl, bl, 5.0f, color, 0.0f);
+                renderer.addLine(bl, tl, 5.0f, color, 0.0f);
 
             }
             glBindVertexArray(c->VAO);

@@ -13,9 +13,28 @@
 #include "../utils.h"
 
 struct Vertex {
-    Vec3 pos;
+    float z;
+    Vec2 uv;
+    Vec2 pos;
     Vec4 color;
 };
+
+enum class VertexAttribType {
+    Float
+};
+
+struct VertexAttrib {
+    GLuint index;       // layout(location = X)
+    GLint  count;       // nombre de composantes (1,2,3,4)
+    VertexAttribType type;
+    size_t offset;      // offsetof(...)
+};
+
+struct VertexLayout {
+    GLsizei stride;
+    std::vector<VertexAttrib> attributes;
+};
+
 
 class Renderer {
 public:
@@ -25,14 +44,22 @@ public:
 
     int init();
     void update();
-    void uploadGeometry();
+    void uploadGeometry(
+        const void* vertexData,
+        size_t vertexCount,
+        const VertexLayout& layout);
     void draw();
     void clear();
     void present() const;
 
     // Draw Methods
 
-    void addTriangle(Vec2 v1, Vec2 v2, Vec2 v3, Vec4 color, float depth);
+    void addTriangle(
+        const Vec2& v1,
+        const Vec2& v2,
+        const Vec2& v3,
+        const Vec4& color,
+        float z);
     void addQuad(Vec2 pos,Vec2 size, Vec4 color, float depth);
     void addLine(Vec2 start, Vec2 end, float thickness, Vec4 color, float depth);
     void addTile(Vec2 pos, Vec2 size,Vec4 color ,float depth);

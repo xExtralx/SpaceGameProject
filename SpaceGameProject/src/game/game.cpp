@@ -36,7 +36,6 @@ void Game::update() {
 void Game::render() {
     renderer.clear();
     tileManager.drawTileMap(tileManager.getTileMap(0),renderer);
-    renderer.uploadGeometry();
     renderer.draw();
     renderer.present();
     renderer.update();
