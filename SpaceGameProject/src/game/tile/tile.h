@@ -115,23 +115,17 @@ struct Chunk {
     void buildMeshIsometric(int tileSize) {
         vertices.clear();
         // parcourir layers (ordre important: draw layers bottom->top)
-        for (const auto& layerPtr : layers) {
-            const TileLayer& layer = *layerPtr;
+        for (size_t layerIndex = 0; layerIndex < layers.size(); ++layerIndex) {
+            const TileLayer& layer = *layers[layerIndex];
+
             for (int y = 0; y < layer.height; ++y) {
                 for (int x = 0; x < layer.width; ++x) {
                     const Tile& tile = layer.getTile(x, y);
                     if (!tile.checkFlag(TILE_VISIBLE)) continue;
 
-                    // position globale en tuiles
                     int gx = chunkX * width + x;
                     int gy = chunkY * height + y;
 
-                    float fx = static_cast<float>(gx);
-                    float fy = static_cast<float>(gy);
-
-                    float size = static_cast<float>(tileSize);
-
-                    // debug color from type
                     uint8_t ttype = tile.getType();
                     Vec4 color = {
                         (ttype % 3 == 0) ? 1.0f : 0.35f,
@@ -140,10 +134,15 @@ struct Chunk {
                         1.0f
                     };
 
-                    addTileToMesh({ fx, fy }, color, 0.0f);
+                    float baseZ = layerIndex * 1000.0f;
+                    float topZ  = baseZ;
+
+                    addTileToMesh({ static_cast<float>(gx), static_cast<float>(gy) }, color, topZ);
                 }
             }
         }
+
+
 
         // upload to GPU (single upload)
         if (VAO == 0) glGenVertexArrays(1, &VAO);
