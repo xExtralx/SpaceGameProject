@@ -24,12 +24,14 @@ void main()
     vec2 gridPos = aPos + uChunkOrigin;
     vec2 iso = isoProject(gridPos);
 
-    // Z-order iso :
-    // plus (x + y) est grand, plus c'est "loin"
-    float depth = aZ + gridPos.x + gridPos.y;
+    // Ordre iso correct avec hauteur
+    // On applique d’abord l’ordre iso (x + y) pour la perspective
+    // puis on ajoute la profondeur locale aZ pour gérer les couches et hauteurs
+    float depth = (gridPos.x + gridPos.y) * 0.01 + aZ * 0.001;
 
-    gl_Position = uViewProj * vec4(iso, depth * 0.0001, 1.0);
+    gl_Position = uViewProj * vec4(iso, depth, 1.0);
 
     vUV = aUV;
     vColor = aColor;
 }
+
