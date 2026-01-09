@@ -128,14 +128,14 @@ struct Chunk {
 
                     uint8_t ttype = tile.getType();
                     Vec4 color = {
-                        ttype * 64.0f,
-                        ttype * 64.0f,
-                        ttype * 64.0f,
+                        (ttype % 3 == 0) ? 1.0f : 0.35f,
+                        (ttype % 3 == 1) ? 1.0f : 0.35f,
+                        (ttype % 3 == 2) ? 1.0f : 0.35f,
                         1.0f
                     };
 
-                    float baseZ = layerIndex * 100000.0f;
-                    float topZ  = baseZ + 1000.0f * gx;
+                    float baseZ = layerIndex * 1000.0f;
+                    float topZ  = baseZ + 100.0f * gx;
 
                     addTileToMesh({ static_cast<float>(gx), static_cast<float>(gy) }, color, topZ);
                 }
