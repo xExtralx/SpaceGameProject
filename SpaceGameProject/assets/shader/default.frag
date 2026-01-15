@@ -1,10 +1,11 @@
-#version 430 core
+#version 330 core
 
-in vec4 vColor;
+in vec2 vUV;
 out vec4 FragColor;
 
-uniform float uTime;
+uniform sampler2D uTexture;
 
-void main() {
-    FragColor = vColor;
+void main()
+{
+    FragColor = texture(uTexture, vUV);
 }

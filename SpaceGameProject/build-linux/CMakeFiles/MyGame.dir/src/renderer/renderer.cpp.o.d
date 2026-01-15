@@ -187,7 +187,7 @@ CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.o: \
  /usr/include/c++/14/bits/basic_ios.tcc \
  /usr/include/c++/14/bits/ostream.tcc /usr/include/c++/14/istream \
  /usr/include/c++/14/bits/istream.tcc \
- /home/ubuntu/Games/SpaceGameProject/SpaceGameProject/src/renderer/shader/../../utils.h \
+ /home/ubuntu/Games/SpaceGameProject/SpaceGameProject/src/renderer/shader/../../utils/utils.h \
  /usr/include/c++/14/cmath /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
@@ -241,10 +241,7 @@ CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.o: \
  /usr/include/c++/14/span /usr/include/c++/14/variant \
  /usr/include/c++/14/bits/ranges_algobase.h \
  /usr/include/c++/14/bits/unicode.h \
- /usr/include/c++/14/bits/unicode-data.h /usr/include/c++/14/fstream \
- /usr/include/x86_64-linux-gnu/c++/14/bits/basic_file.h \
- /usr/include/x86_64-linux-gnu/c++/14/bits/c++io.h \
- /usr/include/c++/14/bits/fstream.tcc \
+ /usr/include/c++/14/bits/unicode-data.h \
  /home/ubuntu/Games/SpaceGameProject/SpaceGameProject/include/nlohmann/json.hpp \
  /usr/include/c++/14/algorithm /usr/include/c++/14/bits/ranges_algo.h \
  /usr/include/c++/14/pstl/glue_algorithm_defs.h \
@@ -311,7 +308,23 @@ CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.o: \
  /usr/include/c++/14/ranges /usr/include/c++/14/numeric \
  /usr/include/c++/14/bits/stl_numeric.h \
  /usr/include/c++/14/pstl/glue_numeric_defs.h /usr/include/c++/14/any \
- /home/ubuntu/Games/SpaceGameProject/SpaceGameProject/src/renderer/../utils.h \
+ /usr/include/c++/14/fstream \
+ /usr/include/x86_64-linux-gnu/c++/14/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/14/bits/c++io.h \
+ /usr/include/c++/14/bits/fstream.tcc \
+ /home/ubuntu/Games/SpaceGameProject/SpaceGameProject/src/renderer/../utils/utils.h \
+ /home/ubuntu/Games/SpaceGameProject/SpaceGameProject/src/renderer/texture/texture.h \
+ /usr/include/c++/14/thread /usr/include/c++/14/stop_token \
+ /usr/include/c++/14/atomic /usr/include/c++/14/bits/std_thread.h \
+ /usr/include/c++/14/semaphore /usr/include/c++/14/bits/semaphore_base.h \
+ /usr/include/c++/14/bits/atomic_timed_wait.h \
+ /usr/include/c++/14/bits/this_thread_sleep.h \
+ /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/semaphore.h \
+ /usr/include/x86_64-linux-gnu/bits/semaphore.h /usr/include/c++/14/mutex \
+ /usr/include/c++/14/bits/unique_lock.h /usr/include/c++/14/queue \
+ /usr/include/c++/14/deque /usr/include/c++/14/bits/stl_deque.h \
+ /usr/include/c++/14/bits/deque.tcc /usr/include/c++/14/bits/stl_queue.h \
+ /home/ubuntu/Games/SpaceGameProject/SpaceGameProject/src/renderer/texture/../../utils/utils.h \
  /home/ubuntu/Games/SpaceGameProject/SpaceGameProject/src/renderer/../game/game.h \
  /home/ubuntu/Games/SpaceGameProject/SpaceGameProject/src/renderer/../game/../renderer/renderer.h \
  /home/ubuntu/Games/SpaceGameProject/SpaceGameProject/src/renderer/../game/tile/tile.h \

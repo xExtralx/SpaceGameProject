@@ -8,6 +8,7 @@ set(OLD_GLOB
   "/home/ubuntu/Games/SpaceGameProject/SpaceGameProject/src/game/game.cpp"
   "/home/ubuntu/Games/SpaceGameProject/SpaceGameProject/src/main.cpp"
   "/home/ubuntu/Games/SpaceGameProject/SpaceGameProject/src/renderer/renderer.cpp"
+  "/home/ubuntu/Games/SpaceGameProject/SpaceGameProject/src/utils/utils.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")

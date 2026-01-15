@@ -4,7 +4,7 @@
 #include <glad/glad.h>
 #include <string>
 #include <iostream>
-#include "../../utils.h" // pour la fonction LoadTextFile
+#include "../../utils/utils.h" // pour la fonction LoadTextFile
 
 class Shader {
 public:

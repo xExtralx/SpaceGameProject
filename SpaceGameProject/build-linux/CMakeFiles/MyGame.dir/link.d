@@ -5,6 +5,7 @@ MyGame: \
   CMakeFiles/MyGame.dir/src/game/game.cpp.o \
   CMakeFiles/MyGame.dir/src/main.cpp.o \
   CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.o \
+  CMakeFiles/MyGame.dir/src/utils/utils.cpp.o \
   _deps/glfw-build/src/libglfw3.a \
   libglad.a \
   /usr/lib/x86_64-linux-gnu/libfreetype.so \
@@ -55,6 +56,8 @@ CMakeFiles/MyGame.dir/src/game/game.cpp.o:
 CMakeFiles/MyGame.dir/src/main.cpp.o:
 
 CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.o:
+
+CMakeFiles/MyGame.dir/src/utils/utils.cpp.o:
 
 _deps/glfw-build/src/libglfw3.a:
 

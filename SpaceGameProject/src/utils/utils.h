@@ -2,11 +2,14 @@
 #define UTILS_H
 
 #include <cmath>
-#include <iostream>
 #include <chrono>
 #include <array>
-#include <fstream>
 #include "nlohmann/json.hpp"
+#include <fstream>
+#include <vector>
+#include <string>
+#include <stdexcept>
+#include <iostream>
 
 // ------------------------
 //   TEMPLATE VECTOR CLASS
@@ -220,6 +223,8 @@ public:
     static T LoadJSON(const json& j) {
         return j.get<T>(); // nécessite une fonction from_json() pour le type T
     }
+
+    bool LoadPNG(const std::string& relativePath, std::vector<unsigned char>& imageData, int& width, int& height, int& channels);
 
 private:
     static inline std::string basePath = "";

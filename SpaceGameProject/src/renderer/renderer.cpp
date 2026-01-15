@@ -51,8 +51,8 @@ int Renderer::init() {
     mode = glfwGetVideoMode(monitor);
 
     shader = new Shader(
-        FileManager::LoadTextFile("shader/iso.vert"),
-        FileManager::LoadTextFile("shader/iso.frag")
+        FileManager::LoadTextFile("shader/default.vert"),
+        FileManager::LoadTextFile("shader/default.frag")
     );
 
     return true;
@@ -67,16 +67,67 @@ void Renderer::clear() {
 void Renderer::draw() {
     shader->use();
 
-    shader->setFloat("uTime", (float)glfwGetTime());
-    shader->setFloat("uScale", 100.0f);
-    shader->setVec2("uResolution", (float)width, (float)height);
-
     glBindVertexArray(VAO); 
     glDrawArrays(GL_TRIANGLES, 0,
         static_cast<GLsizei>(vertices.size() / 5));
     glBindVertexArray(0);
 }
 
+float quadVertices[] = {
+    // localPos.x, localPos.y, uv.x, uv.y, tilePos.x, tilePos.y, tilePos.z
+    -0.5f,  0.5f,  0.0f, 1.0f,  0.0f, 0.0f, 0.0f, // top-left
+    -0.5f, -0.5f,  0.0f, 0.0f,  0.0f, 0.0f, 0.0f, // bottom-left
+     0.5f, -0.5f,  1.0f, 0.0f,  0.0f, 0.0f, 0.0f, // bottom-right
+
+    -0.5f,  0.5f,  0.0f, 1.0f,  0.0f, 0.0f, 0.0f, // top-left
+     0.5f, -0.5f,  1.0f, 0.0f,  0.0f, 0.0f, 0.0f, // bottom-right
+     0.5f,  0.5f,  1.0f, 1.0f,  0.0f, 0.0f, 0.0f  // top-right
+};
+
+void drawImage(const std::string& filePath, Shader& shader) {
+    static GLuint VAO = 0, VBO = 0;
+
+    // Initialize VAO/VBO once
+    if (VAO == 0) {
+        glGenVertexArrays(1, &VAO);
+        glGenBuffers(1, &VBO);
+        glBindVertexArray(VAO);
+        glBindBuffer(GL_ARRAY_BUFFER, VBO);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
+
+        // localPos attribute (location = 0)
+        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void*)0);
+        glEnableVertexAttribArray(0);
+
+        // uv attribute (location = 1)
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void*)(2 * sizeof(float)));
+        glEnableVertexAttribArray(1);
+
+        // tilePos attribute (location = 2)
+        glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void*)(4 * sizeof(float)));
+        glEnableVertexAttribArray(2);
+    }
+
+    // Load texture
+    GLuint textureID = TextureManager::getInstance().loadTexture(filePath);
+    if (textureID == 0) {
+        std::cerr << "Failed to load texture: " << filePath << std::endl;
+        return;
+    }
+
+    // Use shader
+    shader.use();
+
+    // Bind texture
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, textureID);
+    // Make sure your shader has a uniform like: uniform sampler2D texture1;
+    // and set it with: shader.setInt("texture1", 0);
+
+    // Draw the quad
+    glBindVertexArray(VAO);
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+}
 
 void Renderer::update() {
     const auto game = static_cast<Game*>(glfwGetWindowUserPointer(window));
@@ -143,69 +194,6 @@ void Renderer::uploadGeometry(
         GL_DYNAMIC_DRAW
     );
 }
-
-void Renderer::addTriangle(
-    const Vec2& v1,
-    const Vec2& v2,
-    const Vec2& v3,
-    const Vec4& color,
-    float z
-) {
-    vertices.push_back(Vertex{ z, {0, 0}, v1, color });
-    vertices.push_back(Vertex{ z, {0, 0}, v2, color });
-    vertices.push_back(Vertex{ z, {0, 0}, v3, color });
-}
-
-
-void Renderer::addQuad(Vec2 pos,Vec2 size,Vec4 color,float depth) {
-    addTriangle(
-        pos,
-        {pos[0] + size[0],pos[1]},
-        {pos[0],pos[1] + size[1]},
-        color,depth );
-
-    addTriangle(
-        {pos[0] + size[0],pos[1] + size[1]},
-        {pos[0] + size[0],pos[1]},
-        {pos[0],pos[1] + size[1]},
-        color,depth );
-}
-
-void Renderer::addLine(Vec2 start, Vec2 end, float thickness, Vec4 color, float depth) {
-    // Calcul du vecteur perpendiculaire normalisé
-    Vec2 dir = { end[0] - start[0], end[1] - start[1] };
-    float length = std::sqrt(dir[0]*dir[0] + dir[1]*dir[1]);
-    if(length == 0.0f) return; // ligne nulle
-
-    dir[0] /= length;
-    dir[1] /= length;
-
-    // vecteur perpendiculaire
-    Vec2 perp = {-dir[1] * thickness * 0.5f, dir[0] * thickness * 0.5f};
-
-    // 4 coins du rectangle
-    Vec2 v0 = { start[0] + perp[0], start[1] + perp[1] };
-    Vec2 v1 = { start[0] - perp[0], start[1] - perp[1] };
-    Vec2 v2 = { end[0] + perp[0], end[1] + perp[1] };
-    Vec2 v3 = { end[0] - perp[0], end[1] - perp[1] };
-
-    // deux triangles
-    addTriangle(v0, v1, v2, color, depth);
-    addTriangle(v2, v1, v3, color, depth);
-}
-
-
-void Renderer::addTile(Vec2 pos,Vec2 size,Vec4 color,float depth) {
-    Vec2 b = {pos[0],(pos[1] - (size[1] / 2))};
-    Vec2 t = {pos[0],(pos[1] + (size[1] / 2))};
-    Vec2 l = {(pos[0] - (size[0] / 2)),pos[1]};
-    Vec2 r = {(pos[0] + (size[0] / 2)),pos[1]};
-
-    addTriangle(b,l,t,color,depth);
-    addTriangle(b,r,t,color,depth);
-}
-
-
 
 void Renderer::mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
     const auto game = static_cast<Game*>(glfwGetWindowUserPointer(window));

@@ -10,14 +10,15 @@
 
 #include <vector>
 #include "shader/shader.h"
-#include "../utils.h"
+#include "../utils/utils.h"
+#include "texture/texture.h"
 
 struct Vertex {
-    float z;
-    Vec2 uv;
-    Vec2 pos;
-    Vec4 color;
+    Vec2 localPos;   // coin du quad : (-0.5,-0.5) → (0.5,0.5)
+    Vec2 uv;         // UV texture
+    Vec3 tilePos;    // (tileX, tileY, height)
 };
+
 
 enum class VertexAttribType {
     Float

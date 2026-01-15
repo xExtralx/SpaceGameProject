@@ -24,6 +24,12 @@
   "output": "CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.o"
 },
 {
+  "directory": "/home/ubuntu/Games/SpaceGameProject/SpaceGameProject/build-linux",
+  "command": "/usr/bin/c++  -I/home/ubuntu/Games/SpaceGameProject/SpaceGameProject/src -I/home/ubuntu/Games/SpaceGameProject/SpaceGameProject/include -I/home/ubuntu/Games/SpaceGameProject/SpaceGameProject/external/glad/include -I/usr/include/freetype2 -I/home/ubuntu/Games/SpaceGameProject/SpaceGameProject/build-linux/_deps/glfw-src/include -I/home/ubuntu/Games/SpaceGameProject/SpaceGameProject/include/glad/include -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles/MyGame.dir/src/utils/utils.cpp.o -c /home/ubuntu/Games/SpaceGameProject/SpaceGameProject/src/utils/utils.cpp",
+  "file": "/home/ubuntu/Games/SpaceGameProject/SpaceGameProject/src/utils/utils.cpp",
+  "output": "CMakeFiles/MyGame.dir/src/utils/utils.cpp.o"
+},
+{
   "directory": "/home/ubuntu/Games/SpaceGameProject/SpaceGameProject/build-linux/_deps/glfw-build/src",
   "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I/home/ubuntu/Games/SpaceGameProject/SpaceGameProject/build-linux/_deps/glfw-src/include -I/home/ubuntu/Games/SpaceGameProject/SpaceGameProject/build-linux/_deps/glfw-src/src -I/home/ubuntu/Games/SpaceGameProject/SpaceGameProject/build-linux/_deps/glfw-build/src -O3 -DNDEBUG -std=gnu99 -fPIC -Wall -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/context.c.o -c /home/ubuntu/Games/SpaceGameProject/SpaceGameProject/build-linux/_deps/glfw-src/src/context.c",
   "file": "/home/ubuntu/Games/SpaceGameProject/SpaceGameProject/build-linux/_deps/glfw-src/src/context.c",

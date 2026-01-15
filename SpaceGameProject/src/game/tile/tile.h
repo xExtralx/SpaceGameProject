@@ -92,25 +92,6 @@ struct Chunk {
         if (VAO) { glDeleteVertexArrays(1, &VAO); VAO = 0; }
     }
 
-    inline void addTileToMesh(
-        const Vec2& tilePos,   // (x, y) en grille
-        const Vec4& color,
-        float layerZ
-    )
-    {
-        float z = layerZ;
-
-        // quad logique (2 triangles)
-        vertices.push_back(Vertex{z, {0,0}, { tilePos[0],     tilePos[1]     }, color });
-        vertices.push_back(Vertex{z, {1,0}, { tilePos[0] + 1, tilePos[1]     }, color });
-        vertices.push_back(Vertex{z, {1,1}, { tilePos[0] + 1, tilePos[1] + 1 }, color });
-
-        vertices.push_back(Vertex{z, {0,0}, { tilePos[0],     tilePos[1]     }, color });
-        vertices.push_back(Vertex{z, {1,1}, { tilePos[0] + 1, tilePos[1] + 1 }, color });
-        vertices.push_back(Vertex{z, {0,1}, { tilePos[0],     tilePos[1] + 1 }, color });
-    }
-
-
     // build mesh (iso) et upload GPU - appeler quand chunk changé
     void buildMeshIsometric(int tileSize) {
         vertices.clear();
@@ -136,42 +117,9 @@ struct Chunk {
 
                     float baseZ = layerIndex * 100.0f;
                     float topZ  = baseZ + 10.0f * gx;
-
-                    addTileToMesh({ static_cast<float>(gx), static_cast<float>(gy) }, color, topZ);
                 }
             }
         }
-
-
-
-        // upload to GPU (single upload)
-        if (VAO == 0) glGenVertexArrays(1, &VAO);
-        if (VBO == 0) glGenBuffers(1, &VBO);
-
-        glBindVertexArray(VAO);
-        glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        if (!vertices.empty()) {
-            glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
-        } else {
-            // upload empty small buffer to avoid undefined bindings
-            glBufferData(GL_ARRAY_BUFFER, 1, nullptr, GL_STATIC_DRAW);
-        }
-
-        // attribute layout must match renderer::Vertex
-        glEnableVertexAttribArray(0); // aZ
-        glVertexAttribPointer(0, 1, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, z));
-
-        glEnableVertexAttribArray(1); // aUV
-        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, uv));
-
-        glEnableVertexAttribArray(2); // aPos
-        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, pos));
-
-        glEnableVertexAttribArray(3); // aColor
-        glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, color));
-
-
-        glBindVertexArray(0);
     }
 };
 
@@ -338,7 +286,7 @@ public:
                 }
 
                 // construire le mesh GPU pour ce chunk
-                chunk->buildMeshIsometric(tileSize);
+                // chunk->buildMeshIsometric(tileSize);
             }
         }
 

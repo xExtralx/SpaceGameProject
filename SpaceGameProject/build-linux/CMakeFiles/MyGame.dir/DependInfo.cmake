@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/ubuntu/Games/SpaceGameProject/SpaceGameProject/src/game/game.cpp" "CMakeFiles/MyGame.dir/src/game/game.cpp.o" "gcc" "CMakeFiles/MyGame.dir/src/game/game.cpp.o.d"
   "/home/ubuntu/Games/SpaceGameProject/SpaceGameProject/src/main.cpp" "CMakeFiles/MyGame.dir/src/main.cpp.o" "gcc" "CMakeFiles/MyGame.dir/src/main.cpp.o.d"
   "/home/ubuntu/Games/SpaceGameProject/SpaceGameProject/src/renderer/renderer.cpp" "CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.o" "gcc" "CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.o.d"
+  "/home/ubuntu/Games/SpaceGameProject/SpaceGameProject/src/utils/utils.cpp" "CMakeFiles/MyGame.dir/src/utils/utils.cpp.o" "gcc" "CMakeFiles/MyGame.dir/src/utils/utils.cpp.o.d"
   "" "MyGame" "gcc" "CMakeFiles/MyGame.dir/link.d"
   )
 
