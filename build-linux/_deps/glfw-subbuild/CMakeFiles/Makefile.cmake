@@ -10,8 +10,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.31.6/CMakeSystem.cmake"
   "CMakeLists.txt"
   "glfw-populate-prefix/tmp/glfw-populate-mkdirs.cmake"
+  "/usr/share/cmake-3.31/Modules/CMakeDetermineSystem.cmake"
   "/usr/share/cmake-3.31/Modules/CMakeGenericSystem.cmake"
   "/usr/share/cmake-3.31/Modules/CMakeInitializeConfigs.cmake"
+  "/usr/share/cmake-3.31/Modules/CMakeSystem.cmake.in"
   "/usr/share/cmake-3.31/Modules/CMakeSystemSpecificInformation.cmake"
   "/usr/share/cmake-3.31/Modules/CMakeSystemSpecificInitialize.cmake"
   "/usr/share/cmake-3.31/Modules/ExternalProject.cmake"
@@ -36,6 +38,7 @@ set(CMAKE_MAKEFILE_OUTPUTS
 
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
+  "CMakeFiles/3.31.6/CMakeSystem.cmake"
   "glfw-populate-prefix/tmp/glfw-populate-mkdirs.cmake"
   "glfw-populate-prefix/tmp/glfw-populate-gitclone.cmake"
   "glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-gitinfo.txt"
