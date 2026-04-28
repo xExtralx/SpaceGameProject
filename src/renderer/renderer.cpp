@@ -41,7 +41,7 @@ int Renderer::init() {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glDisable(GL_DEPTH_TEST);
-
+    
     glfwSwapInterval(1);
     glfwSetMouseButtonCallback(window, Renderer::mouse_button_callback);
     glfwSetKeyCallback(window, Renderer::key_callback);

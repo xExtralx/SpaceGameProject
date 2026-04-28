@@ -19,9 +19,9 @@ public:
     bool shouldClose() const;
     void stop();
 
-    static void moveEvent(int x,int y);
+    void moveEvent(int x,int y);
 
-    static void clickEvent(int x,int y);
+    void clickEvent(int x,int y);
     void keyPressEvent(int key);
     void keyReleaseEvent(int key);
 
