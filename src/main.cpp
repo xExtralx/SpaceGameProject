@@ -1,7 +1,9 @@
 #include "game/game.h"
 
 int main(int argc, char* argv[]) {
-    
+
+    std::cerr << "MAIN STARTED" << std::endl; // add this
+
     FileManager::SetBasePath(
         std::filesystem::canonical(argv[0]).parent_path().string()
     );
