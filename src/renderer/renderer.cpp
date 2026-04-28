@@ -59,24 +59,75 @@ int Renderer::init() {
         FileManager::LoadTextFile("shader/image.frag")
     );
 
+    initPixelFBO();
+
     return true;
 }
 
+void Renderer::initPixelFBO() {
+    // Create FBO
+    glGenFramebuffers(1, &pixelFBO);
+    glBindFramebuffer(GL_FRAMEBUFFER, pixelFBO);
+
+    // Create low res texture
+    glGenTextures(1, &pixelTexture);
+    glBindTexture(GL_TEXTURE_2D, pixelTexture);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, RENDER_WIDTH, RENDER_HEIGHT, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); // critical!
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST); // critical!
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, pixelTexture, 0);
+
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+        std::cerr << "[FBO] Pixel FBO not complete!" << std::endl;
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    // Fullscreen quad for upscale pass
+    float screenQuad[] = {
+        -1.0f,  1.0f,  0.0f, 1.0f,
+        -1.0f, -1.0f,  0.0f, 0.0f,
+         1.0f, -1.0f,  1.0f, 0.0f,
+        -1.0f,  1.0f,  0.0f, 1.0f,
+         1.0f, -1.0f,  1.0f, 0.0f,
+         1.0f,  1.0f,  1.0f, 1.0f
+    };
+
+    glGenVertexArrays(1, &screenVAO);
+    glGenBuffers(1, &screenVBO);
+    glBindVertexArray(screenVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, screenVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(screenQuad), screenQuad, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindVertexArray(0);
+
+    // Load upscale shader
+    upscaleShader = new Shader(
+        FileManager::LoadTextFile("shader/upscale.vert"),
+        FileManager::LoadTextFile("shader/upscale.frag")
+    );
+}
+
 void Renderer::clear() {
-    glClearColor(0.05f,0.05f,0.08f,1.0f);
+    // Render INTO low res FBO
+    glBindFramebuffer(GL_FRAMEBUFFER, pixelFBO);
+    glViewport(0, 0, RENDER_WIDTH, RENDER_HEIGHT);
+    glClearColor(0.05f, 0.05f, 0.08f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
     vertices.clear();
 }
 
 float quadVertices[] = {
-    // localPos.x, localPos.y, uv.x, uv.y, tilePos.x, tilePos.y, tilePos.z
-    -0.5f,  0.5f,  0.0f, 1.0f,  0.0f, 0.0f, 0.0f, // top-left
-    -0.5f, -0.5f,  0.0f, 0.0f,  0.0f, 0.0f, 0.0f, // bottom-left
-     0.5f, -0.5f,  1.0f, 0.0f,  0.0f, 0.0f, 0.0f, // bottom-right
+    // localPos.x, localPos.y, uv.x, uv.y
+    -0.5f,  0.5f,  0.0f, 0.0f, // top-left
+    -0.5f, -0.5f,  0.0f, 1.0f, // bottom-left
+     0.5f, -0.5f,  1.0f, 1.0f, // bottom-right
 
-    -0.5f,  0.5f,  0.0f, 1.0f,  0.0f, 0.0f, 0.0f, // top-left
-     0.5f, -0.5f,  1.0f, 0.0f,  0.0f, 0.0f, 0.0f, // bottom-right
-     0.5f,  0.5f,  1.0f, 1.0f,  0.0f, 0.0f, 0.0f  // top-right
+    -0.5f,  0.5f,  0.0f, 0.0f, // top-left
+     0.5f, -0.5f,  1.0f, 1.0f, // bottom-right
+     0.5f,  0.5f,  1.0f, 0.0f  // top-right
 };
 
 void Renderer::drawImage(const std::string& filePath, Shader& shader) {
@@ -90,17 +141,9 @@ void Renderer::drawImage(const std::string& filePath, Shader& shader) {
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
 
-        // localPos attribute (location = 0)
-        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void*)0);
-        glEnableVertexAttribArray(0);
-
-        // uv attribute (location = 1)
-        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void*)(2 * sizeof(float)));
-        glEnableVertexAttribArray(1);
-
-        // tilePos attribute (location = 2)
-        glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void*)(4 * sizeof(float)));
-        glEnableVertexAttribArray(2);
+        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+        // remove tilePos attrib entirely for image shader
     }
 
     // Load texture
@@ -137,12 +180,8 @@ void Renderer::drawImage(const std::string& filePath, Shader& shader) {
 }
 
 void Renderer::draw() {
-    shader->use();
-    drawImage("debug/debug.png",*imageShader);
-    glBindVertexArray(VAO); 
-    glDrawArrays(GL_TRIANGLES, 0,
-        static_cast<GLsizei>(vertices.size() / 5));
-    glBindVertexArray(0);
+    // Everything draws into pixelFBO at low res
+    drawImage("debug/debug.png", *imageShader);
 }
 
 void Renderer::update() {
@@ -157,6 +196,19 @@ void Renderer::update() {
 }
 
 void Renderer::present() const {
+    // Upscale low res FBO to screen with nearest neighbor
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glViewport(0, 0, width, height);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    upscaleShader->use();
+    upscaleShader->setInt("uTexture", 0);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, pixelTexture);
+    glBindVertexArray(screenVAO);
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+    glBindVertexArray(0);
+
     glfwSwapBuffers(window);
     glfwPollEvents();
 }

@@ -43,7 +43,16 @@ public:
     Renderer(int w,int h);
     ~Renderer();
 
+    // Pixel perfect
+    static const int RENDER_WIDTH  = 320;
+    static const int RENDER_HEIGHT = 180;
+    GLuint pixelFBO     = 0;
+    GLuint pixelTexture = 0;
+    Shader* upscaleShader = nullptr;
+    GLuint screenVAO = 0, screenVBO = 0;
+
     int init();
+    void initPixelFBO();
     void update();
     void uploadGeometry(
         const void* vertexData,
