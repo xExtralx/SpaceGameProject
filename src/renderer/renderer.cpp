@@ -114,8 +114,19 @@ void Renderer::drawImage(const std::string& filePath, Shader& shader) {
 
     // Use shader
     shader.use();
-    shader.setInt("uTexture", 0); // add this line
 
+    GLint program = 0;
+    glGetIntegerv(GL_CURRENT_PROGRAM, &program);
+    std::cerr << "[drawImage] program id: " << program << std::endl;
+    std::cerr << "[drawImage] textureID: " << textureID << std::endl;
+
+    GLint texLoc = glGetUniformLocation(program, "uTexture");
+    std::cerr << "[drawImage] uTexture loc: " << texLoc << std::endl; // -1 means not found
+
+    GLenum err = glGetError();
+    std::cerr << "[drawImage] GL error: " << err << std::endl;
+
+    shader.setInt("uTexture", 0); // add this line
     // Bind texture
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, textureID);
