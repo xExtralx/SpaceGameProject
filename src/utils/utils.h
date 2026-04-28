@@ -225,7 +225,7 @@ public:
         return j.get<T>(); // nécessite une fonction from_json() pour le type T
     }
 
-    bool LoadPNG(const std::string& relativePath, std::vector<unsigned char>& imageData, int& width, int& height, int& channels);
+    static bool LoadPNG(const std::string& relativePath, std::vector<unsigned char>& imageData, int& width, int& height, int& channels);
 
 private:
     static inline std::string basePath = "";
