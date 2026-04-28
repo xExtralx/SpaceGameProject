@@ -12,12 +12,12 @@ Game::Game():
 }
 
 void Game::init() {
-    FileManager::init(); // set basePath FIRST
-
     if (!renderer.init()) {
         std::cout << "failed to Initialize Renderer" << std::endl;
         return;
     }
+
+    fileManager.init();
 
     std::cout << "Game Initialized" << std::endl;
 
