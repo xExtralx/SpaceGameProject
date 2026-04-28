@@ -114,6 +114,7 @@ void Renderer::drawImage(const std::string& filePath, Shader& shader) {
 
     // Use shader
     shader.use();
+    shader.setInt("uTexture", 0); // add this line
 
     // Bind texture
     glActiveTexture(GL_TEXTURE0);
