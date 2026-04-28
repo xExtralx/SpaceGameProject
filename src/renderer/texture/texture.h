@@ -92,28 +92,26 @@ private:
         std::vector<unsigned char> imageData;
         int width, height, channels;
 
-        // Use static call directly
+        std::cerr << "[TextureManager] Attempting to load: " << path << std::endl;
+        std::cerr << "[TextureManager] BasePath is: " << FileManager::GetBasePath() << std::endl;
+
         if (!FileManager::LoadPNG(path, imageData, width, height, channels)) {
-            std::cerr << "[TextureManager] Failed to load " << path << std::endl;
+            std::cerr << "[TextureManager] LoadPNG failed for: " << path << std::endl;
             return 0;
         }
 
-        GLuint texID;
+        std::cerr << "[TextureManager] PNG loaded OK: " << width << "x" << height << " ch=" << channels << std::endl;
+        std::cerr << "[TextureManager] imageData size: " << imageData.size() << std::endl;
+
+        GLuint texID = 0;
         glGenTextures(1, &texID);
-        glBindTexture(GL_TEXTURE_2D, texID);
+        std::cerr << "[TextureManager] glGenTextures id=" << texID << std::endl;
 
-        GLenum format = (channels == 4) ? GL_RGBA : (channels == 3) ? GL_RGB : GL_RED;
-        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, imageData.data());
-        glGenerateMipmap(GL_TEXTURE_2D);
-
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-        Texture* tex = new Texture(texID, width, height, channels);
-        textures.emplace(path, tex);
-        return texID;
+        if (texID == 0) {
+            std::cerr << "[TextureManager] ERROR: glGenTextures returned 0, GL error: " << glGetError() << std::endl;
+            return 0;
+        }
+        // ...rest of the function
     }
 
     void loadTextureAsync(const std::string& path) {
