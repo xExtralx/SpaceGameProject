@@ -9,7 +9,8 @@ bool FileManager::LoadPNG(const std::string& relativePath, std::vector<unsigned 
     fs::path fullPath = fs::path(basePath) / "assets" / relativePath;
     unsigned char* data = stbi_load(fullPath.string().c_str(), &width, &height, &channels, 0);
     if (!data) {
-        std::cerr << "[FileManager] Failed to load PNG: " << fullPath << std::endl;
+        std::cerr << "[FileManager] Failed to load PNG: " << fullPath 
+                << "\n[stb_image] Reason: " << stbi_failure_reason() << std::endl;
         return false;
     }
     size_t dataSize = width * height * channels;

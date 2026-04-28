@@ -191,16 +191,17 @@ public:
     static void SetBasePath(const std::string& path) { basePath = path; }
     static const std::string& GetBasePath() { return basePath; }
 
-    // 🔹 Charge un fichier texte
     static std::string LoadTextFile(const std::string& relativePath) {
         namespace fs = std::filesystem;
         fs::path fullPath = fs::path(basePath) / "assets" / relativePath;
+        std::cerr << "[DEBUG] Trying to open: " << fullPath << std::endl; // <-- add this
         std::ifstream file(fullPath);
         if (!file.is_open()) {
             throw std::runtime_error("[FileManager] Cannot open text file: " + fullPath.string());
         }
         return std::string((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
     }
+
 
     // 🔹 Charge un fichier binaire (ex: image, modèle)
     static std::vector<unsigned char> LoadBinaryFile(const std::string& relativePath) {
