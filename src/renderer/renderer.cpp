@@ -41,7 +41,7 @@ int Renderer::init() {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glDisable(GL_DEPTH_TEST);
-    
+
     glfwSwapInterval(1);
     glfwSetMouseButtonCallback(window, Renderer::mouse_button_callback);
     glfwSetKeyCallback(window, Renderer::key_callback);
@@ -52,6 +52,13 @@ int Renderer::init() {
     shader = new Shader(
         FileManager::LoadTextFile("shader/default.vert"),
         FileManager::LoadTextFile("shader/default.frag")
+    );
+
+    Shader* imageShader = nullptr;
+
+    imageShader = new Shader(
+        FileManager::LoadTextFile("shader/image.vert"),
+        FileManager::LoadTextFile("shader/image.frag")
     );
 
     return true;
@@ -121,7 +128,7 @@ void Renderer::drawImage(const std::string& filePath, Shader& shader) {
 
 void Renderer::draw() {
     shader->use();
-    drawImage("debug/debug.png",*shader);
+    drawImage("debug/debug.png",*imageShader);
     glBindVertexArray(VAO); 
     glDrawArrays(GL_TRIANGLES, 0,
         static_cast<GLsizei>(vertices.size() / 5));

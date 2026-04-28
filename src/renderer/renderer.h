@@ -90,6 +90,7 @@ private:
     const GLFWvidmode* mode;
 
     Shader* shader;
+    Shader* imageShader;
     unsigned int VAO,VBO;
 
     std::vector<Vertex> vertices;
