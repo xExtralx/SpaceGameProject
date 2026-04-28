@@ -196,18 +196,29 @@ void Renderer::update() {
 }
 
 void Renderer::present() const {
-    // Upscale low res FBO to screen with nearest neighbor
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glViewport(0, 0, width, height);
+    glClearColor(1.0f, 0.0f, 0.0f, 1.0f); // RED background to confirm upscale pass works
     glClear(GL_COLOR_BUFFER_BIT);
 
     upscaleShader->use();
     upscaleShader->setInt("uTexture", 0);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, pixelTexture);
+
+    GLint texLoc = glGetUniformLocation(upscaleShader->ID, "uTexture");
+    std::cerr << "[present] uTexture loc: " << texLoc << std::endl;
+    std::cerr << "[present] pixelTexture: " << pixelTexture << std::endl;
+    std::cerr << "[present] screenVAO: " << screenVAO << std::endl;
+
+    GLenum err = glGetError();
+    std::cerr << "[present] GL error before draw: " << err << std::endl;
+
     glBindVertexArray(screenVAO);
     glDrawArrays(GL_TRIANGLES, 0, 6);
-    glBindVertexArray(0);
+
+    err = glGetError();
+    std::cerr << "[present] GL error after draw: " << err << std::endl;
 
     glfwSwapBuffers(window);
     glfwPollEvents();
