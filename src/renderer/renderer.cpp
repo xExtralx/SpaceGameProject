@@ -43,7 +43,6 @@ int Renderer::init() {
     glDisable(GL_DEPTH_TEST);
 
     glfwSwapInterval(1);
-    glfwSetWindowUserPointer(window,this);
     glfwSetMouseButtonCallback(window, Renderer::mouse_button_callback);
     glfwSetKeyCallback(window, Renderer::key_callback);
 
