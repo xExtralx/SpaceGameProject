@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/ubuntu/Games/SpaceGameProject/src -I/home/ubuntu/Games/SpaceGameProject/include -I/home/ubuntu/Games/SpaceGameProject/external/glad/include -I/usr/include/freetype2 -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/glfw-src/include -I/home/ubuntu/Games/SpaceGameProject/include/glad/include
 
-CXX_FLAGS = -O3 -DNDEBUG -std=gnu++20
+CXX_FLAGS = -g -std=gnu++20
 
