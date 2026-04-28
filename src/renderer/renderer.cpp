@@ -54,8 +54,6 @@ int Renderer::init() {
         FileManager::LoadTextFile("shader/default.frag")
     );
 
-    Shader* imageShader = nullptr;
-
     imageShader = new Shader(
         FileManager::LoadTextFile("shader/image.vert"),
         FileManager::LoadTextFile("shader/image.frag")
