@@ -6,5 +6,5 @@ C_DEFINES =
 
 C_INCLUDES = -I/home/ubuntu/Games/SpaceGameProject/include/glad/include
 
-C_FLAGS = -g
+C_FLAGS = -O3 -DNDEBUG
 

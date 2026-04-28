@@ -30,28 +30,16 @@ public:
         return instance;
     }
 
-    // Load texture synchronously or asynchronously
-    GLuint loadTexture(const std::string& path, bool async = false) {
-        std::lock_guard<std::mutex> lock(mutex_);
+    GLuint loadTexture(const std::string& path) {
         auto it = textures.find(path);
         if (it != textures.end()) {
             it->second->addRef();
             return it->second->id;
         }
-
-        if (async) {
-            // Launch background thread to load texture
-            std::thread(&TextureManager::loadTextureAsync, this, path).detach();
-            // Return a placeholder or invalid handle until loaded
-            return 0;
-        } else {
-            return loadTextureSync(path);
-        }
+        return loadTextureSync(path);
     }
 
-    // Unload a texture manually
     void releaseTexture(const std::string& path) {
-        std::lock_guard<std::mutex> lock(mutex_);
         auto it = textures.find(path);
         if (it != textures.end()) {
             it->second->release();
@@ -63,7 +51,6 @@ public:
     }
 
     void cleanup() {
-        std::lock_guard<std::mutex> lock(mutex_);
         for (auto& pair : textures) {
             delete pair.second;
         }
@@ -72,70 +59,34 @@ public:
 
 private:
     std::unordered_map<std::string, Texture*> textures;
-    std::mutex mutex_;
 
-    // Async load queue
-    std::queue<std::string> loadQueue;
-    std::thread loaderThread;
-    bool stopThread = false;
-
-    TextureManager() {
-        loaderThread = std::thread(&TextureManager::loaderLoop, this);
-    }
-    ~TextureManager() {
-        stopThread = true;
-        if (loaderThread.joinable()) loaderThread.join();
-        cleanup();
-    }
+    TextureManager() {} // no thread!
+    ~TextureManager() { cleanup(); }
 
     GLuint loadTextureSync(const std::string& path) {
         std::vector<unsigned char> imageData;
         int width, height, channels;
 
-        std::cerr << "[TextureManager] Attempting to load: " << path << std::endl;
-        std::cerr << "[TextureManager] BasePath is: " << FileManager::GetBasePath() << std::endl;
-
         if (!FileManager::LoadPNG(path, imageData, width, height, channels)) {
-            std::cerr << "[TextureManager] LoadPNG failed for: " << path << std::endl;
+            std::cerr << "[TextureManager] Failed to load " << path << std::endl;
             return 0;
         }
 
-        std::cerr << "[TextureManager] PNG loaded OK: " << width << "x" << height << " ch=" << channels << std::endl;
-        std::cerr << "[TextureManager] imageData size: " << imageData.size() << std::endl;
-
-        GLuint texID = 0;
+        GLuint texID;
         glGenTextures(1, &texID);
-        std::cerr << "[TextureManager] glGenTextures id=" << texID << std::endl;
+        glBindTexture(GL_TEXTURE_2D, texID);
 
-        if (texID == 0) {
-            std::cerr << "[TextureManager] ERROR: glGenTextures returned 0, GL error: " << glGetError() << std::endl;
-            return 0;
-        }
-        // ...rest of the function
-    }
+        GLenum format = (channels == 4) ? GL_RGBA : (channels == 3) ? GL_RGB : GL_RED;
+        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, imageData.data());
+        glGenerateMipmap(GL_TEXTURE_2D);
 
-    void loadTextureAsync(const std::string& path) {
-        {
-            std::lock_guard<std::mutex> lock(mutex_);
-            loadQueue.push(path);
-        }
-        // The loader thread will process the queue
-    }
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-    void loaderLoop() {
-        while (!stopThread) {
-            std::string path;
-            {
-                std::unique_lock<std::mutex> lock(mutex_);
-                if (loadQueue.empty()) {
-                    lock.unlock();
-                    std::this_thread::sleep_for(std::chrono::milliseconds(10));
-                    continue;
-                }
-                path = loadQueue.front();
-                loadQueue.pop();
-            }
-            loadTextureSync(path);
-        }
+        Texture* tex = new Texture(texID, width, height, channels);
+        textures.emplace(path, tex);
+        return texID;
     }
 };

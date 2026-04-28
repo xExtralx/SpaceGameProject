@@ -6,7 +6,7 @@ C_DEFINES = -D_GLFW_USE_CONFIG_H
 
 C_INCLUDES = -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/glfw-src/include -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/glfw-src/src -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/glfw-build/src
 
-C_FLAGS = -g -std=gnu99 -fPIC -Wall
+C_FLAGS = -O3 -DNDEBUG -std=gnu99 -fPIC -Wall
 
 # Custom flags: _deps/glfw-build/src/CMakeFiles/glfw.dir/context.c.o_FLAGS = -Wdeclaration-after-statement
 

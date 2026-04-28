@@ -27,6 +27,8 @@ _deps/glfw-build/src/CMakeFiles/glfw.dir/x11_window.c.o: \
  /usr/include/x86_64-linux-gnu/bits/confname.h \
  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+ /usr/include/x86_64-linux-gnu/bits/unistd.h \
+ /usr/include/x86_64-linux-gnu/bits/unistd-decl.h \
  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
  /usr/include/linux/close_range.h /usr/include/signal.h \
  /usr/include/x86_64-linux-gnu/bits/signum-generic.h \
@@ -73,11 +75,12 @@ _deps/glfw-build/src/CMakeFiles/glfw.dir/x11_window.c.o: \
  /usr/include/x86_64-linux-gnu/sys/select.h \
  /usr/include/x86_64-linux-gnu/bits/select.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
- /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h \
- /usr/include/X11/Xosdefs.h /usr/include/X11/keysym.h \
- /usr/include/X11/keysymdef.h /usr/include/X11/Xatom.h \
- /usr/include/X11/Xcursor/Xcursor.h /usr/include/stdio.h \
- /usr/lib/gcc/x86_64-linux-gnu/14/include/stdarg.h \
+ /usr/include/x86_64-linux-gnu/bits/select2.h \
+ /usr/include/x86_64-linux-gnu/bits/select-decl.h /usr/include/X11/X.h \
+ /usr/include/X11/Xfuncproto.h /usr/include/X11/Xosdefs.h \
+ /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h \
+ /usr/include/X11/Xatom.h /usr/include/X11/Xcursor/Xcursor.h \
+ /usr/include/stdio.h /usr/lib/gcc/x86_64-linux-gnu/14/include/stdarg.h \
  /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
@@ -88,6 +91,9 @@ _deps/glfw-build/src/CMakeFiles/glfw.dir/x11_window.c.o: \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
  /usr/include/x86_64-linux-gnu/bits/floatn.h \
  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio2.h \
  /usr/include/X11/extensions/Xrandr.h /usr/include/X11/extensions/randr.h \
  /usr/include/X11/extensions/Xrender.h /usr/include/X11/Xutil.h \
  /usr/include/X11/extensions/render.h /usr/include/X11/Xdefs.h \
@@ -138,11 +144,16 @@ _deps/glfw-build/src/CMakeFiles/glfw.dir/x11_window.c.o: \
  /usr/include/regex.h /usr/include/X11/cursorfont.h \
  /usr/include/X11/Xmd.h /usr/include/poll.h \
  /usr/include/x86_64-linux-gnu/sys/poll.h \
- /usr/include/x86_64-linux-gnu/bits/poll.h /usr/include/string.h \
- /usr/include/strings.h /usr/include/stdlib.h \
- /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+ /usr/include/x86_64-linux-gnu/bits/poll.h \
+ /usr/include/x86_64-linux-gnu/bits/poll2.h /usr/include/string.h \
+ /usr/include/strings.h \
+ /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+ /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
+ /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/waitflags.h \
  /usr/include/x86_64-linux-gnu/bits/waitstatus.h /usr/include/alloca.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib.h \
  /usr/lib/gcc/x86_64-linux-gnu/14/include/limits.h \
  /usr/lib/gcc/x86_64-linux-gnu/14/include/syslimits.h \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
