@@ -78,7 +78,7 @@ int Renderer::init() {
         FileManager::LoadTextFile("shader/image.frag")
     );
 
-    tilesetTexture = TextureManager::getInstance().loadTexture("textures/tileset/atlas.png");
+    tilesetTexture = TextureManager::getInstance().loadTexture("tileset/atlas.png");
 
     tileShader = new Shader(
         FileManager::LoadTextFile("shader/tile.vert"),
@@ -373,21 +373,16 @@ void Renderer::key_callback(GLFWwindow* window, int key, int scancode, int actio
 // Tile Rendering
 // =====================
 
-// The quad must match the diamond shape of a 256x128 iso tile
-// Add 0.5px overlap on each edge to prevent gaps
+// Quad shared by all tile instances
 static float tileQuad[] = {
-     0.0f,    64.5f,         0.5f, 0.0f,
-    -128.5f,   0.0f,         0.0f, 0.5f,
-     0.0f,   -64.5f,         0.5f, 1.0f,
-     128.5f,   0.0f,         1.0f, 0.5f,
+    // localPos      uv
+    -0.5f,  0.5f,   0.0f, 0.0f, // top-left
+    -0.5f, -0.5f,   0.0f, 1.0f, // bottom-left
+     0.5f, -0.5f,   1.0f, 1.0f, // bottom-right
 
-     0.0f,    64.5f,         0.5f, 0.0f,
-    -128.5f,   0.0f,         0.0f, 0.5f,
-     0.0f,   -64.5f,         0.5f, 1.0f,
-
-     0.0f,    64.5f,         0.5f, 0.0f,
-     0.0f,   -64.5f,         0.5f, 1.0f,
-     128.5f,   0.0f,         1.0f, 0.5f,
+    -0.5f,  0.5f,   0.0f, 0.0f, // top-left
+     0.5f, -0.5f,   1.0f, 1.0f, // bottom-right
+     0.5f,  0.5f,   1.0f, 0.0f  // top-right
 };
 
 void Renderer::initTileQuad() {
@@ -521,7 +516,7 @@ void Renderer::renderChunks(const ChunkManager& chunkManager) {
         if (!rd.uploaded || rd.instanceCount == 0) continue;
 
         glBindVertexArray(rd.VAO);
-        glDrawArraysInstanced(GL_TRIANGLES, 0, 9, rd.instanceCount); // 9 not 6
+        glDrawArraysInstanced(GL_TRIANGLES, 0, 6, rd.instanceCount);
         glBindVertexArray(0);
     }
 }
