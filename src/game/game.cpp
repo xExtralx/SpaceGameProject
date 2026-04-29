@@ -33,9 +33,9 @@ void Game::update() {
 
     if (keys[GLFW_KEY_W] || keys[GLFW_KEY_UP])
         renderer.camera.position[1] += speed * deltaTime;
-    if (keys[GLFW_KEY_A] || keys[GLFW_KEY_DOWN])
+    if (keys[GLFW_KEY_S] || keys[GLFW_KEY_DOWN])
         renderer.camera.position[1] -= speed * deltaTime;
-    if (keys[GLFW_KEY_S] || keys[GLFW_KEY_LEFT])
+    if (keys[GLFW_KEY_A] || keys[GLFW_KEY_LEFT])
         renderer.camera.position[0] -= speed * deltaTime;
     if (keys[GLFW_KEY_D] || keys[GLFW_KEY_RIGHT])
         renderer.camera.position[0] += speed * deltaTime;
@@ -74,7 +74,7 @@ void Game::clickEvent(int x, int y) {
 
 void Game::keyPressEvent(int key) {
     std::cerr << "[key] code: " << key << " name: " << (glfwGetKeyName(key, 0) ? glfwGetKeyName(key, 0) : "unknown") << std::endl;
-    
+
     if (key >= 0 && key < 1024)
         keys[key] = true;
 
