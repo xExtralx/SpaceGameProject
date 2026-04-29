@@ -17,9 +17,10 @@ struct ChunkRenderData {
 };
 
 struct TileInstance {
-    Vec3  tilePos;   // grid x, y, height
-    Vec2  uvOffset;  // offset into tileset
-    float ao;        // ambient occlusion
+    Vec3  tilePos;
+    Vec2  uvOffset;
+    Vec2  uvSize;   // add this
+    float ao;
 };
 
 struct Camera {

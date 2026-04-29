@@ -21,22 +21,16 @@ private:
     FastNoise::SmartNode<FastNoise::FractalFBm> resourceNoise;
     FastNoise::SmartNode<FastNoise::FractalFBm> forestNoise;
 
-    // Thresholds
-    static constexpr float WATER_LEVEL    = -0.2f;
-    static constexpr float SAND_LEVEL     =  0.0f;
-    static constexpr float GRASS_LEVEL    =  0.4f;
-    static constexpr float STONE_LEVEL    =  0.7f;
-
-    static constexpr float IRON_THRESHOLD  = 0.6f;
-    static constexpr float COAL_THRESHOLD  = 0.5f;
-    static constexpr float COPPER_THRESHOLD= 0.7f;
+    // In worldgen.h private section
+    static constexpr float IRON_THRESHOLD     = 0.6f;
+    static constexpr float COPPER_THRESHOLD   = 0.5f;
+    static constexpr float AMETHYST_THRESHOLD = 0.7f;
 
     // Internal helpers
     TileType   elevationToType(float elevation)                    const;
     void       applyResources(Chunk& chunk,
                               const std::vector<float>& resourceMap,
                               const std::vector<float>& elevationMap) const;
-    int8_t     flagsForType(TileType type)                         const;
 };
 
 // =====================

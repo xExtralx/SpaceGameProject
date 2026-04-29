@@ -7,7 +7,6 @@
 // =====================
 
 WorldGen::WorldGen(int32_t seed) : seed(seed) {
-    // --- Elevation noise ---
     auto elevSimplex = FastNoise::New<FastNoise::Simplex>();
     elevationNoise   = FastNoise::New<FastNoise::FractalFBm>();
     elevationNoise->SetSource(elevSimplex);
@@ -15,7 +14,6 @@ WorldGen::WorldGen(int32_t seed) : seed(seed) {
     elevationNoise->SetGain(0.5f);
     elevationNoise->SetLacunarity(2.0f);
 
-    // --- Resource noise (separate frequency) ---
     auto resSimplex = FastNoise::New<FastNoise::Simplex>();
     resourceNoise   = FastNoise::New<FastNoise::FractalFBm>();
     resourceNoise->SetSource(resSimplex);
@@ -23,7 +21,6 @@ WorldGen::WorldGen(int32_t seed) : seed(seed) {
     resourceNoise->SetGain(0.6f);
     resourceNoise->SetLacunarity(2.5f);
 
-    // --- Forest noise ---
     auto forSimplex = FastNoise::New<FastNoise::Simplex>();
     forestNoise     = FastNoise::New<FastNoise::FractalFBm>();
     forestNoise->SetSource(forSimplex);
@@ -33,14 +30,11 @@ WorldGen::WorldGen(int32_t seed) : seed(seed) {
 }
 
 void WorldGen::generateChunk(Chunk& chunk) const {
-    const int size = CHUNK_SIZE;
-    const int area = size * size;
-
-    // World offset for this chunk
+    const int     size         = CHUNK_SIZE;
+    const int     area         = size * size;
     const int32_t worldOffsetX = chunk.pos.x * size;
     const int32_t worldOffsetY = chunk.pos.y * size;
 
-    // Generate noise maps
     std::vector<float> elevationMap(area);
     std::vector<float> resourceMap(area);
     std::vector<float> forestMap(area);
@@ -48,65 +42,58 @@ void WorldGen::generateChunk(Chunk& chunk) const {
     elevationNoise->GenUniformGrid2D(
         elevationMap.data(),
         worldOffsetX, worldOffsetY,
-        size, size,
-        0.008f, 0.008f, // xScale, yScale
-        seed
+        size, size, 0.008f, 0.008f, seed
     );
-
     resourceNoise->GenUniformGrid2D(
         resourceMap.data(),
         worldOffsetX, worldOffsetY,
-        size, size,
-        0.05f, 0.05f, // xScale, yScale
-        seed + 1
+        size, size, 0.05f, 0.05f, seed + 1
     );
-
     forestNoise->GenUniformGrid2D(
         forestMap.data(),
         worldOffsetX, worldOffsetY,
-        size, size,
-        0.03f, 0.03f, // xScale, yScale
-        seed + 2
+        size, size, 0.03f, 0.03f, seed + 2
     );
 
-    // Fill tiles from noise
     for (int y = 0; y < size; y++) {
         for (int x = 0; x < size; x++) {
-            int idx = y * size + x;
-
+            int   idx      = y * size + x;
             float elev     = elevationMap[idx];
             float resource = resourceMap[idx];
             float forest   = forestMap[idx];
 
             Tile& tile = chunk.getTile(x, y);
 
+            // Store raw elevation for height rendering
+            tile.elevation = elev;
+
             // Base type from elevation
             tile.type  = elevationToType(elev);
-            tile.flags = flagsForType(tile.type);
+            tile.flags = Tile::defaultFlags(tile.type);
 
-            // Skip resource/forest placement on water/sand
-            if (tile.type == TileType::WATER ||
-                tile.type == TileType::SAND)
+            // Skip resource placement on water
+            if (tile.type == TileType::WARM_WATER ||
+                tile.type == TileType::WATER       ||
+                tile.type == TileType::DEEP_WATER)
                 continue;
 
-            // Ore placement — offset resource noise per ore type
+            // Ore placement
             if (resource > IRON_THRESHOLD) {
-                tile.type = TileType::ORE_IRON;
-                tile.setFlag(TILE_RESOURCE | TILE_SOLID);
+                tile.type  = TileType::IRON_ORE;
+                tile.flags = Tile::defaultFlags(tile.type);
                 tile.resource = static_cast<int8_t>(
                     (resource - IRON_THRESHOLD) / (1.0f - IRON_THRESHOLD) * 127.0f
                 );
-            } else if (resource < -COAL_THRESHOLD) {
-                tile.type = TileType::ORE_COAL;
-                tile.setFlag(TILE_RESOURCE | TILE_SOLID);
+            } else if (resource < -COPPER_THRESHOLD) {
+                tile.type  = TileType::COPPER_ORE;
+                tile.flags = Tile::defaultFlags(tile.type);
                 tile.resource = static_cast<int8_t>(
-                    (-resource - COAL_THRESHOLD) / (1.0f - COAL_THRESHOLD) * 127.0f
+                    (-resource - COPPER_THRESHOLD) / (1.0f - COPPER_THRESHOLD) * 127.0f
                 );
-            } else if (resource > COPPER_THRESHOLD * 0.8f &&
-                       forest   > COPPER_THRESHOLD * 0.6f) {
-                // Copper uses combination of two noise maps
-                tile.type = TileType::ORE_COPPER;
-                tile.setFlag(TILE_RESOURCE | TILE_SOLID);
+            } else if (resource > AMETHYST_THRESHOLD * 0.8f &&
+                       forest   > AMETHYST_THRESHOLD * 0.6f) {
+                tile.type  = TileType::AMETHYST;
+                tile.flags = Tile::defaultFlags(tile.type);
                 tile.resource = static_cast<int8_t>(resource * 60.0f + 60.0f);
             }
         }
@@ -117,24 +104,13 @@ void WorldGen::generateChunk(Chunk& chunk) const {
 }
 
 TileType WorldGen::elevationToType(float e) const {
-    if (e < WATER_LEVEL) return TileType::WATER;
-    if (e < SAND_LEVEL)  return TileType::SAND;
-    if (e < GRASS_LEVEL) return TileType::GRASS;
-    if (e < STONE_LEVEL) return TileType::STONE;
-    return TileType::STONE;
-}
-
-int8_t WorldGen::flagsForType(TileType type) const {
-    switch (type) {
-        case TileType::GRASS:      return TILE_WALKABLE;
-        case TileType::SAND:       return TILE_WALKABLE;
-        case TileType::STONE:      return TILE_WALKABLE | TILE_SOLID;
-        case TileType::WATER:      return TILE_WATER;
-        case TileType::ORE_IRON:   return TILE_SOLID | TILE_RESOURCE;
-        case TileType::ORE_COAL:   return TILE_SOLID | TILE_RESOURCE;
-        case TileType::ORE_COPPER: return TILE_SOLID | TILE_RESOURCE;
-        default:                   return 0;
-    }
+    if (e < -0.5f) return TileType::DEEP_WATER;
+    if (e < -0.2f) return TileType::WATER;
+    if (e < -0.0f) return TileType::WARM_WATER;
+    if (e <  0.3f) return TileType::GRASS;
+    if (e <  0.5f) return TileType::GRASS_ALT;
+    if (e <  0.7f) return TileType::GRASSY_ROCKS;
+    return TileType::GRASSY_ROCKS;
 }
 
 // =====================
@@ -148,7 +124,6 @@ Chunk& ChunkManager::getChunk(ChunkPos pos) {
     if (it != chunks.end())
         return it->second;
 
-    // Generate new chunk
     Chunk chunk(pos);
     worldGen.generateChunk(chunk);
     chunks.emplace(pos, std::move(chunk));
@@ -161,34 +136,30 @@ bool ChunkManager::hasChunk(ChunkPos pos) const {
 
 void ChunkManager::updateLoadedChunks(float worldX, float worldY,
                                        float tileSize, int renderDistance) {
-    // Convert world pixel position to chunk position
-    int32_t camChunkX = static_cast<int32_t>(std::floor(worldX / (tileSize * CHUNK_SIZE)));
-    int32_t camChunkY = static_cast<int32_t>(std::floor(worldY / (tileSize * CHUNK_SIZE)));
+    int32_t camChunkX = static_cast<int32_t>(
+        std::floor(worldX / (tileSize * CHUNK_SIZE)));
+    int32_t camChunkY = static_cast<int32_t>(
+        std::floor(worldY / (tileSize * CHUNK_SIZE)));
 
-    ChunkPos center(camChunkX, camChunkY);
-
-    // Load chunks in render distance
-    for (int dy = -renderDistance; dy <= renderDistance; dy++) {
+    for (int dy = -renderDistance; dy <= renderDistance; dy++)
         for (int dx = -renderDistance; dx <= renderDistance; dx++) {
             ChunkPos pos(camChunkX + dx, camChunkY + dy);
-            if (!hasChunk(pos)) {
-                getChunk(pos); // generates and caches
-            }
+            if (!hasChunk(pos))
+                getChunk(pos);
         }
-    }
 
-    unloadDistantChunks(center, renderDistance + 2); // unload with margin
+    unloadDistantChunks(ChunkPos(camChunkX, camChunkY), renderDistance + 2);
 }
 
 void ChunkManager::unloadDistantChunks(ChunkPos center, int renderDistance) {
+    // Also cleanup GPU data for unloaded chunks
     auto it = chunks.begin();
     while (it != chunks.end()) {
         int32_t dx = std::abs(it->first.x - center.x);
         int32_t dy = std::abs(it->first.y - center.y);
-        if (dx > renderDistance || dy > renderDistance) {
+        if (dx > renderDistance || dy > renderDistance)
             it = chunks.erase(it);
-        } else {
+        else
             ++it;
-        }
     }
 }

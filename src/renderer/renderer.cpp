@@ -78,7 +78,7 @@ int Renderer::init() {
         FileManager::LoadTextFile("shader/image.frag")
     );
 
-    tilesetTexture = TextureManager::getInstance().loadTexture("textures/tile.png");
+    tilesetTexture = TextureManager::getInstance().loadTexture("tileset/atlas.png");
 
     tileShader = new Shader(
         FileManager::LoadTextFile("shader/tile.vert"),
@@ -403,22 +403,6 @@ void Renderer::initTileQuad() {
     glBindVertexArray(0);
 }
 
-Vec2 Renderer::tileTypeToUV(TileType type) const {
-    // Tileset is arranged in a row — each tile is 1/8 of texture width
-    // Adjust based on your actual tileset layout
-    const float tileW = 1.0f / 8.0f;
-    switch (type) {
-        case TileType::GRASS:      return Vec2(0 * tileW, 0.0f);
-        case TileType::SAND:       return Vec2(1 * tileW, 0.0f);
-        case TileType::STONE:      return Vec2(2 * tileW, 0.0f);
-        case TileType::WATER:      return Vec2(3 * tileW, 0.0f);
-        case TileType::ORE_IRON:   return Vec2(4 * tileW, 0.0f);
-        case TileType::ORE_COAL:   return Vec2(5 * tileW, 0.0f);
-        case TileType::ORE_COPPER: return Vec2(6 * tileW, 0.0f);
-        default:                   return Vec2(7 * tileW, 0.0f);
-    }
-}
-
 void Renderer::uploadChunk(const Chunk& chunk) {
     // Build instance data for every tile in chunk
     std::vector<TileInstance> instances;
@@ -429,14 +413,17 @@ void Renderer::uploadChunk(const Chunk& chunk) {
             const Tile& tile = chunk.getTile(x, y);
             if (tile.type == TileType::NONE) continue;
 
-            // Absolute tile position in world grid
             float worldX = chunk.pos.x * CHUNK_SIZE + x;
             float worldY = chunk.pos.y * CHUNK_SIZE + y;
 
+            // UV from atlas
+            TileUV uv = getUVForType(tile.type);
+
             TileInstance inst;
-            inst.tilePos  = Vec3(worldX, worldY, 0.0f);
-            inst.uvOffset = tileTypeToUV(tile.type);
-            inst.ao       = 0.0f; // TODO: compute from neighbors
+            inst.tilePos  = Vec3(worldX, worldY, tile.elevation * 5.0f);
+            inst.uvOffset = Vec2(uv.u, uv.v);
+            inst.uvSize   = Vec2(uv.w, uv.h);
+            inst.ao       = 0.0f;
 
             instances.push_back(inst);
         }
@@ -473,17 +460,23 @@ void Renderer::uploadChunk(const Chunk& chunk) {
     glEnableVertexAttribArray(2);
     glVertexAttribDivisor(2, 1); // advance per instance
 
-    // iUVOffset (location = 3) — vec2
+    // iUVOffset (location = 3)
     glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, sizeof(TileInstance),
         (void*)offsetof(TileInstance, uvOffset));
     glEnableVertexAttribArray(3);
     glVertexAttribDivisor(3, 1);
 
-    // iAO (location = 4) — float
-    glVertexAttribPointer(4, 1, GL_FLOAT, GL_FALSE, sizeof(TileInstance),
-        (void*)offsetof(TileInstance, ao));
+    // iUVSize (location = 4)
+    glVertexAttribPointer(4, 2, GL_FLOAT, GL_FALSE, sizeof(TileInstance),
+        (void*)offsetof(TileInstance, uvSize));
     glEnableVertexAttribArray(4);
     glVertexAttribDivisor(4, 1);
+
+    // iAO (location = 5) — bumped from 4 to 5
+    glVertexAttribPointer(5, 1, GL_FLOAT, GL_FALSE, sizeof(TileInstance),
+        (void*)offsetof(TileInstance, ao));
+    glEnableVertexAttribArray(5);
+    glVertexAttribDivisor(5, 1);
 
     glBindVertexArray(0);
 
