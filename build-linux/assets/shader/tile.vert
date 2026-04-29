@@ -19,8 +19,9 @@ uniform vec2  uTileSize;
 uniform float uHeightStep;
 
 vec2 isoProject(vec2 p) {
-    float x = (p.x - p.y) * uTileSize.x * 0.5;
-    float y = (p.x + p.y) * uTileSize.y * 0.5;
+    // Each tile step moves 128px right/left and 64px up/down
+    float x = (p.x - p.y) * 128.0f;
+    float y = (p.x + p.y) * 64.0f;
     return vec2(x, y);
 }
 

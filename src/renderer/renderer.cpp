@@ -374,23 +374,20 @@ void Renderer::key_callback(GLFWwindow* window, int key, int scancode, int actio
 // =====================
 
 // The quad must match the diamond shape of a 256x128 iso tile
-// In NDC-local space where 1 unit = 1 pixel
+// Add 0.5px overlap on each edge to prevent gaps
 static float tileQuad[] = {
-    // localPos (pixels)      uv
-     0.0f,   64.0f,          0.5f, 0.0f, // top
-    -128.0f,  0.0f,          0.0f, 0.5f, // left
-     0.0f,  -64.0f,          0.5f, 1.0f, // bottom
-     128.0f,  0.0f,          1.0f, 0.5f, // right
+     0.0f,    64.5f,         0.5f, 0.0f,
+    -128.5f,   0.0f,         0.0f, 0.5f,
+     0.0f,   -64.5f,         0.5f, 1.0f,
+     128.5f,   0.0f,         1.0f, 0.5f,
 
-    // triangle 1
-     0.0f,   64.0f,          0.5f, 0.0f, // top
-    -128.0f,  0.0f,          0.0f, 0.5f, // left
-     0.0f,  -64.0f,          0.5f, 1.0f, // bottom
+     0.0f,    64.5f,         0.5f, 0.0f,
+    -128.5f,   0.0f,         0.0f, 0.5f,
+     0.0f,   -64.5f,         0.5f, 1.0f,
 
-    // triangle 2
-     0.0f,   64.0f,          0.5f, 0.0f, // top
-     0.0f,  -64.0f,          0.5f, 1.0f, // bottom
-     128.0f,  0.0f,          1.0f, 0.5f, // right
+     0.0f,    64.5f,         0.5f, 0.0f,
+     0.0f,   -64.5f,         0.5f, 1.0f,
+     128.5f,   0.0f,         1.0f, 0.5f,
 };
 
 void Renderer::initTileQuad() {
