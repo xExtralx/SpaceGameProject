@@ -264,6 +264,10 @@ void Renderer::addTriangle(const Vec2& v1, const Vec2& v2, const Vec2& v3, const
     colorVertices.push_back({ Vec3(v3[0], v3[1], z), color });
 }
 
+void Renderer::drawImage(const std::string& filePath) {
+    drawImage(filePath, *imageShader);
+}
+
 void Renderer::drawImage(const std::string& filePath, Shader& shader) {
     static GLuint imgVAO = 0, imgVBO = 0;
 

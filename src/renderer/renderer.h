@@ -39,7 +39,8 @@ public:
     // Draw calls — accumulate geometry, flushed in draw()
     void addTriangle(const Vec2& v1, const Vec2& v2, const Vec2& v3, const Vec4& color, float z);
     void addTile(const TileVertex verts[4]); // for textured tiles later
-    void drawImage(const std::string& filePath, Shader& shader);
+    void drawImage(const std::string& filePath); // no shader param
+    void drawImage(const std::string& filePath, Shader& shader);;
 
     bool shouldClose() const;
 
