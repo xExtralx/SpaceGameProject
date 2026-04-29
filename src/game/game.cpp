@@ -47,8 +47,8 @@ void Game::update() {
     chunkManager.updateLoadedChunks(
         renderer.camera.position[0],
         renderer.camera.position[1],
-        16.0f,  // tile size in pixels
-        5       // render distance in chunks
+        32.0f, // match shader uTileSize x
+        5
     );
 }
 

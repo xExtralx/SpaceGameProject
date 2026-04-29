@@ -26,17 +26,16 @@ vec2 isoProject(vec2 p) {
 
 void main() {
     vec2 iso = isoProject(iTilePos.xy);
-    iso.y += iTilePos.z * uHeightStep;
+    iso.y += 0.0; // disable height temporarily
 
     vec2 worldPos = iso + aLocalPos * uTileSize;
 
-    float depth = (iTilePos.x + iTilePos.y) * 0.001
-                + iTilePos.z * 0.0001;
+    float depth = 0.0; // disable depth sorting temporarily
 
     gl_Position = uViewProj * vec4(worldPos, depth, 1.0);
 
-    vUV      = iUVOffset + aUV * iUVSize; // use uvSize to scale UVs
+    vUV      = iUVOffset + aUV * iUVSize;
     vAO      = iAO;
-    vFog     = iTilePos.z * 0.05;
+    vFog     = 0.0;
     vTilePos = iTilePos;
 }

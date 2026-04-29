@@ -420,7 +420,7 @@ void Renderer::uploadChunk(const Chunk& chunk) {
             TileUV uv = getUVForType(tile.type);
 
             TileInstance inst;
-            inst.tilePos  = Vec3(worldX, worldY, tile.elevation * 5.0f);
+            inst.tilePos  = Vec3(worldX, worldY, 0.0f);
             inst.uvOffset = Vec2(uv.u, uv.v);
             inst.uvSize   = Vec2(uv.w, uv.h);
             inst.ao       = 0.0f;
