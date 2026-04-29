@@ -72,14 +72,4 @@ target_link_libraries(MyGame PRIVATE
     ${FREETYPE_LIBRARIES}
 )
 
-# =========================
-# Assets
-# =========================
-add_custom_command(
-    TARGET MyGame POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory
-    ${CMAKE_SOURCE_DIR}/assets
-    $<TARGET_FILE_DIR:MyGame>/assets
-)
-
 message(STATUS "✅ Configuration OK pour ${PROJECT_NAME}")

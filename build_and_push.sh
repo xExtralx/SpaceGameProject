@@ -81,6 +81,11 @@ if [ "$DO_BUILD" = true ]; then
     cmake -B "$BUILD_LINUX" -DCMAKE_BUILD_TYPE="$BUILD_TYPE"
     cmake --build "$BUILD_LINUX" -j$(nproc)
 
+    # Copy assets
+    echo -e "${CYAN}📁 Copying assets...${NC}"
+    rm -rf "$BUILD_LINUX/assets"
+    cp -r assets "$BUILD_LINUX/assets"
+
     echo -e "${GREEN}✅ Linux build OK${NC}"
 
     # =============================
@@ -100,9 +105,16 @@ if [ "$DO_BUILD" = true ]; then
             -DCMAKE_TOOLCHAIN_FILE=/usr/share/mingw/toolchain-x86_64-w64-mingw32.cmake
         cmake --build "$BUILD_WINDOWS" -j$(nproc)
 
+        # Copy assets
+        echo -e "${CYAN}📁 Copying assets...${NC}"
+        rm -rf "$BUILD_LINUX/assets"
+        cp -r assets "$BUILD_LINUX/assets"
+
         echo -e "${GREEN}✅ Windows build OK${NC}"
     fi
 fi
+
+
 
 # =============================
 # 📦 Git Push
