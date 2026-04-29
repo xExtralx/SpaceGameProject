@@ -31,11 +31,11 @@ void Game::update() {
     // Camera speed in world units per second
     const float speed = 100.0f;
 
-    if (keys[GLFW_KEY_Z] || keys[GLFW_KEY_UP])
+    if (keys[GLFW_KEY_W] || keys[GLFW_KEY_UP])
         renderer.camera.position[1] += speed * deltaTime;
-    if (keys[GLFW_KEY_S] || keys[GLFW_KEY_DOWN])
+    if (keys[GLFW_KEY_A] || keys[GLFW_KEY_DOWN])
         renderer.camera.position[1] -= speed * deltaTime;
-    if (keys[GLFW_KEY_Q] || keys[GLFW_KEY_LEFT])
+    if (keys[GLFW_KEY_S] || keys[GLFW_KEY_LEFT])
         renderer.camera.position[0] -= speed * deltaTime;
     if (keys[GLFW_KEY_D] || keys[GLFW_KEY_RIGHT])
         renderer.camera.position[0] += speed * deltaTime;
