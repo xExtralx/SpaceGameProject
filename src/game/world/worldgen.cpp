@@ -42,7 +42,7 @@ void WorldGen::generateChunk(Chunk& chunk) const {
     elevationNoise->GenUniformGrid2D(
         elevationMap.data(),
         worldOffsetX, worldOffsetY,
-        size, size, 0.008f, 0.008f, seed
+        size, size, 0.05f, 0.05f, seed  // was 0.008f
     );
     resourceNoise->GenUniformGrid2D(
         resourceMap.data(),
@@ -104,9 +104,9 @@ void WorldGen::generateChunk(Chunk& chunk) const {
 }
 
 TileType WorldGen::elevationToType(float e) const {
-    if (e < -0.5f) return TileType::DEEP_WATER;
-    if (e < -0.2f) return TileType::WATER;
-    if (e < -0.0f) return TileType::WARM_WATER;
+    if (e < -0.4f) return TileType::DEEP_WATER;
+    if (e < -0.1f) return TileType::WATER;
+    if (e <  0.1f) return TileType::WARM_WATER;
     if (e <  0.3f) return TileType::GRASS;
     if (e <  0.5f) return TileType::GRASS_ALT;
     if (e <  0.7f) return TileType::GRASSY_ROCKS;
