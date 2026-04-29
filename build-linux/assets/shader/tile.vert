@@ -28,14 +28,15 @@ void main() {
     vec2 iso = isoProject(iTilePos.xy);
     iso.y += iTilePos.z * uHeightStep;
 
-    vec2 worldPos = iso + aLocalPos * uTileSize;
+    // aLocalPos is already in pixels, no need to multiply by uTileSize
+    vec2 worldPos = iso + aLocalPos;
 
     float depth = (iTilePos.x + iTilePos.y) * 0.001
                 + iTilePos.z * 0.0001;
 
     gl_Position = uViewProj * vec4(worldPos, depth, 1.0);
 
-    vUV      = iUVOffset + aUV * iUVSize; // use uvSize to scale UVs
+    vUV      = iUVOffset + aUV * iUVSize;
     vAO      = iAO;
     vFog     = iTilePos.z * 0.05;
     vTilePos = iTilePos;
