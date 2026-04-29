@@ -521,7 +521,7 @@ void Renderer::renderChunks(const ChunkManager& chunkManager) {
         if (!rd.uploaded || rd.instanceCount == 0) continue;
 
         glBindVertexArray(rd.VAO);
-        glDrawArraysInstanced(GL_TRIANGLES, 0, 6, rd.instanceCount);
+        glDrawArraysInstanced(GL_TRIANGLES, 0, 9, rd.instanceCount); // 9 not 6
         glBindVertexArray(0);
     }
 }
