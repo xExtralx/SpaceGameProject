@@ -194,7 +194,6 @@ public:
     static std::string LoadTextFile(const std::string& relativePath) {
         namespace fs = std::filesystem;
         fs::path fullPath = fs::path(basePath) / "assets" / relativePath;
-        std::cerr << "[DEBUG] Trying to open: " << fullPath << std::endl; // <-- add this
         std::ifstream file(fullPath);
         if (!file.is_open()) {
             throw std::runtime_error("[FileManager] Cannot open text file: " + fullPath.string());

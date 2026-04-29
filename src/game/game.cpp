@@ -40,7 +40,8 @@ void Game::render() {
     );
 
     renderer.draw();
-    renderer.drawImage("debug/debug.png");
+    // centered on screen, scale 1.0 = native pixel size relative to 320x180
+    renderer.drawImage("debug/debug.png", 0.0f, 0.0f, 1.0f);
 
     renderer.present();
     renderer.update();

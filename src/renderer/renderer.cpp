@@ -264,28 +264,38 @@ void Renderer::addTriangle(const Vec2& v1, const Vec2& v2, const Vec2& v3, const
     colorVertices.push_back({ Vec3(v3[0], v3[1], z), color });
 }
 
-void Renderer::drawImage(const std::string& filePath) {
-    drawImage(filePath, *imageShader);
-}
+void Renderer::drawImage(const std::string& filePath, float x, float y, float scale) {
+    GLuint textureID = TextureManager::getInstance().loadTexture(filePath);
+    if (textureID == 0) return;
 
-void Renderer::drawImage(const std::string& filePath, Shader& shader) {
+    // Get texture dimensions
+    int texW, texH;
+    glBindTexture(GL_TEXTURE_2D, textureID);
+    glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH,  &texW);
+    glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &texH);
+
+    // Convert pixel size to NDC size accounting for aspect ratio
+    float aspectX = (float)texW / RENDER_WIDTH  * scale;
+    float aspectY = (float)texH / RENDER_HEIGHT * scale;
+
+    // Build quad with correct proportions centered at (x, y) in NDC
+    float quad[] = {
+        x - aspectX,  y + aspectY,  0.0f, 0.0f,
+        x - aspectX,  y - aspectY,  0.0f, 1.0f,
+        x + aspectX,  y - aspectY,  1.0f, 1.0f,
+
+        x - aspectX,  y + aspectY,  0.0f, 0.0f,
+        x + aspectX,  y - aspectY,  1.0f, 1.0f,
+        x + aspectX,  y + aspectY,  1.0f, 0.0f
+    };
+
     static GLuint imgVAO = 0, imgVBO = 0;
-
     if (imgVAO == 0) {
-        float quad[] = {
-            -0.5f,  0.5f,  0.0f, 0.0f,
-            -0.5f, -0.5f,  0.0f, 1.0f,
-             0.5f, -0.5f,  1.0f, 1.0f,
-            -0.5f,  0.5f,  0.0f, 0.0f,
-             0.5f, -0.5f,  1.0f, 1.0f,
-             0.5f,  0.5f,  1.0f, 0.0f
-        };
-
         glGenVertexArrays(1, &imgVAO);
         glGenBuffers(1, &imgVBO);
         glBindVertexArray(imgVAO);
         glBindBuffer(GL_ARRAY_BUFFER, imgVBO);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(quad), quad, GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(quad), nullptr, GL_DYNAMIC_DRAW);
         glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
         glEnableVertexAttribArray(0);
         glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
@@ -293,17 +303,15 @@ void Renderer::drawImage(const std::string& filePath, Shader& shader) {
         glBindVertexArray(0);
     }
 
-    GLuint textureID = TextureManager::getInstance().loadTexture(filePath);
-    if (textureID == 0) {
-        std::cerr << "[drawImage] Failed to load: " << filePath << std::endl;
-        return;
-    }
+    // Update quad data every call
+    glBindVertexArray(imgVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, imgVBO);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(quad), quad);
 
-    shader.use();
-    shader.setInt("uTexture", 0);
+    imageShader->use();
+    imageShader->setInt("uTexture", 0);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, textureID);
-    glBindVertexArray(imgVAO);
     glDrawArrays(GL_TRIANGLES, 0, 6);
     glBindVertexArray(0);
 }
