@@ -20,9 +20,9 @@ target_include_directories(glad PUBLIC include/glad/include)
 
 # GLFW
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
-set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
-set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
-set(GLFW_INSTALL OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_TESTS    OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_DOCS     OFF CACHE BOOL "" FORCE)
+set(GLFW_INSTALL        OFF CACHE BOOL "" FORCE)
 
 FetchContent_Declare(
     glfw
@@ -31,15 +31,23 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(glfw)
 
+# FastNoise2
+add_subdirectory(external/FastNoise2)
+
 # FreeType
 find_package(Freetype REQUIRED)
+
+# OpenGL
+find_package(OpenGL REQUIRED)
 
 # =========================
 # Sources
 # =========================
 file(GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS src/*.cpp)
 
-# 🔴 CIBLE CRÉÉE ICI
+# =========================
+# Cible
+# =========================
 add_executable(MyGame ${SRC_FILES})
 
 # =========================
@@ -48,20 +56,20 @@ add_executable(MyGame ${SRC_FILES})
 target_include_directories(MyGame PRIVATE
     src
     include
-    external/glad/include
+    include/glad/include
+    external/FastNoise2/include
     ${FREETYPE_INCLUDE_DIRS}
 )
 
 # =========================
-# Link libraries (APRÈS add_executable)
+# Link libraries
 # =========================
-
-find_package(OpenGL REQUIRED)
-        target_link_libraries(MyGame PRIVATE
-        glfw
-        glad
-        ${FREETYPE_LIBRARIES}
-        OpenGL::GL
+target_link_libraries(MyGame PRIVATE
+    glad
+    glfw
+    FastNoise
+    OpenGL::GL
+    ${FREETYPE_LIBRARIES}
 )
 
 # =========================

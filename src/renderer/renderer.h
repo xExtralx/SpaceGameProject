@@ -7,17 +7,35 @@
 #include "shader/shader.h"
 #include "../utils/utils.h"
 #include "texture/texture.h"
+#include "../game/world/worldgen.h"
+
+struct ChunkRenderData {
+    GLuint VAO = 0;
+    GLuint instanceVBO = 0; // per instance data
+    int    instanceCount = 0;
+    bool   uploaded = false;
+};
+
+struct TileInstance {
+    Vec3  tilePos;   // grid x, y, height
+    Vec2  uvOffset;  // offset into tileset
+    float ao;        // ambient occlusion
+};
 
 struct Camera {
-    Vec2  position = Vec2(0.0f, 0.0f); // world position
-    float zoom     = 1.0f;              // 1.0 = normal, 2.0 = zoomed in
+    Vec2  position = Vec2(0.0f, 0.0f);
+    float zoom     = 1.0f;
 
-    // Convert world pos to NDC for rendering
-    Vec2 worldToNDC(const Vec2& worldPos, int renderW, int renderH) const {
-        Vec2 relative = worldPos - position;
-        float ndcX = (relative[0] * zoom) / (renderW * 0.5f);
-        float ndcY = (relative[1] * zoom) / (renderH * 0.5f);
-        return Vec2(ndcX, ndcY);
+    Mat4 getViewProj(int renderW, int renderH) const {
+        float halfW = (renderW * 0.5f) / zoom;
+        float halfH = (renderH * 0.5f) / zoom;
+
+        float left   = position[0] - halfW;
+        float right  = position[0] + halfW;
+        float bottom = position[1] - halfH;
+        float top    = position[1] + halfH;
+
+        return Mat4::ortho(left, right, bottom, top, -1.0f, 1.0f);
     }
 };
 
@@ -54,8 +72,7 @@ public:
     // Draw calls — accumulate geometry, flushed in draw()
     void addTriangle(const Vec2& v1, const Vec2& v2, const Vec2& v3, const Vec4& color, float z);
     void addTile(const TileVertex verts[4]); // for textured tiles later
-    void drawImage(const std::string& filePath, const Vec2& worldPos, float scale);
-    void drawImageAtNDC(const std::string& filePath, float x, float y, float scale);
+    void drawImage(const std::string& filePath, float x, float y, float scale);
 
     bool shouldClose() const;
 
@@ -68,6 +85,10 @@ public:
 
     bool fullscreen = false;
 
+    void initTileQuad();
+    void uploadChunk(const Chunk& chunk);
+    void renderChunks(const ChunkManager& chunkManager);
+    Vec2 tileTypeToUV(TileType type) const;
 private:
     int width  = 0;
     int height = 0;
@@ -101,6 +122,13 @@ private:
     void initTileBuffer();
     void flushColorGeometry();
     void flushTileGeometry();
+
+    // Tile rendering
+    GLuint               tileQuadVAO = 0;
+    GLuint               tileQuadVBO = 0;
+    GLuint               tilesetTexture = 0;
+
+    std::unordered_map<ChunkPos, ChunkRenderData, ChunkPosHash> chunkRenderData;
 };
 
 #endif

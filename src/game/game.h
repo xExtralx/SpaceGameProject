@@ -6,6 +6,7 @@
 #define GAME_H
 
 #include "../renderer/renderer.h"
+#include "world/worldgen.h"
 
 class Game {
 public:
@@ -36,6 +37,8 @@ private:
 
     Renderer renderer;
     FileManager fileManager;
+
+    ChunkManager chunkManager; // default seed
 
     bool keys[1024] = {};  // tracks which keys are held down
 };

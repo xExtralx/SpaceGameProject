@@ -2,6 +2,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/MyGame.dir/link.d"
   "CMakeFiles/MyGame.dir/src/game/game.cpp.o"
   "CMakeFiles/MyGame.dir/src/game/game.cpp.o.d"
+  "CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.o"
+  "CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.o.d"
   "CMakeFiles/MyGame.dir/src/main.cpp.o"
   "CMakeFiles/MyGame.dir/src/main.cpp.o.d"
   "CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.o"

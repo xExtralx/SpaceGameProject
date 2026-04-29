@@ -7,25 +7,31 @@
 },
 {
   "directory": "/home/ubuntu/Games/SpaceGameProject/build-linux",
-  "command": "/usr/bin/c++  -I/home/ubuntu/Games/SpaceGameProject/src -I/home/ubuntu/Games/SpaceGameProject/include -I/home/ubuntu/Games/SpaceGameProject/external/glad/include -I/usr/include/freetype2 -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/glfw-src/include -I/home/ubuntu/Games/SpaceGameProject/include/glad/include -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles/MyGame.dir/src/game/game.cpp.o -c /home/ubuntu/Games/SpaceGameProject/src/game/game.cpp",
+  "command": "/usr/bin/c++ -DFASTNOISE2_VERSION=\\\"1.1.1\\\" -DFASTNOISE_STATIC_LIB -DFASTSIMD_IS_RELAXED=1 -DFASTSIMD_STATIC_LIB -I/home/ubuntu/Games/SpaceGameProject/src -I/home/ubuntu/Games/SpaceGameProject/include -I/home/ubuntu/Games/SpaceGameProject/include/glad/include -I/home/ubuntu/Games/SpaceGameProject/external/FastNoise2/include -I/usr/include/freetype2 -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/glfw-src/include -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/include -I/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src/fastsimd/FastSIMD_FastNoise/include -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles/MyGame.dir/src/game/game.cpp.o -c /home/ubuntu/Games/SpaceGameProject/src/game/game.cpp",
   "file": "/home/ubuntu/Games/SpaceGameProject/src/game/game.cpp",
   "output": "CMakeFiles/MyGame.dir/src/game/game.cpp.o"
 },
 {
   "directory": "/home/ubuntu/Games/SpaceGameProject/build-linux",
-  "command": "/usr/bin/c++  -I/home/ubuntu/Games/SpaceGameProject/src -I/home/ubuntu/Games/SpaceGameProject/include -I/home/ubuntu/Games/SpaceGameProject/external/glad/include -I/usr/include/freetype2 -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/glfw-src/include -I/home/ubuntu/Games/SpaceGameProject/include/glad/include -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles/MyGame.dir/src/main.cpp.o -c /home/ubuntu/Games/SpaceGameProject/src/main.cpp",
+  "command": "/usr/bin/c++ -DFASTNOISE2_VERSION=\\\"1.1.1\\\" -DFASTNOISE_STATIC_LIB -DFASTSIMD_IS_RELAXED=1 -DFASTSIMD_STATIC_LIB -I/home/ubuntu/Games/SpaceGameProject/src -I/home/ubuntu/Games/SpaceGameProject/include -I/home/ubuntu/Games/SpaceGameProject/include/glad/include -I/home/ubuntu/Games/SpaceGameProject/external/FastNoise2/include -I/usr/include/freetype2 -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/glfw-src/include -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/include -I/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src/fastsimd/FastSIMD_FastNoise/include -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.o -c /home/ubuntu/Games/SpaceGameProject/src/game/world/worldgen.cpp",
+  "file": "/home/ubuntu/Games/SpaceGameProject/src/game/world/worldgen.cpp",
+  "output": "CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.o"
+},
+{
+  "directory": "/home/ubuntu/Games/SpaceGameProject/build-linux",
+  "command": "/usr/bin/c++ -DFASTNOISE2_VERSION=\\\"1.1.1\\\" -DFASTNOISE_STATIC_LIB -DFASTSIMD_IS_RELAXED=1 -DFASTSIMD_STATIC_LIB -I/home/ubuntu/Games/SpaceGameProject/src -I/home/ubuntu/Games/SpaceGameProject/include -I/home/ubuntu/Games/SpaceGameProject/include/glad/include -I/home/ubuntu/Games/SpaceGameProject/external/FastNoise2/include -I/usr/include/freetype2 -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/glfw-src/include -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/include -I/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src/fastsimd/FastSIMD_FastNoise/include -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles/MyGame.dir/src/main.cpp.o -c /home/ubuntu/Games/SpaceGameProject/src/main.cpp",
   "file": "/home/ubuntu/Games/SpaceGameProject/src/main.cpp",
   "output": "CMakeFiles/MyGame.dir/src/main.cpp.o"
 },
 {
   "directory": "/home/ubuntu/Games/SpaceGameProject/build-linux",
-  "command": "/usr/bin/c++  -I/home/ubuntu/Games/SpaceGameProject/src -I/home/ubuntu/Games/SpaceGameProject/include -I/home/ubuntu/Games/SpaceGameProject/external/glad/include -I/usr/include/freetype2 -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/glfw-src/include -I/home/ubuntu/Games/SpaceGameProject/include/glad/include -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.o -c /home/ubuntu/Games/SpaceGameProject/src/renderer/renderer.cpp",
+  "command": "/usr/bin/c++ -DFASTNOISE2_VERSION=\\\"1.1.1\\\" -DFASTNOISE_STATIC_LIB -DFASTSIMD_IS_RELAXED=1 -DFASTSIMD_STATIC_LIB -I/home/ubuntu/Games/SpaceGameProject/src -I/home/ubuntu/Games/SpaceGameProject/include -I/home/ubuntu/Games/SpaceGameProject/include/glad/include -I/home/ubuntu/Games/SpaceGameProject/external/FastNoise2/include -I/usr/include/freetype2 -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/glfw-src/include -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/include -I/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src/fastsimd/FastSIMD_FastNoise/include -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.o -c /home/ubuntu/Games/SpaceGameProject/src/renderer/renderer.cpp",
   "file": "/home/ubuntu/Games/SpaceGameProject/src/renderer/renderer.cpp",
   "output": "CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.o"
 },
 {
   "directory": "/home/ubuntu/Games/SpaceGameProject/build-linux",
-  "command": "/usr/bin/c++  -I/home/ubuntu/Games/SpaceGameProject/src -I/home/ubuntu/Games/SpaceGameProject/include -I/home/ubuntu/Games/SpaceGameProject/external/glad/include -I/usr/include/freetype2 -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/glfw-src/include -I/home/ubuntu/Games/SpaceGameProject/include/glad/include -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles/MyGame.dir/src/utils/utils.cpp.o -c /home/ubuntu/Games/SpaceGameProject/src/utils/utils.cpp",
+  "command": "/usr/bin/c++ -DFASTNOISE2_VERSION=\\\"1.1.1\\\" -DFASTNOISE_STATIC_LIB -DFASTSIMD_IS_RELAXED=1 -DFASTSIMD_STATIC_LIB -I/home/ubuntu/Games/SpaceGameProject/src -I/home/ubuntu/Games/SpaceGameProject/include -I/home/ubuntu/Games/SpaceGameProject/include/glad/include -I/home/ubuntu/Games/SpaceGameProject/external/FastNoise2/include -I/usr/include/freetype2 -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/glfw-src/include -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/include -I/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src/fastsimd/FastSIMD_FastNoise/include -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles/MyGame.dir/src/utils/utils.cpp.o -c /home/ubuntu/Games/SpaceGameProject/src/utils/utils.cpp",
   "file": "/home/ubuntu/Games/SpaceGameProject/src/utils/utils.cpp",
   "output": "CMakeFiles/MyGame.dir/src/utils/utils.cpp.o"
 },
@@ -124,5 +130,53 @@
   "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/glfw-src/include -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/glfw-src/src -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/glfw-build/src -O3 -DNDEBUG -std=gnu99 -fPIC -Wall -o CMakeFiles/glfw.dir/linux_joystick.c.o -c /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/glfw-src/src/linux_joystick.c",
   "file": "/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/glfw-src/src/linux_joystick.c",
   "output": "_deps/glfw-build/src/CMakeFiles/glfw.dir/linux_joystick.c.o"
+},
+{
+  "directory": "/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src",
+  "command": "/usr/bin/c++ -DFASTSIMD_EXPORT -DFASTSIMD_IS_RELAXED=1 -DFASTSIMD_LIBRARY_NAME=FastSIMD_FastNoise -DFASTSIMD_STATIC_LIB -I/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src/fastsimd/FastSIMD_FastNoise/include -I/home/ubuntu/Games/SpaceGameProject/external/FastNoise2/src/../include -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/include -O3 -DNDEBUG -std=gnu++17 -Wno-ignored-attributes -fno-stack-protector -Wno-nan-infinity-disabled -mno-vzeroupper -ffast-math -o CMakeFiles/FastSIMD_FastNoise.dir/fastsimd/FastSIMD_FastNoise/FastSIMD_FastNoise_SSE2.cpp.o -c /home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src/fastsimd/FastSIMD_FastNoise/FastSIMD_FastNoise_SSE2.cpp",
+  "file": "/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src/fastsimd/FastSIMD_FastNoise/FastSIMD_FastNoise_SSE2.cpp",
+  "output": "external/FastNoise2/src/CMakeFiles/FastSIMD_FastNoise.dir/fastsimd/FastSIMD_FastNoise/FastSIMD_FastNoise_SSE2.cpp.o"
+},
+{
+  "directory": "/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src",
+  "command": "/usr/bin/c++ -DFASTSIMD_EXPORT -DFASTSIMD_IS_RELAXED=1 -DFASTSIMD_LIBRARY_NAME=FastSIMD_FastNoise -DFASTSIMD_STATIC_LIB -I/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src/fastsimd/FastSIMD_FastNoise/include -I/home/ubuntu/Games/SpaceGameProject/external/FastNoise2/src/../include -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/include -O3 -DNDEBUG -std=gnu++17 -Wno-ignored-attributes -fno-stack-protector -Wno-nan-infinity-disabled -mno-vzeroupper -ffast-math -msse4.1 -o CMakeFiles/FastSIMD_FastNoise.dir/fastsimd/FastSIMD_FastNoise/FastSIMD_FastNoise_SSE41.cpp.o -c /home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src/fastsimd/FastSIMD_FastNoise/FastSIMD_FastNoise_SSE41.cpp",
+  "file": "/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src/fastsimd/FastSIMD_FastNoise/FastSIMD_FastNoise_SSE41.cpp",
+  "output": "external/FastNoise2/src/CMakeFiles/FastSIMD_FastNoise.dir/fastsimd/FastSIMD_FastNoise/FastSIMD_FastNoise_SSE41.cpp.o"
+},
+{
+  "directory": "/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src",
+  "command": "/usr/bin/c++ -DFASTSIMD_EXPORT -DFASTSIMD_IS_RELAXED=1 -DFASTSIMD_LIBRARY_NAME=FastSIMD_FastNoise -DFASTSIMD_STATIC_LIB -I/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src/fastsimd/FastSIMD_FastNoise/include -I/home/ubuntu/Games/SpaceGameProject/external/FastNoise2/src/../include -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/include -O3 -DNDEBUG -std=gnu++17 -Wno-ignored-attributes -fno-stack-protector -Wno-nan-infinity-disabled -mno-vzeroupper -ffast-math -mfma -mavx2 -o CMakeFiles/FastSIMD_FastNoise.dir/fastsimd/FastSIMD_FastNoise/FastSIMD_FastNoise_AVX2.cpp.o -c /home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src/fastsimd/FastSIMD_FastNoise/FastSIMD_FastNoise_AVX2.cpp",
+  "file": "/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src/fastsimd/FastSIMD_FastNoise/FastSIMD_FastNoise_AVX2.cpp",
+  "output": "external/FastNoise2/src/CMakeFiles/FastSIMD_FastNoise.dir/fastsimd/FastSIMD_FastNoise/FastSIMD_FastNoise_AVX2.cpp.o"
+},
+{
+  "directory": "/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src",
+  "command": "/usr/bin/c++ -DFASTSIMD_EXPORT -DFASTSIMD_IS_RELAXED=1 -DFASTSIMD_LIBRARY_NAME=FastSIMD_FastNoise -DFASTSIMD_STATIC_LIB -I/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src/fastsimd/FastSIMD_FastNoise/include -I/home/ubuntu/Games/SpaceGameProject/external/FastNoise2/src/../include -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/include -O3 -DNDEBUG -std=gnu++17 -Wno-ignored-attributes -fno-stack-protector -Wno-nan-infinity-disabled -mno-vzeroupper -ffast-math -mfma -mavx512f -mavx512dq -mavx512vl -mavx512bw -o CMakeFiles/FastSIMD_FastNoise.dir/fastsimd/FastSIMD_FastNoise/FastSIMD_FastNoise_AVX512.cpp.o -c /home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src/fastsimd/FastSIMD_FastNoise/FastSIMD_FastNoise_AVX512.cpp",
+  "file": "/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src/fastsimd/FastSIMD_FastNoise/FastSIMD_FastNoise_AVX512.cpp",
+  "output": "external/FastNoise2/src/CMakeFiles/FastSIMD_FastNoise.dir/fastsimd/FastSIMD_FastNoise/FastSIMD_FastNoise_AVX512.cpp.o"
+},
+{
+  "directory": "/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src",
+  "command": "/usr/bin/c++ -DFASTNOISE2_VERSION=\\\"1.1.1\\\" -DFASTNOISE_EXPORT -DFASTNOISE_STATIC_LIB -DFASTSIMD_IS_RELAXED=1 -DFASTSIMD_STATIC_LIB -I/home/ubuntu/Games/SpaceGameProject/external/FastNoise2/include -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/include -I/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src/fastsimd/FastSIMD_FastNoise/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/FastNoise.dir/FastNoise/FastNoise_C.cpp.o -c /home/ubuntu/Games/SpaceGameProject/external/FastNoise2/src/FastNoise/FastNoise_C.cpp",
+  "file": "/home/ubuntu/Games/SpaceGameProject/external/FastNoise2/src/FastNoise/FastNoise_C.cpp",
+  "output": "external/FastNoise2/src/CMakeFiles/FastNoise.dir/FastNoise/FastNoise_C.cpp.o"
+},
+{
+  "directory": "/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src",
+  "command": "/usr/bin/c++ -DFASTNOISE2_VERSION=\\\"1.1.1\\\" -DFASTNOISE_EXPORT -DFASTNOISE_STATIC_LIB -DFASTSIMD_IS_RELAXED=1 -DFASTSIMD_STATIC_LIB -I/home/ubuntu/Games/SpaceGameProject/external/FastNoise2/include -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/include -I/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src/fastsimd/FastSIMD_FastNoise/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/FastNoise.dir/FastNoise/Metadata.cpp.o -c /home/ubuntu/Games/SpaceGameProject/external/FastNoise2/src/FastNoise/Metadata.cpp",
+  "file": "/home/ubuntu/Games/SpaceGameProject/external/FastNoise2/src/FastNoise/Metadata.cpp",
+  "output": "external/FastNoise2/src/CMakeFiles/FastNoise.dir/FastNoise/Metadata.cpp.o"
+},
+{
+  "directory": "/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src",
+  "command": "/usr/bin/c++ -DFASTNOISE2_VERSION=\\\"1.1.1\\\" -DFASTNOISE_EXPORT -DFASTNOISE_STATIC_LIB -DFASTSIMD_IS_RELAXED=1 -DFASTSIMD_STATIC_LIB -I/home/ubuntu/Games/SpaceGameProject/external/FastNoise2/include -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/include -I/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src/fastsimd/FastSIMD_FastNoise/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/FastNoise.dir/FastNoise/SmartNode.cpp.o -c /home/ubuntu/Games/SpaceGameProject/external/FastNoise2/src/FastNoise/SmartNode.cpp",
+  "file": "/home/ubuntu/Games/SpaceGameProject/external/FastNoise2/src/FastNoise/SmartNode.cpp",
+  "output": "external/FastNoise2/src/CMakeFiles/FastNoise.dir/FastNoise/SmartNode.cpp.o"
+},
+{
+  "directory": "/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-build",
+  "command": "/usr/bin/c++ -DFASTSIMD_EXPORT -DFASTSIMD_STATIC_LIB -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/FastSIMD.dir/src/FastSIMD.cpp.o -c /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/src/FastSIMD.cpp",
+  "file": "/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/src/FastSIMD.cpp",
+  "output": "_deps/fastsimd-build/CMakeFiles/FastSIMD.dir/src/FastSIMD.cpp.o"
 }
 ]

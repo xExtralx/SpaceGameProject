@@ -281,6 +281,53 @@ CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//Don't create a package lock file in the binary path
+CPM_DONT_CREATE_PACKAGE_LOCK:BOOL=OFF
+
+//Don't update the module path to allow using find_package
+CPM_DONT_UPDATE_MODULE_PATH:BOOL=OFF
+
+//Always download dependencies from source
+CPM_DOWNLOAD_ALL:BOOL=OFF
+
+//Add all packages added through CPM.cmake to the package lock
+CPM_INCLUDE_ALL_IN_PACKAGE_LOCK:BOOL=OFF
+
+//Only use `find_package` to get dependencies
+CPM_LOCAL_PACKAGES_ONLY:BOOL=OFF
+
+//Directory to download CPM dependencies
+CPM_SOURCE_CACHE:PATH=OFF
+
+//Always try to use `find_package` to get dependencies
+CPM_USE_LOCAL_PACKAGES:BOOL=OFF
+
+//Use additional directory of package name in cache on the most
+// nested level.
+CPM_USE_NAMED_CACHE_DIRECTORIES:BOOL=OFF
+
+//Enable strict floating point calculations to ensure output from
+// different SIMD feature sets match EXACTLY
+FASTNOISE2_STRICT_FP:BOOL=OFF
+
+//Build tests
+FASTNOISE2_TESTS:BOOL=OFF
+
+//Build "Node Editor" executable
+FASTNOISE2_TOOLS:BOOL=OFF
+
+//Build utility tools
+FASTNOISE2_UTILITY:BOOL=OFF
+
+//Enable FastSIMD Dispatch Classes
+FASTSIMD_DISPATCH_CLASS:BOOL=ON
+
+//Build FastSIMD examples
+FASTSIMD_EXAMPLES:BOOL=OFF
+
+//Build FastSIMD tests
+FASTSIMD_TESTS:BOOL=OFF
+
 //Directory under which to collect all populated content
 FETCHCONTENT_BASE_DIR:PATH=/home/ubuntu/Games/SpaceGameProject/build-linux/_deps
 
@@ -292,11 +339,18 @@ FETCHCONTENT_FULLY_DISCONNECTED:BOOL=OFF
 FETCHCONTENT_QUIET:BOOL=ON
 
 //When not empty, overrides where to find pre-populated content
+// for FastSIMD
+FETCHCONTENT_SOURCE_DIR_FASTSIMD:PATH=
+
+//When not empty, overrides where to find pre-populated content
 // for glfw
 FETCHCONTENT_SOURCE_DIR_GLFW:PATH=
 
 //Enables UPDATE_DISCONNECTED behavior for all content population
 FETCHCONTENT_UPDATES_DISCONNECTED:BOOL=OFF
+
+//Enables UPDATE_DISCONNECTED behavior just for population of FastSIMD
+FETCHCONTENT_UPDATES_DISCONNECTED_FASTSIMD:BOOL=OFF
 
 //Enables UPDATE_DISCONNECTED behavior just for population of glfw
 FETCHCONTENT_UPDATES_DISCONNECTED_GLFW:BOOL=OFF
@@ -312,6 +366,24 @@ FREETYPE_LIBRARY_DEBUG:FILEPATH=FREETYPE_LIBRARY_DEBUG-NOTFOUND
 
 //Path to a library.
 FREETYPE_LIBRARY_RELEASE:FILEPATH=/usr/lib/x86_64-linux-gnu/libfreetype.so
+
+//Value Computed by CMake
+FastNoise2_BINARY_DIR:STATIC=/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2
+
+//Value Computed by CMake
+FastNoise2_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+FastNoise2_SOURCE_DIR:STATIC=/home/ubuntu/Games/SpaceGameProject/external/FastNoise2
+
+//Value Computed by CMake
+FastSIMD_BINARY_DIR:STATIC=/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-build
+
+//Value Computed by CMake
+FastSIMD_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+FastSIMD_SOURCE_DIR:STATIC=/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src
 
 //Git command line client
 GIT_EXECUTABLE:FILEPATH=/usr/bin/git
@@ -954,7 +1026,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=7
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -999,6 +1071,18 @@ CMAKE_TAPI-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+CPM_DIRECTORY:INTERNAL=/home/ubuntu/Games/SpaceGameProject/external/FastNoise2/cmake
+//Don't download or configure dependencies (for testing)
+CPM_DRY_RUN:INTERNAL=OFF
+CPM_FILE:INTERNAL=/home/ubuntu/Games/SpaceGameProject/external/FastNoise2/cmake/CPM.cmake
+CPM_INDENT:INTERNAL=CPM:
+CPM_MODULE_PATH:INTERNAL=/home/ubuntu/Games/SpaceGameProject/build-linux/CPM_modules
+CPM_PACKAGES:INTERNAL=FastSIMD
+CPM_PACKAGE_FastSIMD_BINARY_DIR:INTERNAL=/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-build
+CPM_PACKAGE_FastSIMD_SOURCE_DIR:INTERNAL=/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src
+CPM_PACKAGE_FastSIMD_VERSION:INTERNAL=0
+CPM_PACKAGE_LOCK_FILE:INTERNAL=/home/ubuntu/Games/SpaceGameProject/build-linux/cpm-package-lock.cmake
+CPM_VERSION:INTERNAL=0.40.2
 //Details about finding Freetype
 FIND_PACKAGE_MESSAGE_DETAILS_Freetype:INTERNAL=[/usr/lib/x86_64-linux-gnu/libfreetype.so][/usr/include/freetype2][v2.13.3()]
 //Details about finding OpenGL
@@ -1325,4 +1409,6 @@ _CMAKE_C_LINKER_PUSHPOP_STATE_SUPPORTED:INTERNAL=TRUE
 _CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED:INTERNAL=TRUE
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/usr/local
+//Result of TRY_COMPILE
+compile_result_unused:INTERNAL=FALSE
 

@@ -43,23 +43,19 @@ void Game::update() {
         dir.normalize();
 
     renderer.camera.position += dir * speed * deltaTime;
+
+    chunkManager.updateLoadedChunks(
+        renderer.camera.position[0],
+        renderer.camera.position[1],
+        16.0f,  // tile size in pixels
+        5       // render distance in chunks
+    );
 }
 
 void Game::render() {
     renderer.clear();
-    // In Game::render()
-    renderer.addTriangle(
-        Vec2(-0.5f,  0.5f),
-        Vec2(-0.5f, -0.5f),
-        Vec2( 0.5f, -0.5f),
-        Vec4(1.0f, 0.0f, 0.0f, 1.0f),
-        0.0f
-    );
-
+    renderer.renderChunks(chunkManager);
     renderer.draw();
-    // centered on screen, scale 1.0 = native pixel size relative to 320x180
-    renderer.drawImage("debug/debug.png", Vec2(0.0f, 0.0f), 1.0f);
-
     renderer.present();
     renderer.update();
 }

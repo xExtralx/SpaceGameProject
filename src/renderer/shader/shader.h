@@ -62,6 +62,10 @@ public:
         glUniform4f(glGetUniformLocation(ID, name.c_str()), x, y, z, w);
     }
 
+    void setMat4(const std::string& name, const Mat4& mat) const {
+        glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, mat.ptr());
+    }   
+
 private:
     // --- Compilation du shader ---
     void compile(const std::string& vertexCode, const std::string& fragmentCode) {

@@ -3,11 +3,13 @@ MyGame: \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o \
   /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o \
   CMakeFiles/MyGame.dir/src/game/game.cpp.o \
+  CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.o \
   CMakeFiles/MyGame.dir/src/main.cpp.o \
   CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.o \
   CMakeFiles/MyGame.dir/src/utils/utils.cpp.o \
-  _deps/glfw-build/src/libglfw3.a \
   libglad.a \
+  _deps/glfw-build/src/libglfw3.a \
+  external/FastNoise2/src/libFastNoise.a \
   /usr/lib/x86_64-linux-gnu/libfreetype.so \
   /usr/lib/x86_64-linux-gnu/librt.a \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/libdl.a \
@@ -53,15 +55,19 @@ MyGame: \
 
 CMakeFiles/MyGame.dir/src/game/game.cpp.o:
 
+CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.o:
+
 CMakeFiles/MyGame.dir/src/main.cpp.o:
 
 CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.o:
 
 CMakeFiles/MyGame.dir/src/utils/utils.cpp.o:
 
+libglad.a:
+
 _deps/glfw-build/src/libglfw3.a:
 
-libglad.a:
+external/FastNoise2/src/libFastNoise.a:
 
 /usr/lib/x86_64-linux-gnu/libfreetype.so:
 

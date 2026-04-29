@@ -85,6 +85,51 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles /home/ubuntu/Games/SpaceGameProject/build-linux//CMakeFiles/progress.marks
@@ -169,6 +214,45 @@ glfw/fast:
 	$(MAKE) $(MAKESILENT) -f _deps/glfw-build/src/CMakeFiles/glfw.dir/build.make _deps/glfw-build/src/CMakeFiles/glfw.dir/build
 .PHONY : glfw/fast
 
+#=============================================================================
+# Target rules for targets named FastNoise
+
+# Build rule for target.
+FastNoise: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 FastNoise
+.PHONY : FastNoise
+
+# fast build rule for target.
+FastNoise/fast:
+	$(MAKE) $(MAKESILENT) -f external/FastNoise2/src/CMakeFiles/FastNoise.dir/build.make external/FastNoise2/src/CMakeFiles/FastNoise.dir/build
+.PHONY : FastNoise/fast
+
+#=============================================================================
+# Target rules for targets named FastSIMD_FastNoise
+
+# Build rule for target.
+FastSIMD_FastNoise: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 FastSIMD_FastNoise
+.PHONY : FastSIMD_FastNoise
+
+# fast build rule for target.
+FastSIMD_FastNoise/fast:
+	$(MAKE) $(MAKESILENT) -f external/FastNoise2/src/CMakeFiles/FastSIMD_FastNoise.dir/build.make external/FastNoise2/src/CMakeFiles/FastSIMD_FastNoise.dir/build
+.PHONY : FastSIMD_FastNoise/fast
+
+#=============================================================================
+# Target rules for targets named FastSIMD
+
+# Build rule for target.
+FastSIMD: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 FastSIMD
+.PHONY : FastSIMD
+
+# fast build rule for target.
+FastSIMD/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/fastsimd-build/CMakeFiles/FastSIMD.dir/build.make _deps/fastsimd-build/CMakeFiles/FastSIMD.dir/build
+.PHONY : FastSIMD/fast
+
 include/glad/src/glad.o: include/glad/src/glad.c.o
 .PHONY : include/glad/src/glad.o
 
@@ -216,6 +300,30 @@ src/game/game.s: src/game/game.cpp.s
 src/game/game.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyGame.dir/build.make CMakeFiles/MyGame.dir/src/game/game.cpp.s
 .PHONY : src/game/game.cpp.s
+
+src/game/world/worldgen.o: src/game/world/worldgen.cpp.o
+.PHONY : src/game/world/worldgen.o
+
+# target to build an object file
+src/game/world/worldgen.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyGame.dir/build.make CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.o
+.PHONY : src/game/world/worldgen.cpp.o
+
+src/game/world/worldgen.i: src/game/world/worldgen.cpp.i
+.PHONY : src/game/world/worldgen.i
+
+# target to preprocess a source file
+src/game/world/worldgen.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyGame.dir/build.make CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.i
+.PHONY : src/game/world/worldgen.cpp.i
+
+src/game/world/worldgen.s: src/game/world/worldgen.cpp.s
+.PHONY : src/game/world/worldgen.s
+
+# target to generate assembly for a file
+src/game/world/worldgen.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyGame.dir/build.make CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.s
+.PHONY : src/game/world/worldgen.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -296,8 +404,15 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... update_mappings"
+	@echo "... FastNoise"
+	@echo "... FastSIMD"
+	@echo "... FastSIMD_FastNoise"
 	@echo "... MyGame"
 	@echo "... glad"
 	@echo "... glfw"
@@ -307,6 +422,9 @@ help:
 	@echo "... src/game/game.o"
 	@echo "... src/game/game.i"
 	@echo "... src/game/game.s"
+	@echo "... src/game/world/worldgen.o"
+	@echo "... src/game/world/worldgen.i"
+	@echo "... src/game/world/worldgen.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

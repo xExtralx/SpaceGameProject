@@ -69,11 +69,6 @@ int Renderer::init() {
     monitor = glfwGetPrimaryMonitor();
     mode    = glfwGetVideoMode(monitor);
 
-    // Load shaders
-    tileShader = new Shader(
-        FileManager::LoadTextFile("shader/default.vert"),
-        FileManager::LoadTextFile("shader/default.frag")
-    );
     colorShader = new Shader(
         FileManager::LoadTextFile("shader/color.vert"),
         FileManager::LoadTextFile("shader/color.frag")
@@ -82,6 +77,15 @@ int Renderer::init() {
         FileManager::LoadTextFile("shader/image.vert"),
         FileManager::LoadTextFile("shader/image.frag")
     );
+
+    tilesetTexture = TextureManager::getInstance().loadTexture("tileset/tiles.png");
+
+    tileShader = new Shader(
+        FileManager::LoadTextFile("shader/tile.vert"),
+        FileManager::LoadTextFile("shader/tile.frag")
+    );
+
+    initTileQuad();
 
     initPixelFBO();
     initColorBuffer();
@@ -226,14 +230,15 @@ void Renderer::flushColorGeometry() {
 
     glBindVertexArray(colorVAO);
     glBindBuffer(GL_ARRAY_BUFFER, colorVBO);
-
-    // Grow buffer if needed
-    glBufferData(GL_ARRAY_BUFFER, 
-        colorVertices.size() * sizeof(ColorVertex), 
-        colorVertices.data(), 
+    glBufferData(GL_ARRAY_BUFFER,
+        colorVertices.size() * sizeof(ColorVertex),
+        colorVertices.data(),
         GL_DYNAMIC_DRAW);
 
     colorShader->use();
+    Mat4 viewProj = camera.getViewProj(RENDER_WIDTH, RENDER_HEIGHT);
+    colorShader->setMat4("uViewProj", viewProj);
+
     glDrawArrays(GL_TRIANGLES, 0, static_cast<GLsizei>(colorVertices.size()));
     glBindVertexArray(0);
 }
@@ -243,13 +248,21 @@ void Renderer::flushTileGeometry() {
 
     glBindVertexArray(tileVAO);
     glBindBuffer(GL_ARRAY_BUFFER, tileVBO);
-
     glBufferData(GL_ARRAY_BUFFER,
         tileVertices.size() * sizeof(TileVertex),
         tileVertices.data(),
         GL_DYNAMIC_DRAW);
 
     tileShader->use();
+
+    // Camera matrix
+    Mat4 viewProj = camera.getViewProj(RENDER_WIDTH, RENDER_HEIGHT);
+    tileShader->setMat4("uViewProj", viewProj);
+
+    // Tile size in world units (pixels per tile)
+    tileShader->setVec2("uTileSize", 32.0f, 16.0f); // isometric tile width/height
+    tileShader->setFloat("uHeightStep", 8.0f);        // pixels per height unit
+
     glDrawArrays(GL_TRIANGLES, 0, static_cast<GLsizei>(tileVertices.size()));
     glBindVertexArray(0);
 }
@@ -259,22 +272,12 @@ void Renderer::flushTileGeometry() {
 // =====================
 
 void Renderer::addTriangle(const Vec2& v1, const Vec2& v2, const Vec2& v3, const Vec4& color, float z) {
-    Vec2 n1 = camera.worldToNDC(v1, RENDER_WIDTH, RENDER_HEIGHT);
-    Vec2 n2 = camera.worldToNDC(v2, RENDER_WIDTH, RENDER_HEIGHT);
-    Vec2 n3 = camera.worldToNDC(v3, RENDER_WIDTH, RENDER_HEIGHT);
-
-    colorVertices.push_back({ Vec3(n1[0], n1[1], z), color });
-    colorVertices.push_back({ Vec3(n2[0], n2[1], z), color });
-    colorVertices.push_back({ Vec3(n3[0], n3[1], z), color });
+    colorVertices.push_back({ Vec3(v1[0], v1[1], z), color });
+    colorVertices.push_back({ Vec3(v2[0], v2[1], z), color });
+    colorVertices.push_back({ Vec3(v3[0], v3[1], z), color });
 }
 
-void Renderer::drawImage(const std::string& filePath, const Vec2& worldPos, float scale) {
-    // Convert world position to NDC via camera
-    Vec2 ndcPos = camera.worldToNDC(worldPos, RENDER_WIDTH, RENDER_HEIGHT);
-    drawImageAtNDC(filePath, ndcPos[0], ndcPos[1], scale * camera.zoom);
-}
-
-void Renderer::drawImageAtNDC(const std::string& filePath, float x, float y, float scale) {
+void Renderer::drawImage(const std::string& filePath, float x, float y, float scale) {
     GLuint textureID = TextureManager::getInstance().loadTexture(filePath);
     if (textureID == 0) return;
 
@@ -364,4 +367,163 @@ void Renderer::key_callback(GLFWwindow* window, int key, int scancode, int actio
         game->keyPressEvent(key);
     else if (action == GLFW_RELEASE)
         game->keyReleaseEvent(key);
+}
+
+// =====================
+// Tile Rendering
+// =====================
+
+// Quad shared by all tile instances
+static float tileQuad[] = {
+    // localPos      uv
+    -0.5f,  0.5f,   0.0f, 0.0f, // top-left
+    -0.5f, -0.5f,   0.0f, 1.0f, // bottom-left
+     0.5f, -0.5f,   1.0f, 1.0f, // bottom-right
+
+    -0.5f,  0.5f,   0.0f, 0.0f, // top-left
+     0.5f, -0.5f,   1.0f, 1.0f, // bottom-right
+     0.5f,  0.5f,   1.0f, 0.0f  // top-right
+};
+
+void Renderer::initTileQuad() {
+    glGenVertexArrays(1, &tileQuadVAO);
+    glGenBuffers(1, &tileQuadVBO);
+    glBindVertexArray(tileQuadVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, tileQuadVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(tileQuad), tileQuad, GL_STATIC_DRAW);
+
+    // aLocalPos (location = 0)
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    // aUV (location = 1)
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+
+    glBindVertexArray(0);
+}
+
+Vec2 Renderer::tileTypeToUV(TileType type) const {
+    // Tileset is arranged in a row — each tile is 1/8 of texture width
+    // Adjust based on your actual tileset layout
+    const float tileW = 1.0f / 8.0f;
+    switch (type) {
+        case TileType::GRASS:      return Vec2(0 * tileW, 0.0f);
+        case TileType::SAND:       return Vec2(1 * tileW, 0.0f);
+        case TileType::STONE:      return Vec2(2 * tileW, 0.0f);
+        case TileType::WATER:      return Vec2(3 * tileW, 0.0f);
+        case TileType::ORE_IRON:   return Vec2(4 * tileW, 0.0f);
+        case TileType::ORE_COAL:   return Vec2(5 * tileW, 0.0f);
+        case TileType::ORE_COPPER: return Vec2(6 * tileW, 0.0f);
+        default:                   return Vec2(7 * tileW, 0.0f);
+    }
+}
+
+void Renderer::uploadChunk(const Chunk& chunk) {
+    // Build instance data for every tile in chunk
+    std::vector<TileInstance> instances;
+    instances.reserve(CHUNK_SIZE * CHUNK_SIZE);
+
+    for (int y = 0; y < CHUNK_SIZE; y++) {
+        for (int x = 0; x < CHUNK_SIZE; x++) {
+            const Tile& tile = chunk.getTile(x, y);
+            if (tile.type == TileType::NONE) continue;
+
+            // Absolute tile position in world grid
+            float worldX = chunk.pos.x * CHUNK_SIZE + x;
+            float worldY = chunk.pos.y * CHUNK_SIZE + y;
+
+            TileInstance inst;
+            inst.tilePos  = Vec3(worldX, worldY, 0.0f);
+            inst.uvOffset = tileTypeToUV(tile.type);
+            inst.ao       = 0.0f; // TODO: compute from neighbors
+
+            instances.push_back(inst);
+        }
+    }
+
+    // Get or create render data for this chunk
+    ChunkRenderData& rd = chunkRenderData[chunk.pos];
+
+    if (rd.VAO == 0) {
+        glGenVertexArrays(1, &rd.VAO);
+        glGenBuffers(1, &rd.instanceVBO);
+    }
+
+    // Bind the shared quad VAO and add instance buffer
+    glBindVertexArray(rd.VAO);
+
+    // First bind the shared quad VBO for vertex attributes
+    glBindBuffer(GL_ARRAY_BUFFER, tileQuadVBO);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+
+    // Now bind instance VBO
+    glBindBuffer(GL_ARRAY_BUFFER, rd.instanceVBO);
+    glBufferData(GL_ARRAY_BUFFER,
+        instances.size() * sizeof(TileInstance),
+        instances.data(),
+        GL_DYNAMIC_DRAW);
+
+    // iTilePos (location = 2) — vec3
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(TileInstance),
+        (void*)offsetof(TileInstance, tilePos));
+    glEnableVertexAttribArray(2);
+    glVertexAttribDivisor(2, 1); // advance per instance
+
+    // iUVOffset (location = 3) — vec2
+    glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, sizeof(TileInstance),
+        (void*)offsetof(TileInstance, uvOffset));
+    glEnableVertexAttribArray(3);
+    glVertexAttribDivisor(3, 1);
+
+    // iAO (location = 4) — float
+    glVertexAttribPointer(4, 1, GL_FLOAT, GL_FALSE, sizeof(TileInstance),
+        (void*)offsetof(TileInstance, ao));
+    glEnableVertexAttribArray(4);
+    glVertexAttribDivisor(4, 1);
+
+    glBindVertexArray(0);
+
+    rd.instanceCount = static_cast<int>(instances.size());
+    rd.uploaded = true;
+}
+
+void Renderer::renderChunks(const ChunkManager& chunkManager) {
+    tileShader->use();
+
+    // Camera
+    Mat4 viewProj = camera.getViewProj(RENDER_WIDTH, RENDER_HEIGHT);
+    tileShader->setMat4("uViewProj", viewProj);
+    tileShader->setVec2("uTileSize", 32.0f, 16.0f);
+    tileShader->setFloat("uHeightStep", 8.0f);
+    tileShader->setVec3("uAmbientColor", 1.0f, 1.0f, 1.0f);
+    tileShader->setFloat("uAmbientStr", 1.0f);
+    tileShader->setFloat("uTime", (float)glfwGetTime());
+    tileShader->setInt("uTileset", 0);
+
+    // Bind tileset
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, tilesetTexture);
+
+    // Draw each loaded chunk
+    for (auto& [pos, chunk] : chunkManager.getChunks()) {
+        // Upload if dirty
+        if (chunk.dirty) {
+            uploadChunk(chunk);
+            const_cast<Chunk&>(chunk).dirty = false;
+        }
+
+        auto it = chunkRenderData.find(pos);
+        if (it == chunkRenderData.end()) continue;
+
+        ChunkRenderData& rd = it->second;
+        if (!rd.uploaded || rd.instanceCount == 0) continue;
+
+        glBindVertexArray(rd.VAO);
+        glDrawArraysInstanced(GL_TRIANGLES, 0, 6, rd.instanceCount);
+        glBindVertexArray(0);
+    }
 }

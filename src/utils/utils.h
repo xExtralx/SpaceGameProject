@@ -137,6 +137,30 @@ struct Vec {
     }
 };
 
+// 4x4 matrix for OpenGL (column major)
+struct Mat4 {
+    float data[16] = {
+        1,0,0,0,
+        0,1,0,0,
+        0,0,1,0,
+        0,0,0,1
+    };
+
+    static Mat4 ortho(float left, float right, float bottom, float top, float near, float far) {
+        Mat4 m;
+        m.data[0]  =  2.0f / (right - left);
+        m.data[5]  =  2.0f / (top - bottom);
+        m.data[10] = -2.0f / (far - near);
+        m.data[12] = -(right + left) / (right - left);
+        m.data[13] = -(top + bottom) / (top - bottom);
+        m.data[14] = -(far + near)   / (far - near);
+        m.data[15] =  1.0f;
+        return m;
+    }
+
+    const float* ptr() const { return data; }
+};
+
 // --- Alias pratiques ---
 using Vec2  = Vec<2, float>;
 using Vec3  = Vec<3, float>;
