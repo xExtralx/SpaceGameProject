@@ -39,25 +39,34 @@ void WorldGen::generateChunk(Chunk& chunk) const {
     std::vector<float> resourceMap(area);
     std::vector<float> forestMap(area);
 
-    const float elevFreq = 0.3f; // was 0.008f
+    const float stepSize = 0.02f;
+    const float noiseOffsetX = chunk.pos.x * CHUNK_SIZE * stepSize;
+    const float noiseOffsetY = chunk.pos.y * CHUNK_SIZE * stepSize;
 
     elevationNoise->GenUniformGrid2D(
         elevationMap.data(),
-        worldOffsetX, worldOffsetY,
+        noiseOffsetX, noiseOffsetY,
         size, size,
-        elevFreq, elevFreq,
+        stepSize, stepSize,
         seed
     );
 
     resourceNoise->GenUniformGrid2D(
         resourceMap.data(),
-        worldOffsetX, worldOffsetY,
-        size, size, 0.05f, 0.05f, seed + 1
+        chunk.pos.x * CHUNK_SIZE * 0.05f,
+        chunk.pos.y * CHUNK_SIZE * 0.05f,
+        size, size,
+        0.05f, 0.05f,
+        seed + 1
     );
+
     forestNoise->GenUniformGrid2D(
         forestMap.data(),
-        worldOffsetX, worldOffsetY,
-        size, size, 0.03f, 0.03f, seed + 2
+        chunk.pos.x * CHUNK_SIZE * 0.03f,
+        chunk.pos.y * CHUNK_SIZE * 0.03f,
+        size, size,
+        0.03f, 0.03f,
+        seed + 2
     );
 
     for (int y = 0; y < size; y++) {
