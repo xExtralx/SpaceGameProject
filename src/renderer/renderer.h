@@ -1,109 +1,90 @@
-//
-// Created by raphael on 02/11/2025.
-//
-
 #ifndef MYGAME_RENDERER_H
 #define MYGAME_RENDERER_H
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-
 #include <vector>
 #include "shader/shader.h"
 #include "../utils/utils.h"
 #include "texture/texture.h"
 
-struct Vertex {
-    Vec2 localPos;   // coin du quad : (-0.5,-0.5) → (0.5,0.5)
-    Vec2 uv;         // UV texture
-    Vec3 tilePos;    // (tileX, tileY, height)
+// Textured tile vertex
+struct TileVertex {
+    Vec2 localPos;
+    Vec2 uv;
+    Vec3 tilePos;
 };
 
-
-enum class VertexAttribType {
-    Float
+// Colored primitive vertex
+struct ColorVertex {
+    Vec3 pos;
+    Vec4 color;
 };
-
-struct VertexAttrib {
-    GLuint index;       // layout(location = X)
-    GLint  count;       // nombre de composantes (1,2,3,4)
-    VertexAttribType type;
-    size_t offset;      // offsetof(...)
-};
-
-struct VertexLayout {
-    GLsizei stride;
-    std::vector<VertexAttrib> attributes;
-};
-
 
 class Renderer {
 public:
-
-    Renderer(int w,int h);
+    Renderer(int w, int h);
     ~Renderer();
 
-    // Pixel perfect
+    // Pixel perfect internal resolution
     static const int RENDER_WIDTH  = 320;
     static const int RENDER_HEIGHT = 180;
-    GLuint pixelFBO     = 0;
-    GLuint pixelTexture = 0;
-    Shader* upscaleShader = nullptr;
-    GLuint screenVAO = 0, screenVBO = 0;
 
-    int init();
-    void initPixelFBO();
-    void update();
-    void uploadGeometry(
-        const void* vertexData,
-        size_t vertexCount,
-        const VertexLayout& layout);
-    void draw();
+    int  init();
     void clear();
+    void draw();
     void present() const;
+    void update();
 
-    // Draw Methods
-
-    void addTriangle(
-        const Vec2& v1,
-        const Vec2& v2,
-        const Vec2& v3,
-        const Vec4& color,
-        float z);
+    // Draw calls — accumulate geometry, flushed in draw()
+    void addTriangle(const Vec2& v1, const Vec2& v2, const Vec2& v3, const Vec4& color, float z);
+    void addTile(const TileVertex verts[4]); // for textured tiles later
     void drawImage(const std::string& filePath, Shader& shader);
 
     bool shouldClose() const;
 
-    int getWidth() { return this->width; }
+    int        getWidth()  { return width; }
+    int        getHeight() { return height; }
+    GLFWwindow* getWindow() { return window; }
 
-    int getHeight() { return this->height; }
-
-    GLFWwindow* getWindow() { return this->window; }
-    Shader* getShader() { return this->shader; }
-
-    static void key_callback(GLFWwindow* window,int key,int scancode,int action,int mods);
-    static void mouse_button_callback(GLFWwindow* window,int button,int action,int mods);
+    static void key_callback(GLFWwindow*, int, int, int, int);
+    static void mouse_button_callback(GLFWwindow*, int, int, int);
 
     bool fullscreen = false;
 
 private:
-
-    int width = 0;
+    int width  = 0;
     int height = 0;
 
-    GLFWwindow* window;
+    GLFWwindow*      window   = nullptr;
+    GLFWmonitor*     monitor  = nullptr;
+    const GLFWvidmode* mode   = nullptr;
 
-    FileManager fileManager;
+    // Shaders
+    Shader* tileShader    = nullptr;
+    Shader* colorShader   = nullptr;
+    Shader* imageShader   = nullptr;
+    Shader* upscaleShader = nullptr;
 
-    GLFWmonitor* monitor;
-    const GLFWvidmode* mode;
+    // Tile geometry (textured)
+    std::vector<TileVertex>  tileVertices;
+    GLuint tileVAO = 0, tileVBO = 0;
 
-    Shader* shader;
-    Shader* imageShader;
-    unsigned int VAO,VBO;
+    // Color geometry (primitives)
+    std::vector<ColorVertex> colorVertices;
+    GLuint colorVAO = 0, colorVBO = 0;
 
-    std::vector<Vertex> vertices;
+    // Pixel perfect FBO
+    GLuint pixelFBO     = 0;
+    GLuint pixelTexture = 0;
+    GLuint screenVAO    = 0;
+    GLuint screenVBO    = 0;
+
+    void initPixelFBO();
+    void initColorBuffer();
+    void initTileBuffer();
+    void flushColorGeometry();
+    void flushTileGeometry();
 };
 
-
-#endif //MYGAME_RENDERER_H
+#endif

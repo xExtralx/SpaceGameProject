@@ -30,6 +30,14 @@ void Game::update() {
 
 void Game::render() {
     renderer.clear();
+    // In Game::render()
+    renderer.addTriangle(
+        Vec2(-0.5f,  0.5f),
+        Vec2(-0.5f, -0.5f),
+        Vec2( 0.5f, -0.5f),
+        Vec4(1.0f, 0.0f, 0.0f, 1.0f),
+        0.0f
+    );
     renderer.draw();
     renderer.present();
     renderer.update();
