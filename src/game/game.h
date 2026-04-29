@@ -24,6 +24,7 @@ public:
     void clickEvent(int x,int y);
     void keyPressEvent(int key);
     void keyReleaseEvent(int key);
+    static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
     Renderer& getRenderer() { return this->renderer; }
 
@@ -36,6 +37,7 @@ private:
     Renderer renderer;
     FileManager fileManager;
 
+    bool keys[1024] = {};  // tracks which keys are held down
 };
 
 

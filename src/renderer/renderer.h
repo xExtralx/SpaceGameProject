@@ -8,6 +8,19 @@
 #include "../utils/utils.h"
 #include "texture/texture.h"
 
+struct Camera {
+    Vec2  position = Vec2(0.0f, 0.0f); // world position
+    float zoom     = 1.0f;              // 1.0 = normal, 2.0 = zoomed in
+
+    // Convert world pos to NDC for rendering
+    Vec2 worldToNDC(const Vec2& worldPos, int renderW, int renderH) const {
+        Vec2 relative = worldPos - position;
+        float ndcX = (relative[0] * zoom) / (renderW * 0.5f);
+        float ndcY = (relative[1] * zoom) / (renderH * 0.5f);
+        return Vec2(ndcX, ndcY);
+    }
+};
+
 // Textured tile vertex
 struct TileVertex {
     Vec2 localPos;
@@ -26,6 +39,8 @@ public:
     Renderer(int w, int h);
     ~Renderer();
 
+    Camera camera;
+
     // Pixel perfect internal resolution
     static const int RENDER_WIDTH  = 320;
     static const int RENDER_HEIGHT = 180;
@@ -39,7 +54,8 @@ public:
     // Draw calls — accumulate geometry, flushed in draw()
     void addTriangle(const Vec2& v1, const Vec2& v2, const Vec2& v3, const Vec4& color, float z);
     void addTile(const TileVertex verts[4]); // for textured tiles later
-    void drawImage(const std::string& filePath, float x, float y, float scale);
+    void drawImage(const std::string& filePath, const Vec2& worldPos, float scale);
+    void drawImageAtNDC(const std::string& filePath, float x, float y, float scale);
 
     bool shouldClose() const;
 

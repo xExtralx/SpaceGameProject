@@ -259,12 +259,22 @@ void Renderer::flushTileGeometry() {
 // =====================
 
 void Renderer::addTriangle(const Vec2& v1, const Vec2& v2, const Vec2& v3, const Vec4& color, float z) {
-    colorVertices.push_back({ Vec3(v1[0], v1[1], z), color });
-    colorVertices.push_back({ Vec3(v2[0], v2[1], z), color });
-    colorVertices.push_back({ Vec3(v3[0], v3[1], z), color });
+    Vec2 n1 = camera.worldToNDC(v1, RENDER_WIDTH, RENDER_HEIGHT);
+    Vec2 n2 = camera.worldToNDC(v2, RENDER_WIDTH, RENDER_HEIGHT);
+    Vec2 n3 = camera.worldToNDC(v3, RENDER_WIDTH, RENDER_HEIGHT);
+
+    colorVertices.push_back({ Vec3(n1[0], n1[1], z), color });
+    colorVertices.push_back({ Vec3(n2[0], n2[1], z), color });
+    colorVertices.push_back({ Vec3(n3[0], n3[1], z), color });
 }
 
-void Renderer::drawImage(const std::string& filePath, float x, float y, float scale) {
+void Renderer::drawImage(const std::string& filePath, const Vec2& worldPos, float scale) {
+    // Convert world position to NDC via camera
+    Vec2 ndcPos = camera.worldToNDC(worldPos, RENDER_WIDTH, RENDER_HEIGHT);
+    drawImageAtNDC(filePath, ndcPos[0], ndcPos[1], scale * camera.zoom);
+}
+
+void Renderer::drawImageAtNDC(const std::string& filePath, float x, float y, float scale) {
     GLuint textureID = TextureManager::getInstance().loadTexture(filePath);
     if (textureID == 0) return;
 
