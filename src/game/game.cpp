@@ -73,7 +73,7 @@ void Game::clickEvent(int x, int y) {
 }
 
 void Game::keyPressEvent(int key) {
-    std::cerr << "[key] code: " << key << " name: " << (glfwGetKeyName(key, 0) ? glfwGetKeyName(key, 0) : "unknown") << std::endl;
+    // std::cerr << "[key] code: " << key << " name: " << (glfwGetKeyName(key, 0) ? glfwGetKeyName(key, 0) : "unknown") << std::endl;
 
     if (key >= 0 && key < 1024)
         keys[key] = true;
