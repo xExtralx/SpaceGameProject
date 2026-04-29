@@ -249,9 +249,9 @@ CMakeFiles/glad.dir/clean:
 
 # All Build rule for target.
 CMakeFiles/MyGame.dir/all: _deps/glfw-build/src/CMakeFiles/glfw.dir/all
+CMakeFiles/MyGame.dir/all: CMakeFiles/glad.dir/all
 CMakeFiles/MyGame.dir/all: external/FastNoise2/src/CMakeFiles/FastNoise.dir/all
 CMakeFiles/MyGame.dir/all: external/FastNoise2/src/CMakeFiles/FastSIMD_FastNoise.dir/all
-CMakeFiles/MyGame.dir/all: CMakeFiles/glad.dir/all
 CMakeFiles/MyGame.dir/all: _deps/fastsimd-build/CMakeFiles/FastSIMD.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyGame.dir/build.make CMakeFiles/MyGame.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyGame.dir/build.make CMakeFiles/MyGame.dir/build
