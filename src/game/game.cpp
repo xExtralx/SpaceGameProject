@@ -28,17 +28,21 @@ void Game::update() {
     deltaTime = (float)glfwGetTime() - lastFrame;
     lastFrame = (float)glfwGetTime();
 
-    // Camera speed in world units per second
     const float speed = 100.0f;
 
-    if (keys[GLFW_KEY_W] || keys[GLFW_KEY_UP])
-        renderer.camera.position[1] += speed * deltaTime;
-    if (keys[GLFW_KEY_S] || keys[GLFW_KEY_DOWN])
-        renderer.camera.position[1] -= speed * deltaTime;
-    if (keys[GLFW_KEY_A] || keys[GLFW_KEY_LEFT])
-        renderer.camera.position[0] -= speed * deltaTime;
-    if (keys[GLFW_KEY_D] || keys[GLFW_KEY_RIGHT])
-        renderer.camera.position[0] += speed * deltaTime;
+    // Build direction vector
+    Vec2 dir(0.0f, 0.0f);
+
+    if (keys[GLFW_KEY_W]) dir[1] += 1.0f;  // Z on AZERTY
+    if (keys[GLFW_KEY_S]) dir[1] -= 1.0f;
+    if (keys[GLFW_KEY_A]) dir[0] -= 1.0f;  // Q on AZERTY
+    if (keys[GLFW_KEY_D]) dir[0] += 1.0f;
+
+    // Normalize so diagonal isn't faster
+    if (dir.length() > 0.0f)
+        dir.normalize();
+
+    renderer.camera.position += dir * speed * deltaTime;
 }
 
 void Game::render() {
