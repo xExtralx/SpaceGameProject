@@ -39,7 +39,7 @@ void WorldGen::generateChunk(Chunk& chunk) const {
     std::vector<float> resourceMap(area);
     std::vector<float> forestMap(area);
 
-    const float stepSize = 0.02f;
+    const float stepSize = 0.2f;
     const float noiseOffsetX = chunk.pos.x * CHUNK_SIZE * stepSize;
     const float noiseOffsetY = chunk.pos.y * CHUNK_SIZE * stepSize;
 
