@@ -2066,10 +2066,12 @@ MyGame: /lib/x86_64-linux-gnu/libXau.so.6 \
   /usr/lib/x86_64-linux-gnu/libfreetype.so \
   /usr/lib/x86_64-linux-gnu/librt.a \
   CMakeFiles/MyGame.dir/src/game/game.cpp.o \
+  CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.o \
   CMakeFiles/MyGame.dir/src/main.cpp.o \
   CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.o \
   CMakeFiles/MyGame.dir/src/utils/utils.cpp.o \
   _deps/glfw-build/src/libglfw3.a \
+  external/FastNoise2/src/libFastNoise.a \
   libglad.a
 
 
@@ -2104,6 +2106,8 @@ CMakeFiles/MyGame.dir/src/utils/utils.cpp.o:
 /home/ubuntu/Games/SpaceGameProject/src/utils/utils.cpp:
 
 /usr/lib/gcc/x86_64-linux-gnu/14/include/syslimits.h:
+
+CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.o:
 
 /usr/lib/gcc/x86_64-linux-gnu/14/include/limits.h:
 
@@ -2862,6 +2866,8 @@ _deps/fastsimd-src/include/FastSIMD/Utility/FeatureEnums.h:
 /usr/include/c++/14/bits/ranges_cmp.h:
 
 /usr/include/c++/14/bits/streambuf_iterator.h:
+
+external/FastNoise2/src/libFastNoise.a:
 
 /usr/include/x86_64-linux-gnu/bits/stdlib.h:
 

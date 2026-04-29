@@ -78,7 +78,7 @@ int Renderer::init() {
         FileManager::LoadTextFile("shader/image.frag")
     );
 
-    tilesetTexture = TextureManager::getInstance().loadTexture("tileset/tiles.png");
+    tilesetTexture = TextureManager::getInstance().loadTexture("textures/tile.png");
 
     tileShader = new Shader(
         FileManager::LoadTextFile("shader/tile.vert"),

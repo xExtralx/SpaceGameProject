@@ -2072,9 +2072,11 @@ MyGame
  /usr/lib/x86_64-linux-gnu/libfreetype.so
  /usr/lib/x86_64-linux-gnu/librt.a
  /home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/MyGame.dir/src/game/game.cpp.o
+ /home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.o
  /home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/MyGame.dir/src/main.cpp.o
  /home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.o
  /home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/MyGame.dir/src/utils/utils.cpp.o
  /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/glfw-build/src/libglfw3.a
+ /home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src/libFastNoise.a
  /home/ubuntu/Games/SpaceGameProject/build-linux/libglad.a
 
