@@ -11229,3 +11229,655 @@ events:
         
       exitCode: 2
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "build-linux/_deps/fastsimd-src/cmake/ArchDetect.cmake:15 (try_compile)"
+      - "build-linux/_deps/fastsimd-src/CMakeLists.txt:22 (target_architecture)"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-linux/CPM_modules;"
+    buildResult:
+      variable: "compile_result_unused"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_df480/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_df480.dir/build.make CMakeFiles/cmTC_df480.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_df480.dir/ArchDetect.cpp.o
+        /usr/bin/c++   -std=gnu++17 -o CMakeFiles/cmTC_df480.dir/ArchDetect.cpp.o -c /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:15:16: error: static assertion failed: FASTSIMD_ARCH<X86=SSE2>
+           15 | static_assert( 0, "FASTSIMD_ARCH<" TO_LITERAL( FASTSIMD_ARCH_NAME() ) ">" );
+              |                ^
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:49: error: expected unqualified-id before string constant
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              |                                                 ^
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:3:32: note: in definition of macro ‘TO_LITERAL_’
+            3 | #define TO_LITERAL_( string ) #string
+              |                                ^~~~~~
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:1: note: in expansion of macro ‘TO_LITERAL’
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              | ^~~~~~~~~~
+        gmake[1]: *** [CMakeFiles/cmTC_df480.dir/build.make:81: CMakeFiles/cmTC_df480.dir/ArchDetect.cpp.o] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:134: cmTC_df480/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "build-linux/_deps/fastsimd-src/dispatch/cmake/ClassSIMD.cmake:145 (try_compile)"
+      - "external/FastNoise2/src/CMakeLists.txt:69 (fastsimd_create_dispatch_library)"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-linux/CPM_modules;"
+    buildResult:
+      variable: "compile_result_unused"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d779a/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_d779a.dir/build.make CMakeFiles/cmTC_d779a.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_d779a.dir/ArchDetect.cpp.o
+        /usr/bin/c++ -DTEST_FEATURE_SET_ACTIVE=SSE2  -std=gnu++17 -o CMakeFiles/cmTC_d779a.dir/ArchDetect.cpp.o -c /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:15:16: error: static assertion failed: FASTSIMD_ARCH<X86=SSE2>
+           15 | static_assert( 0, "FASTSIMD_ARCH<" TO_LITERAL( FASTSIMD_ARCH_NAME() ) ">" );
+              |                ^
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:49: error: expected unqualified-id before string constant
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              |                                                 ^
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:3:32: note: in definition of macro ‘TO_LITERAL_’
+            3 | #define TO_LITERAL_( string ) #string
+              |                                ^~~~~~
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:1: note: in expansion of macro ‘TO_LITERAL’
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              | ^~~~~~~~~~
+        gmake[1]: *** [CMakeFiles/cmTC_d779a.dir/build.make:81: CMakeFiles/cmTC_d779a.dir/ArchDetect.cpp.o] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:134: cmTC_d779a/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "build-linux/_deps/fastsimd-src/dispatch/cmake/ClassSIMD.cmake:145 (try_compile)"
+      - "external/FastNoise2/src/CMakeLists.txt:69 (fastsimd_create_dispatch_library)"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-linux/CPM_modules;"
+    buildResult:
+      variable: "compile_result_unused"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_5ca4e/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_5ca4e.dir/build.make CMakeFiles/cmTC_5ca4e.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_5ca4e.dir/ArchDetect.cpp.o
+        /usr/bin/c++ -DTEST_FEATURE_SET_ACTIVE=SSE41  -std=gnu++17 -o CMakeFiles/cmTC_5ca4e.dir/ArchDetect.cpp.o -c /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:15:16: error: static assertion failed: FASTSIMD_ARCH<X86=SSE2>
+           15 | static_assert( 0, "FASTSIMD_ARCH<" TO_LITERAL( FASTSIMD_ARCH_NAME() ) ">" );
+              |                ^
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:49: error: expected unqualified-id before string constant
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              |                                                 ^
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:3:32: note: in definition of macro ‘TO_LITERAL_’
+            3 | #define TO_LITERAL_( string ) #string
+              |                                ^~~~~~
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:1: note: in expansion of macro ‘TO_LITERAL’
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              | ^~~~~~~~~~
+        gmake[1]: *** [CMakeFiles/cmTC_5ca4e.dir/build.make:81: CMakeFiles/cmTC_5ca4e.dir/ArchDetect.cpp.o] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:134: cmTC_5ca4e/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "build-linux/_deps/fastsimd-src/dispatch/cmake/ClassSIMD.cmake:145 (try_compile)"
+      - "external/FastNoise2/src/CMakeLists.txt:69 (fastsimd_create_dispatch_library)"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-linux/CPM_modules;"
+    buildResult:
+      variable: "compile_result_unused"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_7824a/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_7824a.dir/build.make CMakeFiles/cmTC_7824a.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_7824a.dir/ArchDetect.cpp.o
+        /usr/bin/c++ -DTEST_FEATURE_SET_ACTIVE=AVX2  -std=gnu++17 -o CMakeFiles/cmTC_7824a.dir/ArchDetect.cpp.o -c /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:15:16: error: static assertion failed: FASTSIMD_ARCH<X86=SSE2>
+           15 | static_assert( 0, "FASTSIMD_ARCH<" TO_LITERAL( FASTSIMD_ARCH_NAME() ) ">" );
+              |                ^
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:49: error: expected unqualified-id before string constant
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              |                                                 ^
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:3:32: note: in definition of macro ‘TO_LITERAL_’
+            3 | #define TO_LITERAL_( string ) #string
+              |                                ^~~~~~
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:1: note: in expansion of macro ‘TO_LITERAL’
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              | ^~~~~~~~~~
+        gmake[1]: *** [CMakeFiles/cmTC_7824a.dir/build.make:81: CMakeFiles/cmTC_7824a.dir/ArchDetect.cpp.o] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:134: cmTC_7824a/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "build-linux/_deps/fastsimd-src/dispatch/cmake/ClassSIMD.cmake:145 (try_compile)"
+      - "external/FastNoise2/src/CMakeLists.txt:69 (fastsimd_create_dispatch_library)"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-linux/CPM_modules;"
+    buildResult:
+      variable: "compile_result_unused"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_80533/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_80533.dir/build.make CMakeFiles/cmTC_80533.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_80533.dir/ArchDetect.cpp.o
+        /usr/bin/c++ -DTEST_FEATURE_SET_ACTIVE=AVX512  -std=gnu++17 -o CMakeFiles/cmTC_80533.dir/ArchDetect.cpp.o -c /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:15:16: error: static assertion failed: FASTSIMD_ARCH<X86=SSE2>
+           15 | static_assert( 0, "FASTSIMD_ARCH<" TO_LITERAL( FASTSIMD_ARCH_NAME() ) ">" );
+              |                ^
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:49: error: expected unqualified-id before string constant
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              |                                                 ^
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:3:32: note: in definition of macro ‘TO_LITERAL_’
+            3 | #define TO_LITERAL_( string ) #string
+              |                                ^~~~~~
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:1: note: in expansion of macro ‘TO_LITERAL’
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              | ^~~~~~~~~~
+        gmake[1]: *** [CMakeFiles/cmTC_80533.dir/build.make:81: CMakeFiles/cmTC_80533.dir/ArchDetect.cpp.o] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:134: cmTC_80533/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "build-linux/_deps/fastsimd-src/dispatch/cmake/ClassSIMD.cmake:145 (try_compile)"
+      - "external/FastNoise2/src/CMakeLists.txt:69 (fastsimd_create_dispatch_library)"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-linux/CPM_modules;"
+    buildResult:
+      variable: "compile_result_unused"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_f1cb6/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_f1cb6.dir/build.make CMakeFiles/cmTC_f1cb6.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_f1cb6.dir/ArchDetect.cpp.o
+        /usr/bin/c++ -DTEST_FEATURE_SET_ACTIVE=NEON  -std=gnu++17 -o CMakeFiles/cmTC_f1cb6.dir/ArchDetect.cpp.o -c /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp
+        In file included from /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:1:
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/../include/FastSIMD/Utility/ArchDetect.h:92:80: error: missing binary operator before token "("
+           92 | #define FASTSIMD_FEATURE_VALUE_IMPL( feature ) FASTSIMD_FEATURE_VALUE_##feature()
+              |                                                                                ^
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/../include/FastSIMD/Utility/ArchDetect.h:91:43: note: in expansion of macro ‘FASTSIMD_FEATURE_VALUE_IMPL’
+           91 | #define FASTSIMD_FEATURE_VALUE( feature ) FASTSIMD_FEATURE_VALUE_IMPL( feature )
+              |                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:9:5: note: in expansion of macro ‘FASTSIMD_FEATURE_VALUE’
+            9 | #if FASTSIMD_FEATURE_VALUE( TEST_FEATURE_SET_ACTIVE ) > 0
+              |     ^~~~~~~~~~~~~~~~~~~~~~
+        gmake[1]: *** [CMakeFiles/cmTC_f1cb6.dir/build.make:81: CMakeFiles/cmTC_f1cb6.dir/ArchDetect.cpp.o] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:134: cmTC_f1cb6/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "build-linux/_deps/fastsimd-src/dispatch/cmake/ClassSIMD.cmake:145 (try_compile)"
+      - "external/FastNoise2/src/CMakeLists.txt:69 (fastsimd_create_dispatch_library)"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-linux/CPM_modules;"
+    buildResult:
+      variable: "compile_result_unused"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_741ec/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_741ec.dir/build.make CMakeFiles/cmTC_741ec.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_741ec.dir/ArchDetect.cpp.o
+        /usr/bin/c++ -DTEST_FEATURE_SET_ACTIVE=AARCH64  -std=gnu++17 -o CMakeFiles/cmTC_741ec.dir/ArchDetect.cpp.o -c /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp
+        In file included from /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:1:
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/../include/FastSIMD/Utility/ArchDetect.h:92:80: error: missing binary operator before token "("
+           92 | #define FASTSIMD_FEATURE_VALUE_IMPL( feature ) FASTSIMD_FEATURE_VALUE_##feature()
+              |                                                                                ^
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/../include/FastSIMD/Utility/ArchDetect.h:91:43: note: in expansion of macro ‘FASTSIMD_FEATURE_VALUE_IMPL’
+           91 | #define FASTSIMD_FEATURE_VALUE( feature ) FASTSIMD_FEATURE_VALUE_IMPL( feature )
+              |                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:9:5: note: in expansion of macro ‘FASTSIMD_FEATURE_VALUE’
+            9 | #if FASTSIMD_FEATURE_VALUE( TEST_FEATURE_SET_ACTIVE ) > 0
+              |     ^~~~~~~~~~~~~~~~~~~~~~
+        gmake[1]: *** [CMakeFiles/cmTC_741ec.dir/build.make:81: CMakeFiles/cmTC_741ec.dir/ArchDetect.cpp.o] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:134: cmTC_741ec/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "build-linux/_deps/fastsimd-src/dispatch/cmake/ClassSIMD.cmake:145 (try_compile)"
+      - "external/FastNoise2/src/CMakeLists.txt:69 (fastsimd_create_dispatch_library)"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-linux/CPM_modules;"
+    buildResult:
+      variable: "compile_result_unused"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_3e00e/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_3e00e.dir/build.make CMakeFiles/cmTC_3e00e.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_3e00e.dir/ArchDetect.cpp.o
+        /usr/bin/c++ -DTEST_FEATURE_SET_ACTIVE=WASM  -std=gnu++17 -o CMakeFiles/cmTC_3e00e.dir/ArchDetect.cpp.o -c /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp
+        In file included from /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:1:
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/../include/FastSIMD/Utility/ArchDetect.h:92:80: error: missing binary operator before token "("
+           92 | #define FASTSIMD_FEATURE_VALUE_IMPL( feature ) FASTSIMD_FEATURE_VALUE_##feature()
+              |                                                                                ^
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/../include/FastSIMD/Utility/ArchDetect.h:91:43: note: in expansion of macro ‘FASTSIMD_FEATURE_VALUE_IMPL’
+           91 | #define FASTSIMD_FEATURE_VALUE( feature ) FASTSIMD_FEATURE_VALUE_IMPL( feature )
+              |                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:9:5: note: in expansion of macro ‘FASTSIMD_FEATURE_VALUE’
+            9 | #if FASTSIMD_FEATURE_VALUE( TEST_FEATURE_SET_ACTIVE ) > 0
+              |     ^~~~~~~~~~~~~~~~~~~~~~
+        gmake[1]: *** [CMakeFiles/cmTC_3e00e.dir/build.make:81: CMakeFiles/cmTC_3e00e.dir/ArchDetect.cpp.o] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:134: cmTC_3e00e/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "build-linux/_deps/fastsimd-src/cmake/ArchDetect.cmake:15 (try_compile)"
+      - "build-linux/_deps/fastsimd-src/CMakeLists.txt:22 (target_architecture)"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-linux/CPM_modules;"
+    buildResult:
+      variable: "compile_result_unused"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_592b0/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_592b0.dir/build.make CMakeFiles/cmTC_592b0.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_592b0.dir/ArchDetect.cpp.o
+        /usr/bin/c++   -std=gnu++17 -o CMakeFiles/cmTC_592b0.dir/ArchDetect.cpp.o -c /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:15:16: error: static assertion failed: FASTSIMD_ARCH<X86=SSE2>
+           15 | static_assert( 0, "FASTSIMD_ARCH<" TO_LITERAL( FASTSIMD_ARCH_NAME() ) ">" );
+              |                ^
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:49: error: expected unqualified-id before string constant
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              |                                                 ^
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:3:32: note: in definition of macro ‘TO_LITERAL_’
+            3 | #define TO_LITERAL_( string ) #string
+              |                                ^~~~~~
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:1: note: in expansion of macro ‘TO_LITERAL’
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              | ^~~~~~~~~~
+        gmake[1]: *** [CMakeFiles/cmTC_592b0.dir/build.make:81: CMakeFiles/cmTC_592b0.dir/ArchDetect.cpp.o] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:134: cmTC_592b0/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "build-linux/_deps/fastsimd-src/dispatch/cmake/ClassSIMD.cmake:145 (try_compile)"
+      - "external/FastNoise2/src/CMakeLists.txt:69 (fastsimd_create_dispatch_library)"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-linux/CPM_modules;"
+    buildResult:
+      variable: "compile_result_unused"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_5e687/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_5e687.dir/build.make CMakeFiles/cmTC_5e687.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_5e687.dir/ArchDetect.cpp.o
+        /usr/bin/c++ -DTEST_FEATURE_SET_ACTIVE=SSE2  -std=gnu++17 -o CMakeFiles/cmTC_5e687.dir/ArchDetect.cpp.o -c /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:15:16: error: static assertion failed: FASTSIMD_ARCH<X86=SSE2>
+           15 | static_assert( 0, "FASTSIMD_ARCH<" TO_LITERAL( FASTSIMD_ARCH_NAME() ) ">" );
+              |                ^
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:49: error: expected unqualified-id before string constant
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              |                                                 ^
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:3:32: note: in definition of macro ‘TO_LITERAL_’
+            3 | #define TO_LITERAL_( string ) #string
+              |                                ^~~~~~
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:1: note: in expansion of macro ‘TO_LITERAL’
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              | ^~~~~~~~~~
+        gmake[1]: *** [CMakeFiles/cmTC_5e687.dir/build.make:81: CMakeFiles/cmTC_5e687.dir/ArchDetect.cpp.o] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:134: cmTC_5e687/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "build-linux/_deps/fastsimd-src/dispatch/cmake/ClassSIMD.cmake:145 (try_compile)"
+      - "external/FastNoise2/src/CMakeLists.txt:69 (fastsimd_create_dispatch_library)"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-linux/CPM_modules;"
+    buildResult:
+      variable: "compile_result_unused"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_7defe/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_7defe.dir/build.make CMakeFiles/cmTC_7defe.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_7defe.dir/ArchDetect.cpp.o
+        /usr/bin/c++ -DTEST_FEATURE_SET_ACTIVE=SSE41  -std=gnu++17 -o CMakeFiles/cmTC_7defe.dir/ArchDetect.cpp.o -c /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:15:16: error: static assertion failed: FASTSIMD_ARCH<X86=SSE2>
+           15 | static_assert( 0, "FASTSIMD_ARCH<" TO_LITERAL( FASTSIMD_ARCH_NAME() ) ">" );
+              |                ^
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:49: error: expected unqualified-id before string constant
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              |                                                 ^
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:3:32: note: in definition of macro ‘TO_LITERAL_’
+            3 | #define TO_LITERAL_( string ) #string
+              |                                ^~~~~~
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:1: note: in expansion of macro ‘TO_LITERAL’
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              | ^~~~~~~~~~
+        gmake[1]: *** [CMakeFiles/cmTC_7defe.dir/build.make:81: CMakeFiles/cmTC_7defe.dir/ArchDetect.cpp.o] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:134: cmTC_7defe/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "build-linux/_deps/fastsimd-src/dispatch/cmake/ClassSIMD.cmake:145 (try_compile)"
+      - "external/FastNoise2/src/CMakeLists.txt:69 (fastsimd_create_dispatch_library)"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-linux/CPM_modules;"
+    buildResult:
+      variable: "compile_result_unused"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_f69bb/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_f69bb.dir/build.make CMakeFiles/cmTC_f69bb.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_f69bb.dir/ArchDetect.cpp.o
+        /usr/bin/c++ -DTEST_FEATURE_SET_ACTIVE=AVX2  -std=gnu++17 -o CMakeFiles/cmTC_f69bb.dir/ArchDetect.cpp.o -c /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:15:16: error: static assertion failed: FASTSIMD_ARCH<X86=SSE2>
+           15 | static_assert( 0, "FASTSIMD_ARCH<" TO_LITERAL( FASTSIMD_ARCH_NAME() ) ">" );
+              |                ^
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:49: error: expected unqualified-id before string constant
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              |                                                 ^
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:3:32: note: in definition of macro ‘TO_LITERAL_’
+            3 | #define TO_LITERAL_( string ) #string
+              |                                ^~~~~~
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:1: note: in expansion of macro ‘TO_LITERAL’
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              | ^~~~~~~~~~
+        gmake[1]: *** [CMakeFiles/cmTC_f69bb.dir/build.make:81: CMakeFiles/cmTC_f69bb.dir/ArchDetect.cpp.o] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:134: cmTC_f69bb/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "build-linux/_deps/fastsimd-src/dispatch/cmake/ClassSIMD.cmake:145 (try_compile)"
+      - "external/FastNoise2/src/CMakeLists.txt:69 (fastsimd_create_dispatch_library)"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-linux/CPM_modules;"
+    buildResult:
+      variable: "compile_result_unused"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_725ee/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_725ee.dir/build.make CMakeFiles/cmTC_725ee.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_725ee.dir/ArchDetect.cpp.o
+        /usr/bin/c++ -DTEST_FEATURE_SET_ACTIVE=AVX512  -std=gnu++17 -o CMakeFiles/cmTC_725ee.dir/ArchDetect.cpp.o -c /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:15:16: error: static assertion failed: FASTSIMD_ARCH<X86=SSE2>
+           15 | static_assert( 0, "FASTSIMD_ARCH<" TO_LITERAL( FASTSIMD_ARCH_NAME() ) ">" );
+              |                ^
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:49: error: expected unqualified-id before string constant
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              |                                                 ^
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:3:32: note: in definition of macro ‘TO_LITERAL_’
+            3 | #define TO_LITERAL_( string ) #string
+              |                                ^~~~~~
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:1: note: in expansion of macro ‘TO_LITERAL’
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              | ^~~~~~~~~~
+        gmake[1]: *** [CMakeFiles/cmTC_725ee.dir/build.make:81: CMakeFiles/cmTC_725ee.dir/ArchDetect.cpp.o] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:134: cmTC_725ee/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "build-linux/_deps/fastsimd-src/dispatch/cmake/ClassSIMD.cmake:145 (try_compile)"
+      - "external/FastNoise2/src/CMakeLists.txt:69 (fastsimd_create_dispatch_library)"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-linux/CPM_modules;"
+    buildResult:
+      variable: "compile_result_unused"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d2a5c/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_d2a5c.dir/build.make CMakeFiles/cmTC_d2a5c.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_d2a5c.dir/ArchDetect.cpp.o
+        /usr/bin/c++ -DTEST_FEATURE_SET_ACTIVE=NEON  -std=gnu++17 -o CMakeFiles/cmTC_d2a5c.dir/ArchDetect.cpp.o -c /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp
+        In file included from /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:1:
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/../include/FastSIMD/Utility/ArchDetect.h:92:80: error: missing binary operator before token "("
+           92 | #define FASTSIMD_FEATURE_VALUE_IMPL( feature ) FASTSIMD_FEATURE_VALUE_##feature()
+              |                                                                                ^
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/../include/FastSIMD/Utility/ArchDetect.h:91:43: note: in expansion of macro ‘FASTSIMD_FEATURE_VALUE_IMPL’
+           91 | #define FASTSIMD_FEATURE_VALUE( feature ) FASTSIMD_FEATURE_VALUE_IMPL( feature )
+              |                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:9:5: note: in expansion of macro ‘FASTSIMD_FEATURE_VALUE’
+            9 | #if FASTSIMD_FEATURE_VALUE( TEST_FEATURE_SET_ACTIVE ) > 0
+              |     ^~~~~~~~~~~~~~~~~~~~~~
+        gmake[1]: *** [CMakeFiles/cmTC_d2a5c.dir/build.make:81: CMakeFiles/cmTC_d2a5c.dir/ArchDetect.cpp.o] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:134: cmTC_d2a5c/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "build-linux/_deps/fastsimd-src/dispatch/cmake/ClassSIMD.cmake:145 (try_compile)"
+      - "external/FastNoise2/src/CMakeLists.txt:69 (fastsimd_create_dispatch_library)"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-linux/CPM_modules;"
+    buildResult:
+      variable: "compile_result_unused"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_e532f/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_e532f.dir/build.make CMakeFiles/cmTC_e532f.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_e532f.dir/ArchDetect.cpp.o
+        /usr/bin/c++ -DTEST_FEATURE_SET_ACTIVE=AARCH64  -std=gnu++17 -o CMakeFiles/cmTC_e532f.dir/ArchDetect.cpp.o -c /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp
+        In file included from /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:1:
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/../include/FastSIMD/Utility/ArchDetect.h:92:80: error: missing binary operator before token "("
+           92 | #define FASTSIMD_FEATURE_VALUE_IMPL( feature ) FASTSIMD_FEATURE_VALUE_##feature()
+              |                                                                                ^
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/../include/FastSIMD/Utility/ArchDetect.h:91:43: note: in expansion of macro ‘FASTSIMD_FEATURE_VALUE_IMPL’
+           91 | #define FASTSIMD_FEATURE_VALUE( feature ) FASTSIMD_FEATURE_VALUE_IMPL( feature )
+              |                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:9:5: note: in expansion of macro ‘FASTSIMD_FEATURE_VALUE’
+            9 | #if FASTSIMD_FEATURE_VALUE( TEST_FEATURE_SET_ACTIVE ) > 0
+              |     ^~~~~~~~~~~~~~~~~~~~~~
+        gmake[1]: *** [CMakeFiles/cmTC_e532f.dir/build.make:81: CMakeFiles/cmTC_e532f.dir/ArchDetect.cpp.o] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:134: cmTC_e532f/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "build-linux/_deps/fastsimd-src/dispatch/cmake/ClassSIMD.cmake:145 (try_compile)"
+      - "external/FastNoise2/src/CMakeLists.txt:69 (fastsimd_create_dispatch_library)"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-linux/CPM_modules;"
+    buildResult:
+      variable: "compile_result_unused"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_c5f6d/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_c5f6d.dir/build.make CMakeFiles/cmTC_c5f6d.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_c5f6d.dir/ArchDetect.cpp.o
+        /usr/bin/c++ -DTEST_FEATURE_SET_ACTIVE=WASM  -std=gnu++17 -o CMakeFiles/cmTC_c5f6d.dir/ArchDetect.cpp.o -c /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp
+        In file included from /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:1:
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/../include/FastSIMD/Utility/ArchDetect.h:92:80: error: missing binary operator before token "("
+           92 | #define FASTSIMD_FEATURE_VALUE_IMPL( feature ) FASTSIMD_FEATURE_VALUE_##feature()
+              |                                                                                ^
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/../include/FastSIMD/Utility/ArchDetect.h:91:43: note: in expansion of macro ‘FASTSIMD_FEATURE_VALUE_IMPL’
+           91 | #define FASTSIMD_FEATURE_VALUE( feature ) FASTSIMD_FEATURE_VALUE_IMPL( feature )
+              |                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+        /home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/cmake/ArchDetect.cpp:9:5: note: in expansion of macro ‘FASTSIMD_FEATURE_VALUE’
+            9 | #if FASTSIMD_FEATURE_VALUE( TEST_FEATURE_SET_ACTIVE ) > 0
+              |     ^~~~~~~~~~~~~~~~~~~~~~
+        gmake[1]: *** [CMakeFiles/cmTC_c5f6d.dir/build.make:81: CMakeFiles/cmTC_c5f6d.dir/ArchDetect.cpp.o] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:134: cmTC_c5f6d/fast] Error 2
+        
+      exitCode: 2
+...

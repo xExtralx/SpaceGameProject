@@ -10,8 +10,8 @@ WorldGen::WorldGen(int32_t seed) : seed(seed) {
     auto elevSimplex = FastNoise::New<FastNoise::Simplex>();
     elevationNoise   = FastNoise::New<FastNoise::FractalFBm>();
     elevationNoise->SetSource(elevSimplex);
-    elevationNoise->SetOctaveCount(6);
-    elevationNoise->SetGain(0.5f);
+    elevationNoise->SetOctaveCount(4);
+    elevationNoise->SetGain(0.4f);
     elevationNoise->SetLacunarity(2.0f);
 
     auto resSimplex = FastNoise::New<FastNoise::Simplex>();
@@ -39,11 +39,16 @@ void WorldGen::generateChunk(Chunk& chunk) const {
     std::vector<float> resourceMap(area);
     std::vector<float> forestMap(area);
 
+    const float elevFreq = 0.3f; // was 0.008f
+
     elevationNoise->GenUniformGrid2D(
         elevationMap.data(),
         worldOffsetX, worldOffsetY,
-        size, size, 0.05f, 0.05f, seed  // was 0.008f
+        size, size,
+        elevFreq, elevFreq,
+        seed
     );
+
     resourceNoise->GenUniformGrid2D(
         resourceMap.data(),
         worldOffsetX, worldOffsetY,
