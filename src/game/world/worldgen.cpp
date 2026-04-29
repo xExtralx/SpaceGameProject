@@ -101,6 +101,11 @@ void WorldGen::generateChunk(Chunk& chunk) const {
 
     chunk.generated = true;
     chunk.dirty     = true;
+
+    float minE = *std::min_element(elevationMap.begin(), elevationMap.end());
+    float maxE = *std::max_element(elevationMap.begin(), elevationMap.end());
+    std::cerr << "chunk(" << chunk.pos.x << "," << chunk.pos.y 
+            << ") elev: " << minE << " to " << maxE << std::endl;
 }
 
 TileType WorldGen::elevationToType(float e) const {
