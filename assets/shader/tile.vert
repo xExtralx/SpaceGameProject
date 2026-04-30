@@ -13,6 +13,8 @@ out vec2  vUV;
 out float vAO;
 out float vFog;
 out vec3  vTilePos;
+out vec2  vUVOffset;
+out vec2  vUVSize;
 
 uniform mat4  uViewProj;
 uniform vec2  uTileSize;
@@ -38,4 +40,6 @@ void main() {
     vAO      = iAO;
     vFog     = 0.0;
     vTilePos = iTilePos;
+    vUVOffset = iUVOffset;
+    vUVSize   = iUVSize;
 }
