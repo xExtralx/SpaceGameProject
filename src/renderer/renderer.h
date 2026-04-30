@@ -28,13 +28,17 @@ struct Camera {
     float zoom     = 1.0f;
 
     Mat4 getViewProj(int renderW, int renderH) const {
+        // Snap camera to nearest pixel to prevent subpixel jitter
+        float snappedX = std::round(position[0]);
+        float snappedY = std::round(position[1]);
+
         float halfW = (renderW * 0.5f) / zoom;
         float halfH = (renderH * 0.5f) / zoom;
 
-        float left   = position[0] - halfW;
-        float right  = position[0] + halfW;
-        float bottom = position[1] - halfH;
-        float top    = position[1] + halfH;
+        float left   = snappedX - halfW;
+        float right  = snappedX + halfW;
+        float bottom = snappedY - halfH;
+        float top    = snappedY + halfH;
 
         return Mat4::ortho(left, right, bottom, top, -1.0f, 1.0f);
     }
