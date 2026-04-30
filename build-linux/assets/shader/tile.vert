@@ -114,4 +114,33 @@ void main() {
     float noiseVal = fract(sin(dot(vUV * 100.0, vec2(12.9898, 78.233))) * 43758.5453);
     color += (noiseVal - 0.5) * 0.03; // very subtle ±1.5%
 
-    // ======
+    // =====================
+    // 5. VIGNETTE PER TILE
+    // darkens tile edges slightly for separation
+    // =====================
+    // Recover local UV from world position
+    vec2 localUV = fract(vTilePos.xy);
+    // Convert to -1..1
+    vec2 vigUV   = localUV * 2.0 - 1.0;
+    // Smooth vignette
+    float vignette = 1.0 - dot(vigUV * 0.4, vigUV * 0.4);
+    vignette = clamp(vignette, 0.7, 1.0);
+    color *= vignette;
+
+    // =====================
+    // 6. AMBIENT OCCLUSION
+    // =====================
+    color *= (1.0 - vAO * 0.4);
+
+    // =====================
+    // 7. AMBIENT LIGHT
+    // =====================
+    color *= uAmbientColor * uAmbientStr;
+
+    // =====================
+    // 8. HEIGHT FOG
+    // =====================
+    color = mix(color, color * 0.85, clamp(vFog, 0.0, 1.0));
+
+    FragColor = vec4(color, texColor.a);
+}
