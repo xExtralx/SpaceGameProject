@@ -28,9 +28,10 @@ struct Camera {
     float zoom     = 1.0f;
 
     Mat4 getViewProj(int renderW, int renderH) const {
-        // Snap camera to nearest pixel to prevent subpixel jitter
-        float snappedX = std::round(position[0]);
-        float snappedY = std::round(position[1]);
+        // Snap to nearest pixel in screen space, accounting for zoom
+        float pixelSize = 1.0f / zoom; // world units per screen pixel
+        float snappedX  = std::round(position[0] / pixelSize) * pixelSize;
+        float snappedY  = std::round(position[1] / pixelSize) * pixelSize;
 
         float halfW = (renderW * 0.5f) / zoom;
         float halfH = (renderH * 0.5f) / zoom;
