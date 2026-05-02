@@ -2063,7 +2063,6 @@ MyGame: /lib/x86_64-linux-gnu/libXau.so.6 \
   /usr/lib/x86_64-linux-gnu/libOpenGL.so \
   /usr/lib/x86_64-linux-gnu/libX11.so \
   /usr/lib/x86_64-linux-gnu/libc_nonshared.a \
-  /usr/lib/x86_64-linux-gnu/libfreetype.so \
   /usr/lib/x86_64-linux-gnu/librt.a \
   CMakeFiles/MyGame.dir/src/game/game.cpp.o \
   CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.o \
@@ -2080,8 +2079,6 @@ _deps/glfw-build/src/libglfw3.a:
 CMakeFiles/MyGame.dir/src/utils/utils.cpp.o:
 
 /usr/lib/x86_64-linux-gnu/librt.a:
-
-/usr/lib/x86_64-linux-gnu/libfreetype.so:
 
 /usr/lib/x86_64-linux-gnu/libX11.so:
 

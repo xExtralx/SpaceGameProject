@@ -1,0 +1,1169 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineSystem.cmake:200 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The target system is: Windows -  - x86_64
+      The host system is: Linux - 6.14.0-37-generic - x86_64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /usr/bin/x86_64-w64-mingw32-gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.exe"
+      
+      The C compiler identification is GNU, found in:
+        /home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/3.31.6/CompilerIdC/a.exe
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /usr/bin/x86_64-w64-mingw32-g++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.exe"
+      
+      The CXX compiler identification is GNU, found in:
+        /home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/3.31.6/CompilerIdCXX/a.exe
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:74 (try_compile)"
+      - "/usr/share/cmake-3.31/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-p5qrvP"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-p5qrvP"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-p5qrvP'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_ad56d/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_ad56d.dir/build.make CMakeFiles/cmTC_ad56d.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-p5qrvP'
+        Building C object CMakeFiles/cmTC_ad56d.dir/CMakeCCompilerABI.c.obj
+        /usr/bin/x86_64-w64-mingw32-gcc   -v -o CMakeFiles/cmTC_ad56d.dir/CMakeCCompilerABI.c.obj -c /usr/share/cmake-3.31/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/x86_64-w64-mingw32-gcc
+        Target: x86_64-w64-mingw32
+        Configured with: ../../src/configure --build=x86_64-linux-gnu --prefix=/usr --includedir='/usr/include' --mandir='/usr/share/man' --infodir='/usr/share/info' --sysconfdir=/etc --localstatedir=/var --disable-option-checking --disable-silent-rules --libdir='/usr/lib/x86_64-linux-gnu' --libexecdir='/usr/lib/x86_64-linux-gnu' --disable-maintainer-mode --disable-dependency-tracking --prefix=/usr --enable-shared --enable-static --disable-multilib --with-system-zlib --libexecdir=/usr/lib --without-included-gettext --libdir=/usr/lib --enable-libstdcxx-time=yes --with-tune=generic --with-headers --enable-version-specific-runtime-libs --enable-fully-dynamic-string --enable-libgomp --enable-languages=c,c++,fortran,objc,obj-c++,ada --enable-lto --enable-threads=win32 --program-suffix=-win32 --program-prefix=x86_64-w64-mingw32- --target=x86_64-w64-mingw32 --with-as=/usr/bin/x86_64-w64-mingw32-as --with-ld=/usr/bin/x86_64-w64-mingw32-ld --enable-libatomic --enable-libstdcxx-filesystem-ts=yes --enable-dependency-tracking SED=/bin/sed
+        Thread model: win32
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 13-win32 (GCC) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ad56d.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ad56d.dir/'
+         /usr/lib/gcc/x86_64-w64-mingw32/13-win32/cc1 -quiet -v -U_REENTRANT /usr/share/cmake-3.31/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_ad56d.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o /tmp/ccryOAjI.s
+        GNU C17 (GCC) version 13-win32 (x86_64-w64-mingw32)
+        	compiled by GNU C version 13.2.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.27-GMP
+        
+        warning: MPFR header version 4.2.1 differs from library version 4.2.2.
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/sys-include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include
+         /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include-fixed
+         /usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/include
+        End of search list.
+        Compiler executable checksum: 2f238ebf931cb75a735d1d63553d9825
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ad56d.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ad56d.dir/'
+         /usr/bin/x86_64-w64-mingw32-as -v -o CMakeFiles/cmTC_ad56d.dir/CMakeCCompilerABI.c.obj /tmp/ccryOAjI.s
+        GNU assembler version 2.43.1 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.43.1
+        COMPILER_PATH=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/bin/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ad56d.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ad56d.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_ad56d.exe
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ad56d.dir/link.txt --verbose=1
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/x86_64-w64-mingw32-gcc
+        COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/lto-wrapper
+        Target: x86_64-w64-mingw32
+        Configured with: ../../src/configure --build=x86_64-linux-gnu --prefix=/usr --includedir='/usr/include' --mandir='/usr/share/man' --infodir='/usr/share/info' --sysconfdir=/etc --localstatedir=/var --disable-option-checking --disable-silent-rules --libdir='/usr/lib/x86_64-linux-gnu' --libexecdir='/usr/lib/x86_64-linux-gnu' --disable-maintainer-mode --disable-dependency-tracking --prefix=/usr --enable-shared --enable-static --disable-multilib --with-system-zlib --libexecdir=/usr/lib --without-included-gettext --libdir=/usr/lib --enable-libstdcxx-time=yes --with-tune=generic --with-headers --enable-version-specific-runtime-libs --enable-fully-dynamic-string --enable-libgomp --enable-languages=c,c++,fortran,objc,obj-c++,ada --enable-lto --enable-threads=win32 --program-suffix=-win32 --program-prefix=x86_64-w64-mingw32- --target=x86_64-w64-mingw32 --with-as=/usr/bin/x86_64-w64-mingw32-as --with-ld=/usr/bin/x86_64-w64-mingw32-ld --enable-libatomic --enable-libstdcxx-filesystem-ts=yes --enable-dependency-tracking SED=/bin/sed
+        Thread model: win32
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 13-win32 (GCC) 
+        COMPILER_PATH=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/bin/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_ad56d.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_ad56d.'
+         /usr/lib/gcc/x86_64-w64-mingw32/13-win32/collect2 -plugin /usr/lib/gcc/x86_64-w64-mingw32/13-win32/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/lto-wrapper -plugin-opt=-fresolution=/tmp/ccGupHka.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_ad56d.exe /usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib/crt2.o /usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtbegin.o -L/usr/lib/gcc/x86_64-w64-mingw32/13-win32 -L/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib -v --whole-archive CMakeFiles/cmTC_ad56d.dir/objects.a --no-whole-archive --out-implib libcmTC_ad56d.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lkernel32 -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lkernel32 /usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtend.o
+        collect2 version 13-win32
+        /usr/bin/x86_64-w64-mingw32-ld -plugin /usr/lib/gcc/x86_64-w64-mingw32/13-win32/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/lto-wrapper -plugin-opt=-fresolution=/tmp/ccGupHka.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_ad56d.exe /usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib/crt2.o /usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtbegin.o -L/usr/lib/gcc/x86_64-w64-mingw32/13-win32 -L/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib -v --whole-archive CMakeFiles/cmTC_ad56d.dir/objects.a --no-whole-archive --out-implib libcmTC_ad56d.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lkernel32 -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lkernel32 /usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtend.o
+        GNU ld (GNU Binutils) 2.43.1
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_ad56d.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_ad56d.'
+        /usr/bin/cmake -E rm -f CMakeFiles/cmTC_ad56d.dir/objects.a
+        /usr/bin/x86_64-w64-mingw32-ar qc CMakeFiles/cmTC_ad56d.dir/objects.a @CMakeFiles/cmTC_ad56d.dir/objects1.rsp
+        /usr/bin/x86_64-w64-mingw32-gcc  -v -Wl,-v -Wl,--whole-archive CMakeFiles/cmTC_ad56d.dir/objects.a -Wl,--no-whole-archive -o cmTC_ad56d.exe -Wl,--out-implib,libcmTC_ad56d.dll.a -Wl,--major-image-version,0,--minor-image-version,0
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-p5qrvP'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:182 (message)"
+      - "/usr/share/cmake-3.31/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include]
+          add: [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include-fixed]
+          add: [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/include]
+        end of search list found
+        collapse include dir [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include] ==> [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include]
+        collapse include dir [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include-fixed] ==> [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include-fixed]
+        collapse include dir [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/include] ==> [/usr/x86_64-w64-mingw32/include]
+        implicit include dirs: [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include;/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include-fixed;/usr/x86_64-w64-mingw32/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:218 (message)"
+      - "/usr/share/cmake-3.31/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?))("|,| |$)]
+        ignore line: [Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-p5qrvP']
+        ignore line: []
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_ad56d/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_ad56d.dir/build.make CMakeFiles/cmTC_ad56d.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-p5qrvP']
+        ignore line: [Building C object CMakeFiles/cmTC_ad56d.dir/CMakeCCompilerABI.c.obj]
+        ignore line: [/usr/bin/x86_64-w64-mingw32-gcc   -v -o CMakeFiles/cmTC_ad56d.dir/CMakeCCompilerABI.c.obj -c /usr/share/cmake-3.31/Modules/CMakeCCompilerABI.c]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/x86_64-w64-mingw32-gcc]
+        ignore line: [Target: x86_64-w64-mingw32]
+        ignore line: [Configured with: ../../src/configure --build=x86_64-linux-gnu --prefix=/usr --includedir='/usr/include' --mandir='/usr/share/man' --infodir='/usr/share/info' --sysconfdir=/etc --localstatedir=/var --disable-option-checking --disable-silent-rules --libdir='/usr/lib/x86_64-linux-gnu' --libexecdir='/usr/lib/x86_64-linux-gnu' --disable-maintainer-mode --disable-dependency-tracking --prefix=/usr --enable-shared --enable-static --disable-multilib --with-system-zlib --libexecdir=/usr/lib --without-included-gettext --libdir=/usr/lib --enable-libstdcxx-time=yes --with-tune=generic --with-headers --enable-version-specific-runtime-libs --enable-fully-dynamic-string --enable-libgomp --enable-languages=c,c++,fortran,objc,obj-c++,ada --enable-lto --enable-threads=win32 --program-suffix=-win32 --program-prefix=x86_64-w64-mingw32- --target=x86_64-w64-mingw32 --with-as=/usr/bin/x86_64-w64-mingw32-as --with-ld=/usr/bin/x86_64-w64-mingw32-ld --enable-libatomic --enable-libstdcxx-filesystem-ts=yes --enable-dependency-tracking SED=/bin/sed]
+        ignore line: [Thread model: win32]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 13-win32 (GCC) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ad56d.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ad56d.dir/']
+        ignore line: [ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/cc1 -quiet -v -U_REENTRANT /usr/share/cmake-3.31/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_ad56d.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o /tmp/ccryOAjI.s]
+        ignore line: [GNU C17 (GCC) version 13-win32 (x86_64-w64-mingw32)]
+        ignore line: [	compiled by GNU C version 13.2.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.27-GMP]
+        ignore line: []
+        ignore line: [warning: MPFR header version 4.2.1 differs from library version 4.2.2.]
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/sys-include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include]
+        ignore line: [ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include-fixed]
+        ignore line: [ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/include]
+        ignore line: [End of search list.]
+        ignore line: [Compiler executable checksum: 2f238ebf931cb75a735d1d63553d9825]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ad56d.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ad56d.dir/']
+        ignore line: [ /usr/bin/x86_64-w64-mingw32-as -v -o CMakeFiles/cmTC_ad56d.dir/CMakeCCompilerABI.c.obj /tmp/ccryOAjI.s]
+        ignore line: [GNU assembler version 2.43.1 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.43.1]
+        ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/bin/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ad56d.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ad56d.dir/CMakeCCompilerABI.c.']
+        ignore line: [Linking C executable cmTC_ad56d.exe]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ad56d.dir/link.txt --verbose=1]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/x86_64-w64-mingw32-gcc]
+        ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/lto-wrapper]
+        ignore line: [Target: x86_64-w64-mingw32]
+        ignore line: [Configured with: ../../src/configure --build=x86_64-linux-gnu --prefix=/usr --includedir='/usr/include' --mandir='/usr/share/man' --infodir='/usr/share/info' --sysconfdir=/etc --localstatedir=/var --disable-option-checking --disable-silent-rules --libdir='/usr/lib/x86_64-linux-gnu' --libexecdir='/usr/lib/x86_64-linux-gnu' --disable-maintainer-mode --disable-dependency-tracking --prefix=/usr --enable-shared --enable-static --disable-multilib --with-system-zlib --libexecdir=/usr/lib --without-included-gettext --libdir=/usr/lib --enable-libstdcxx-time=yes --with-tune=generic --with-headers --enable-version-specific-runtime-libs --enable-fully-dynamic-string --enable-libgomp --enable-languages=c,c++,fortran,objc,obj-c++,ada --enable-lto --enable-threads=win32 --program-suffix=-win32 --program-prefix=x86_64-w64-mingw32- --target=x86_64-w64-mingw32 --with-as=/usr/bin/x86_64-w64-mingw32-as --with-ld=/usr/bin/x86_64-w64-mingw32-ld --enable-libatomic --enable-libstdcxx-filesystem-ts=yes --enable-dependency-tracking SED=/bin/sed]
+        ignore line: [Thread model: win32]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 13-win32 (GCC) ]
+        ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/bin/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_ad56d.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_ad56d.']
+        link line: [ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/collect2 -plugin /usr/lib/gcc/x86_64-w64-mingw32/13-win32/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/lto-wrapper -plugin-opt=-fresolution=/tmp/ccGupHka.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_ad56d.exe /usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib/crt2.o /usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtbegin.o -L/usr/lib/gcc/x86_64-w64-mingw32/13-win32 -L/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib -v --whole-archive CMakeFiles/cmTC_ad56d.dir/objects.a --no-whole-archive --out-implib libcmTC_ad56d.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lkernel32 -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lkernel32 /usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtend.o]
+          arg [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccGupHka.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_eh] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmoldname] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwex] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmsvcrt] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-plugin-opt=-pass-through=-ladvapi32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lshell32] ==> ignore
+          arg [-plugin-opt=-pass-through=-luser32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_eh] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmoldname] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwex] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmsvcrt] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-m] ==> ignore
+          arg [i386pep] ==> ignore
+          arg [-Bdynamic] ==> search dynamic
+          arg [-o] ==> ignore
+          arg [cmTC_ad56d.exe] ==> ignore
+          arg [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib/crt2.o] ==> obj [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib/crt2.o]
+          arg [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtbegin.o] ==> obj [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtbegin.o]
+          arg [-L/usr/lib/gcc/x86_64-w64-mingw32/13-win32] ==> dir [/usr/lib/gcc/x86_64-w64-mingw32/13-win32]
+          arg [-L/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib] ==> dir [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib]
+          arg [-v] ==> ignore
+          arg [--whole-archive] ==> ignore
+          arg [CMakeFiles/cmTC_ad56d.dir/objects.a] ==> ignore
+          arg [--no-whole-archive] ==> ignore
+          arg [--out-implib] ==> ignore
+          arg [libcmTC_ad56d.dll.a] ==> ignore
+          arg [--major-image-version] ==> ignore
+          arg [0] ==> ignore
+          arg [--minor-image-version] ==> ignore
+          arg [0] ==> ignore
+          arg [-lmingw32] ==> lib [mingw32]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lgcc_eh] ==> lib [gcc_eh]
+          arg [-lmoldname] ==> lib [moldname]
+          arg [-lmingwex] ==> lib [mingwex]
+          arg [-lmsvcrt] ==> lib [msvcrt]
+          arg [-lkernel32] ==> lib [kernel32]
+          arg [-ladvapi32] ==> lib [advapi32]
+          arg [-lshell32] ==> lib [shell32]
+          arg [-luser32] ==> lib [user32]
+          arg [-lkernel32] ==> lib [kernel32]
+          arg [-lmingw32] ==> lib [mingw32]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lgcc_eh] ==> lib [gcc_eh]
+          arg [-lmoldname] ==> lib [moldname]
+          arg [-lmingwex] ==> lib [mingwex]
+          arg [-lmsvcrt] ==> lib [msvcrt]
+          arg [-lkernel32] ==> lib [kernel32]
+          arg [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtend.o] ==> obj [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtend.o]
+        ignore line: [collect2 version 13-win32]
+        ignore line: [/usr/bin/x86_64-w64-mingw32-ld -plugin /usr/lib/gcc/x86_64-w64-mingw32/13-win32/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/lto-wrapper -plugin-opt=-fresolution=/tmp/ccGupHka.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_ad56d.exe /usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib/crt2.o /usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtbegin.o -L/usr/lib/gcc/x86_64-w64-mingw32/13-win32 -L/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib -v --whole-archive CMakeFiles/cmTC_ad56d.dir/objects.a --no-whole-archive --out-implib libcmTC_ad56d.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lkernel32 -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lkernel32 /usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtend.o]
+        ignore line: [GNU ld (GNU Binutils) 2.43.1]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_ad56d.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_ad56d.']
+        ignore line: [/usr/bin/cmake -E rm -f CMakeFiles/cmTC_ad56d.dir/objects.a]
+        ignore line: [/usr/bin/x86_64-w64-mingw32-ar qc CMakeFiles/cmTC_ad56d.dir/objects.a @CMakeFiles/cmTC_ad56d.dir/objects1.rsp]
+        ignore line: [/usr/bin/x86_64-w64-mingw32-gcc  -v -Wl -v -Wl --whole-archive CMakeFiles/cmTC_ad56d.dir/objects.a -Wl --no-whole-archive -o cmTC_ad56d.exe -Wl --out-implib libcmTC_ad56d.dll.a -Wl --major-image-version 0 --minor-image-version 0]
+        ignore line: [gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-p5qrvP']
+        ignore line: []
+        ignore line: []
+        remove lib [gcc_eh]
+        remove lib [msvcrt]
+        remove lib [gcc_eh]
+        remove lib [msvcrt]
+        collapse obj [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib/crt2.o] ==> [/usr/x86_64-w64-mingw32/lib/crt2.o]
+        collapse library dir [/usr/lib/gcc/x86_64-w64-mingw32/13-win32] ==> [/usr/lib/gcc/x86_64-w64-mingw32/13-win32]
+        collapse library dir [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib] ==> [/usr/x86_64-w64-mingw32/lib]
+        implicit libs: [mingw32;gcc;moldname;mingwex;kernel32;advapi32;shell32;user32;kernel32;mingw32;gcc;moldname;mingwex;kernel32]
+        implicit objs: [/usr/x86_64-w64-mingw32/lib/crt2.o;/usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtbegin.o;/usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtend.o]
+        implicit dirs: [/usr/lib/gcc/x86_64-w64-mingw32/13-win32;/usr/x86_64-w64-mingw32/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:74 (try_compile)"
+      - "/usr/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-hwrYs8"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-hwrYs8"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-hwrYs8'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_8d4a6/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_8d4a6.dir/build.make CMakeFiles/cmTC_8d4a6.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-hwrYs8'
+        Building CXX object CMakeFiles/cmTC_8d4a6.dir/CMakeCXXCompilerABI.cpp.obj
+        /usr/bin/x86_64-w64-mingw32-g++   -v -o CMakeFiles/cmTC_8d4a6.dir/CMakeCXXCompilerABI.cpp.obj -c /usr/share/cmake-3.31/Modules/CMakeCXXCompilerABI.cpp
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/x86_64-w64-mingw32-g++
+        Target: x86_64-w64-mingw32
+        Configured with: ../../src/configure --build=x86_64-linux-gnu --prefix=/usr --includedir='/usr/include' --mandir='/usr/share/man' --infodir='/usr/share/info' --sysconfdir=/etc --localstatedir=/var --disable-option-checking --disable-silent-rules --libdir='/usr/lib/x86_64-linux-gnu' --libexecdir='/usr/lib/x86_64-linux-gnu' --disable-maintainer-mode --disable-dependency-tracking --prefix=/usr --enable-shared --enable-static --disable-multilib --with-system-zlib --libexecdir=/usr/lib --without-included-gettext --libdir=/usr/lib --enable-libstdcxx-time=yes --with-tune=generic --with-headers --enable-version-specific-runtime-libs --enable-fully-dynamic-string --enable-libgomp --enable-languages=c,c++,fortran,objc,obj-c++,ada --enable-lto --enable-threads=win32 --program-suffix=-win32 --program-prefix=x86_64-w64-mingw32- --target=x86_64-w64-mingw32 --with-as=/usr/bin/x86_64-w64-mingw32-as --with-ld=/usr/bin/x86_64-w64-mingw32-ld --enable-libatomic --enable-libstdcxx-filesystem-ts=yes --enable-dependency-tracking SED=/bin/sed
+        Thread model: win32
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 13-win32 (GCC) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_8d4a6.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_8d4a6.dir/'
+         /usr/lib/gcc/x86_64-w64-mingw32/13-win32/cc1plus -quiet -v -U_REENTRANT /usr/share/cmake-3.31/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_8d4a6.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -o /tmp/ccaS5BmR.s
+        GNU C++17 (GCC) version 13-win32 (x86_64-w64-mingw32)
+        	compiled by GNU C version 13.2.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.27-GMP
+        
+        warning: MPFR header version 4.2.1 differs from library version 4.2.2.
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/sys-include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++
+         /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/x86_64-w64-mingw32
+         /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/backward
+         /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include
+         /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include-fixed
+         /usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/include
+        End of search list.
+        Compiler executable checksum: d9aa912102515005505aa1bbf0e5f800
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_8d4a6.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_8d4a6.dir/'
+         /usr/bin/x86_64-w64-mingw32-as -v -o CMakeFiles/cmTC_8d4a6.dir/CMakeCXXCompilerABI.cpp.obj /tmp/ccaS5BmR.s
+        GNU assembler version 2.43.1 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.43.1
+        COMPILER_PATH=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/bin/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_8d4a6.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_8d4a6.dir/CMakeCXXCompilerABI.cpp.'
+        Linking CXX executable cmTC_8d4a6.exe
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8d4a6.dir/link.txt --verbose=1
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/x86_64-w64-mingw32-g++
+        COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/lto-wrapper
+        Target: x86_64-w64-mingw32
+        Configured with: ../../src/configure --build=x86_64-linux-gnu --prefix=/usr --includedir='/usr/include' --mandir='/usr/share/man' --infodir='/usr/share/info' --sysconfdir=/etc --localstatedir=/var --disable-option-checking --disable-silent-rules --libdir='/usr/lib/x86_64-linux-gnu' --libexecdir='/usr/lib/x86_64-linux-gnu' --disable-maintainer-mode --disable-dependency-tracking --prefix=/usr --enable-shared --enable-static --disable-multilib --with-system-zlib --libexecdir=/usr/lib --without-included-gettext --libdir=/usr/lib --enable-libstdcxx-time=yes --with-tune=generic --with-headers --enable-version-specific-runtime-libs --enable-fully-dynamic-string --enable-libgomp --enable-languages=c,c++,fortran,objc,obj-c++,ada --enable-lto --enable-threads=win32 --program-suffix=-win32 --program-prefix=x86_64-w64-mingw32- --target=x86_64-w64-mingw32 --with-as=/usr/bin/x86_64-w64-mingw32-as --with-ld=/usr/bin/x86_64-w64-mingw32-ld --enable-libatomic --enable-libstdcxx-filesystem-ts=yes --enable-dependency-tracking SED=/bin/sed
+        Thread model: win32
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 13-win32 (GCC) 
+        COMPILER_PATH=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/bin/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_8d4a6.exe' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_8d4a6.'
+         /usr/lib/gcc/x86_64-w64-mingw32/13-win32/collect2 -plugin /usr/lib/gcc/x86_64-w64-mingw32/13-win32/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/lto-wrapper -plugin-opt=-fresolution=/tmp/ccgdpKIa.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_8d4a6.exe /usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib/crt2.o /usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtbegin.o -L/usr/lib/gcc/x86_64-w64-mingw32/13-win32 -L/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib -v --whole-archive CMakeFiles/cmTC_8d4a6.dir/objects.a --no-whole-archive --out-implib libcmTC_8d4a6.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 /usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtend.o
+        collect2 version 13-win32
+        /usr/bin/x86_64-w64-mingw32-ld -plugin /usr/lib/gcc/x86_64-w64-mingw32/13-win32/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/lto-wrapper -plugin-opt=-fresolution=/tmp/ccgdpKIa.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_8d4a6.exe /usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib/crt2.o /usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtbegin.o -L/usr/lib/gcc/x86_64-w64-mingw32/13-win32 -L/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib -v --whole-archive CMakeFiles/cmTC_8d4a6.dir/objects.a --no-whole-archive --out-implib libcmTC_8d4a6.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 /usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtend.o
+        GNU ld (GNU Binutils) 2.43.1
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_8d4a6.exe' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_8d4a6.'
+        /usr/bin/cmake -E rm -f CMakeFiles/cmTC_8d4a6.dir/objects.a
+        /usr/bin/x86_64-w64-mingw32-ar qc CMakeFiles/cmTC_8d4a6.dir/objects.a @CMakeFiles/cmTC_8d4a6.dir/objects1.rsp
+        /usr/bin/x86_64-w64-mingw32-g++  -v -Wl,-v -Wl,--whole-archive CMakeFiles/cmTC_8d4a6.dir/objects.a -Wl,--no-whole-archive -o cmTC_8d4a6.exe -Wl,--out-implib,libcmTC_8d4a6.dll.a -Wl,--major-image-version,0,--minor-image-version,0
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-hwrYs8'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:182 (message)"
+      - "/usr/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++]
+          add: [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/x86_64-w64-mingw32]
+          add: [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/backward]
+          add: [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include]
+          add: [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include-fixed]
+          add: [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/include]
+        end of search list found
+        collapse include dir [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++] ==> [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++]
+        collapse include dir [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/x86_64-w64-mingw32] ==> [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/x86_64-w64-mingw32]
+        collapse include dir [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/backward] ==> [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/backward]
+        collapse include dir [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include] ==> [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include]
+        collapse include dir [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include-fixed] ==> [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include-fixed]
+        collapse include dir [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/include] ==> [/usr/x86_64-w64-mingw32/include]
+        implicit include dirs: [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++;/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/x86_64-w64-mingw32;/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/backward;/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include;/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include-fixed;/usr/x86_64-w64-mingw32/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:218 (message)"
+      - "/usr/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?))("|,| |$)]
+        ignore line: [Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-hwrYs8']
+        ignore line: []
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_8d4a6/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_8d4a6.dir/build.make CMakeFiles/cmTC_8d4a6.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-hwrYs8']
+        ignore line: [Building CXX object CMakeFiles/cmTC_8d4a6.dir/CMakeCXXCompilerABI.cpp.obj]
+        ignore line: [/usr/bin/x86_64-w64-mingw32-g++   -v -o CMakeFiles/cmTC_8d4a6.dir/CMakeCXXCompilerABI.cpp.obj -c /usr/share/cmake-3.31/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/x86_64-w64-mingw32-g++]
+        ignore line: [Target: x86_64-w64-mingw32]
+        ignore line: [Configured with: ../../src/configure --build=x86_64-linux-gnu --prefix=/usr --includedir='/usr/include' --mandir='/usr/share/man' --infodir='/usr/share/info' --sysconfdir=/etc --localstatedir=/var --disable-option-checking --disable-silent-rules --libdir='/usr/lib/x86_64-linux-gnu' --libexecdir='/usr/lib/x86_64-linux-gnu' --disable-maintainer-mode --disable-dependency-tracking --prefix=/usr --enable-shared --enable-static --disable-multilib --with-system-zlib --libexecdir=/usr/lib --without-included-gettext --libdir=/usr/lib --enable-libstdcxx-time=yes --with-tune=generic --with-headers --enable-version-specific-runtime-libs --enable-fully-dynamic-string --enable-libgomp --enable-languages=c,c++,fortran,objc,obj-c++,ada --enable-lto --enable-threads=win32 --program-suffix=-win32 --program-prefix=x86_64-w64-mingw32- --target=x86_64-w64-mingw32 --with-as=/usr/bin/x86_64-w64-mingw32-as --with-ld=/usr/bin/x86_64-w64-mingw32-ld --enable-libatomic --enable-libstdcxx-filesystem-ts=yes --enable-dependency-tracking SED=/bin/sed]
+        ignore line: [Thread model: win32]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 13-win32 (GCC) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_8d4a6.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_8d4a6.dir/']
+        ignore line: [ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/cc1plus -quiet -v -U_REENTRANT /usr/share/cmake-3.31/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_8d4a6.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -o /tmp/ccaS5BmR.s]
+        ignore line: [GNU C++17 (GCC) version 13-win32 (x86_64-w64-mingw32)]
+        ignore line: [	compiled by GNU C version 13.2.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.27-GMP]
+        ignore line: []
+        ignore line: [warning: MPFR header version 4.2.1 differs from library version 4.2.2.]
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/sys-include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++]
+        ignore line: [ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/x86_64-w64-mingw32]
+        ignore line: [ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/backward]
+        ignore line: [ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include]
+        ignore line: [ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include-fixed]
+        ignore line: [ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/include]
+        ignore line: [End of search list.]
+        ignore line: [Compiler executable checksum: d9aa912102515005505aa1bbf0e5f800]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_8d4a6.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_8d4a6.dir/']
+        ignore line: [ /usr/bin/x86_64-w64-mingw32-as -v -o CMakeFiles/cmTC_8d4a6.dir/CMakeCXXCompilerABI.cpp.obj /tmp/ccaS5BmR.s]
+        ignore line: [GNU assembler version 2.43.1 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.43.1]
+        ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/bin/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_8d4a6.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_8d4a6.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX executable cmTC_8d4a6.exe]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8d4a6.dir/link.txt --verbose=1]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/x86_64-w64-mingw32-g++]
+        ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/lto-wrapper]
+        ignore line: [Target: x86_64-w64-mingw32]
+        ignore line: [Configured with: ../../src/configure --build=x86_64-linux-gnu --prefix=/usr --includedir='/usr/include' --mandir='/usr/share/man' --infodir='/usr/share/info' --sysconfdir=/etc --localstatedir=/var --disable-option-checking --disable-silent-rules --libdir='/usr/lib/x86_64-linux-gnu' --libexecdir='/usr/lib/x86_64-linux-gnu' --disable-maintainer-mode --disable-dependency-tracking --prefix=/usr --enable-shared --enable-static --disable-multilib --with-system-zlib --libexecdir=/usr/lib --without-included-gettext --libdir=/usr/lib --enable-libstdcxx-time=yes --with-tune=generic --with-headers --enable-version-specific-runtime-libs --enable-fully-dynamic-string --enable-libgomp --enable-languages=c,c++,fortran,objc,obj-c++,ada --enable-lto --enable-threads=win32 --program-suffix=-win32 --program-prefix=x86_64-w64-mingw32- --target=x86_64-w64-mingw32 --with-as=/usr/bin/x86_64-w64-mingw32-as --with-ld=/usr/bin/x86_64-w64-mingw32-ld --enable-libatomic --enable-libstdcxx-filesystem-ts=yes --enable-dependency-tracking SED=/bin/sed]
+        ignore line: [Thread model: win32]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 13-win32 (GCC) ]
+        ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/bin/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/:/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_8d4a6.exe' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_8d4a6.']
+        link line: [ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/collect2 -plugin /usr/lib/gcc/x86_64-w64-mingw32/13-win32/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/lto-wrapper -plugin-opt=-fresolution=/tmp/ccgdpKIa.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_8d4a6.exe /usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib/crt2.o /usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtbegin.o -L/usr/lib/gcc/x86_64-w64-mingw32/13-win32 -L/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib -v --whole-archive CMakeFiles/cmTC_8d4a6.dir/objects.a --no-whole-archive --out-implib libcmTC_8d4a6.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 /usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtend.o]
+          arg [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccgdpKIa.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmoldname] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwex] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmsvcrt] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-plugin-opt=-pass-through=-ladvapi32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lshell32] ==> ignore
+          arg [-plugin-opt=-pass-through=-luser32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmoldname] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwex] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmsvcrt] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-m] ==> ignore
+          arg [i386pep] ==> ignore
+          arg [-Bdynamic] ==> search dynamic
+          arg [-o] ==> ignore
+          arg [cmTC_8d4a6.exe] ==> ignore
+          arg [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib/crt2.o] ==> obj [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib/crt2.o]
+          arg [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtbegin.o] ==> obj [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtbegin.o]
+          arg [-L/usr/lib/gcc/x86_64-w64-mingw32/13-win32] ==> dir [/usr/lib/gcc/x86_64-w64-mingw32/13-win32]
+          arg [-L/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib] ==> dir [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib]
+          arg [-v] ==> ignore
+          arg [--whole-archive] ==> ignore
+          arg [CMakeFiles/cmTC_8d4a6.dir/objects.a] ==> ignore
+          arg [--no-whole-archive] ==> ignore
+          arg [--out-implib] ==> ignore
+          arg [libcmTC_8d4a6.dll.a] ==> ignore
+          arg [--major-image-version] ==> ignore
+          arg [0] ==> ignore
+          arg [--minor-image-version] ==> ignore
+          arg [0] ==> ignore
+          arg [-lstdc++] ==> lib [stdc++]
+          arg [-lmingw32] ==> lib [mingw32]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lmoldname] ==> lib [moldname]
+          arg [-lmingwex] ==> lib [mingwex]
+          arg [-lmsvcrt] ==> lib [msvcrt]
+          arg [-lkernel32] ==> lib [kernel32]
+          arg [-ladvapi32] ==> lib [advapi32]
+          arg [-lshell32] ==> lib [shell32]
+          arg [-luser32] ==> lib [user32]
+          arg [-lkernel32] ==> lib [kernel32]
+          arg [-lmingw32] ==> lib [mingw32]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lmoldname] ==> lib [moldname]
+          arg [-lmingwex] ==> lib [mingwex]
+          arg [-lmsvcrt] ==> lib [msvcrt]
+          arg [-lkernel32] ==> lib [kernel32]
+          arg [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtend.o] ==> obj [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtend.o]
+        ignore line: [collect2 version 13-win32]
+        ignore line: [/usr/bin/x86_64-w64-mingw32-ld -plugin /usr/lib/gcc/x86_64-w64-mingw32/13-win32/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-w64-mingw32/13-win32/lto-wrapper -plugin-opt=-fresolution=/tmp/ccgdpKIa.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_8d4a6.exe /usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib/crt2.o /usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtbegin.o -L/usr/lib/gcc/x86_64-w64-mingw32/13-win32 -L/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib -v --whole-archive CMakeFiles/cmTC_8d4a6.dir/objects.a --no-whole-archive --out-implib libcmTC_8d4a6.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 /usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtend.o]
+        ignore line: [GNU ld (GNU Binutils) 2.43.1]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_8d4a6.exe' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_8d4a6.']
+        ignore line: [/usr/bin/cmake -E rm -f CMakeFiles/cmTC_8d4a6.dir/objects.a]
+        ignore line: [/usr/bin/x86_64-w64-mingw32-ar qc CMakeFiles/cmTC_8d4a6.dir/objects.a @CMakeFiles/cmTC_8d4a6.dir/objects1.rsp]
+        ignore line: [/usr/bin/x86_64-w64-mingw32-g++  -v -Wl -v -Wl --whole-archive CMakeFiles/cmTC_8d4a6.dir/objects.a -Wl --no-whole-archive -o cmTC_8d4a6.exe -Wl --out-implib libcmTC_8d4a6.dll.a -Wl --major-image-version 0 --minor-image-version 0]
+        ignore line: [gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-hwrYs8']
+        ignore line: []
+        ignore line: []
+        remove lib [msvcrt]
+        remove lib [msvcrt]
+        collapse obj [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib/crt2.o] ==> [/usr/x86_64-w64-mingw32/lib/crt2.o]
+        collapse library dir [/usr/lib/gcc/x86_64-w64-mingw32/13-win32] ==> [/usr/lib/gcc/x86_64-w64-mingw32/13-win32]
+        collapse library dir [/usr/lib/gcc/x86_64-w64-mingw32/13-win32/../../../../x86_64-w64-mingw32/lib] ==> [/usr/x86_64-w64-mingw32/lib]
+        implicit libs: [stdc++;mingw32;gcc_s;gcc;moldname;mingwex;kernel32;advapi32;shell32;user32;kernel32;mingw32;gcc_s;gcc;moldname;mingwex;kernel32]
+        implicit objs: [/usr/x86_64-w64-mingw32/lib/crt2.o;/usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtbegin.o;/usr/lib/gcc/x86_64-w64-mingw32/13-win32/crtend.o]
+        implicit dirs: [/usr/lib/gcc/x86_64-w64-mingw32/13-win32;/usr/x86_64-w64-mingw32/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.31/Modules/Internal/CheckSourceCompiles.cmake:108 (try_compile)"
+      - "/usr/share/cmake-3.31/Modules/CheckCSourceCompiles.cmake:58 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.31/Modules/FindThreads.cmake:97 (CHECK_C_SOURCE_COMPILES)"
+      - "/usr/share/cmake-3.31/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "build-windows/_deps/glfw-src/CMakeLists.txt:61 (find_package)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-IHDrtf"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-IHDrtf"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-windows/_deps/glfw-src/CMake/modules"
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-IHDrtf'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_e1939/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_e1939.dir/build.make CMakeFiles/cmTC_e1939.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-IHDrtf'
+        Building C object CMakeFiles/cmTC_e1939.dir/src.c.obj
+        /usr/bin/x86_64-w64-mingw32-gcc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_e1939.dir/src.c.obj -c /home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-IHDrtf/src.c
+        Linking C executable cmTC_e1939.exe
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e1939.dir/link.txt --verbose=1
+        /usr/bin/x86_64-w64-mingw32-ld: CMakeFiles/cmTC_e1939.dir/objects.a(src.c.obj):src.c:(.text+0x35): undefined reference to `pthread_create'
+        /usr/bin/x86_64-w64-mingw32-ld: CMakeFiles/cmTC_e1939.dir/objects.a(src.c.obj):src.c:(.text+0x41): undefined reference to `pthread_detach'
+        /usr/bin/x86_64-w64-mingw32-ld: CMakeFiles/cmTC_e1939.dir/objects.a(src.c.obj):src.c:(.text+0x4d): undefined reference to `pthread_cancel'
+        /usr/bin/x86_64-w64-mingw32-ld: CMakeFiles/cmTC_e1939.dir/objects.a(src.c.obj):src.c:(.text+0x5e): undefined reference to `pthread_join'
+        /usr/bin/x86_64-w64-mingw32-ld: CMakeFiles/cmTC_e1939.dir/objects.a(src.c.obj):src.c:(.text+0x68): undefined reference to `pthread_exit'
+        collect2: error: ld returned 1 exit status
+        /usr/bin/cmake -E rm -f CMakeFiles/cmTC_e1939.dir/objects.a
+        /usr/bin/x86_64-w64-mingw32-ar qc CMakeFiles/cmTC_e1939.dir/objects.a @CMakeFiles/cmTC_e1939.dir/objects1.rsp
+        /usr/bin/x86_64-w64-mingw32-gcc -Wl,--whole-archive CMakeFiles/cmTC_e1939.dir/objects.a -Wl,--no-whole-archive -o cmTC_e1939.exe -Wl,--out-implib,libcmTC_e1939.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_e1939.dir/linkLibs.rsp
+        gmake[1]: *** [CMakeFiles/cmTC_e1939.dir/build.make:104: cmTC_e1939.exe] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-IHDrtf'
+        gmake: *** [Makefile:134: cmTC_e1939/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.31/Modules/CheckLibraryExists.cmake:78 (try_compile)"
+      - "/usr/share/cmake-3.31/Modules/FindThreads.cmake:112 (CHECK_LIBRARY_EXISTS)"
+      - "/usr/share/cmake-3.31/Modules/FindThreads.cmake:175 (_threads_check_lib)"
+      - "build-windows/_deps/glfw-src/CMakeLists.txt:61 (find_package)"
+    checks:
+      - "Looking for pthread_create in pthreads"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-2BrzS2"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-2BrzS2"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-windows/_deps/glfw-src/CMake/modules"
+    buildResult:
+      variable: "CMAKE_HAVE_PTHREADS_CREATE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-2BrzS2'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_a7e2b/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_a7e2b.dir/build.make CMakeFiles/cmTC_a7e2b.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-2BrzS2'
+        Building C object CMakeFiles/cmTC_a7e2b.dir/CheckFunctionExists.c.obj
+        /usr/bin/x86_64-w64-mingw32-gcc   -DCHECK_FUNCTION_EXISTS=pthread_create -o CMakeFiles/cmTC_a7e2b.dir/CheckFunctionExists.c.obj -c /home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-2BrzS2/CheckFunctionExists.c
+        Linking C executable cmTC_a7e2b.exe
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a7e2b.dir/link.txt --verbose=1
+        /usr/bin/x86_64-w64-mingw32-ld: cannot find -lpthreads: No such file or directory
+        collect2: error: ld returned 1 exit status
+        /usr/bin/cmake -E rm -f CMakeFiles/cmTC_a7e2b.dir/objects.a
+        /usr/bin/x86_64-w64-mingw32-ar qc CMakeFiles/cmTC_a7e2b.dir/objects.a @CMakeFiles/cmTC_a7e2b.dir/objects1.rsp
+        /usr/bin/x86_64-w64-mingw32-gcc  -DCHECK_FUNCTION_EXISTS=pthread_create -Wl,--whole-archive CMakeFiles/cmTC_a7e2b.dir/objects.a -Wl,--no-whole-archive -o cmTC_a7e2b.exe -Wl,--out-implib,libcmTC_a7e2b.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_a7e2b.dir/linkLibs.rsp
+        gmake[1]: *** [CMakeFiles/cmTC_a7e2b.dir/build.make:104: cmTC_a7e2b.exe] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-2BrzS2'
+        gmake: *** [Makefile:134: cmTC_a7e2b/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.31/Modules/CheckLibraryExists.cmake:78 (try_compile)"
+      - "/usr/share/cmake-3.31/Modules/FindThreads.cmake:112 (CHECK_LIBRARY_EXISTS)"
+      - "/usr/share/cmake-3.31/Modules/FindThreads.cmake:176 (_threads_check_lib)"
+      - "build-windows/_deps/glfw-src/CMakeLists.txt:61 (find_package)"
+    checks:
+      - "Looking for pthread_create in pthread"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-zitRQp"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-zitRQp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-windows/_deps/glfw-src/CMake/modules"
+    buildResult:
+      variable: "CMAKE_HAVE_PTHREAD_CREATE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-zitRQp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_550aa/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_550aa.dir/build.make CMakeFiles/cmTC_550aa.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-zitRQp'
+        Building C object CMakeFiles/cmTC_550aa.dir/CheckFunctionExists.c.obj
+        /usr/bin/x86_64-w64-mingw32-gcc   -DCHECK_FUNCTION_EXISTS=pthread_create -o CMakeFiles/cmTC_550aa.dir/CheckFunctionExists.c.obj -c /home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-zitRQp/CheckFunctionExists.c
+        Linking C executable cmTC_550aa.exe
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_550aa.dir/link.txt --verbose=1
+        /usr/bin/cmake -E rm -f CMakeFiles/cmTC_550aa.dir/objects.a
+        /usr/bin/x86_64-w64-mingw32-ar qc CMakeFiles/cmTC_550aa.dir/objects.a @CMakeFiles/cmTC_550aa.dir/objects1.rsp
+        /usr/bin/x86_64-w64-mingw32-gcc  -DCHECK_FUNCTION_EXISTS=pthread_create -Wl,--whole-archive CMakeFiles/cmTC_550aa.dir/objects.a -Wl,--no-whole-archive -o cmTC_550aa.exe -Wl,--out-implib,libcmTC_550aa.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_550aa.dir/linkLibs.rsp
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-zitRQp'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.31/Modules/CheckIncludeFile.cmake:99 (try_compile)"
+      - "build-windows/_deps/glfw-src/CMakeLists.txt:110 (check_include_file)"
+    checks:
+      - "Looking for dinput.h"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-DJYEOa"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-DJYEOa"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-windows/_deps/glfw-src/CMake/modules"
+    buildResult:
+      variable: "DINPUT_H_FOUND"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-DJYEOa'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_6e5f4/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_6e5f4.dir/build.make CMakeFiles/cmTC_6e5f4.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-DJYEOa'
+        Building C object CMakeFiles/cmTC_6e5f4.dir/CheckIncludeFile.c.obj
+        /usr/bin/x86_64-w64-mingw32-gcc    -o CMakeFiles/cmTC_6e5f4.dir/CheckIncludeFile.c.obj -c /home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-DJYEOa/CheckIncludeFile.c
+        Linking C executable cmTC_6e5f4.exe
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6e5f4.dir/link.txt --verbose=1
+        /usr/bin/cmake -E rm -f CMakeFiles/cmTC_6e5f4.dir/objects.a
+        /usr/bin/x86_64-w64-mingw32-ar qc CMakeFiles/cmTC_6e5f4.dir/objects.a @CMakeFiles/cmTC_6e5f4.dir/objects1.rsp
+        /usr/bin/x86_64-w64-mingw32-gcc -Wl,--whole-archive CMakeFiles/cmTC_6e5f4.dir/objects.a -Wl,--no-whole-archive -o cmTC_6e5f4.exe -Wl,--out-implib,libcmTC_6e5f4.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_6e5f4.dir/linkLibs.rsp
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-DJYEOa'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.31/Modules/CheckIncludeFile.cmake:99 (try_compile)"
+      - "build-windows/_deps/glfw-src/CMakeLists.txt:111 (check_include_file)"
+    checks:
+      - "Looking for xinput.h"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-lBzQ6D"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-lBzQ6D"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-windows/_deps/glfw-src/CMake/modules"
+    buildResult:
+      variable: "XINPUT_H_FOUND"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-lBzQ6D'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_61626/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_61626.dir/build.make CMakeFiles/cmTC_61626.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-lBzQ6D'
+        Building C object CMakeFiles/cmTC_61626.dir/CheckIncludeFile.c.obj
+        /usr/bin/x86_64-w64-mingw32-gcc    -o CMakeFiles/cmTC_61626.dir/CheckIncludeFile.c.obj -c /home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-lBzQ6D/CheckIncludeFile.c
+        Linking C executable cmTC_61626.exe
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_61626.dir/link.txt --verbose=1
+        /usr/bin/cmake -E rm -f CMakeFiles/cmTC_61626.dir/objects.a
+        /usr/bin/x86_64-w64-mingw32-ar qc CMakeFiles/cmTC_61626.dir/objects.a @CMakeFiles/cmTC_61626.dir/objects1.rsp
+        /usr/bin/x86_64-w64-mingw32-gcc -Wl,--whole-archive CMakeFiles/cmTC_61626.dir/objects.a -Wl,--no-whole-archive -o cmTC_61626.exe -Wl,--out-implib,libcmTC_61626.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_61626.dir/linkLibs.rsp
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-lBzQ6D'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.31/Modules/Internal/CheckSourceCompiles.cmake:108 (try_compile)"
+      - "/usr/share/cmake-3.31/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.31/Modules/CheckCCompilerFlag.cmake:56 (cmake_check_compiler_flag)"
+      - "build-windows/_deps/glfw-src/CMakeLists.txt:121 (check_c_compiler_flag)"
+    checks:
+      - "Performing Test _GLFW_HAS_DEP"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-YuqIMn"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-YuqIMn"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-windows/_deps/glfw-src/CMake/modules"
+    buildResult:
+      variable: "_GLFW_HAS_DEP"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-YuqIMn'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_6156a/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_6156a.dir/build.make CMakeFiles/cmTC_6156a.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-YuqIMn'
+        Building C object CMakeFiles/cmTC_6156a.dir/src.c.obj
+        /usr/bin/x86_64-w64-mingw32-gcc -D_GLFW_HAS_DEP  -Wl,--nxcompat -o CMakeFiles/cmTC_6156a.dir/src.c.obj -c /home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-YuqIMn/src.c
+        Linking C executable cmTC_6156a.exe
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6156a.dir/link.txt --verbose=1
+        /usr/bin/cmake -E rm -f CMakeFiles/cmTC_6156a.dir/objects.a
+        /usr/bin/x86_64-w64-mingw32-ar qc CMakeFiles/cmTC_6156a.dir/objects.a @CMakeFiles/cmTC_6156a.dir/objects1.rsp
+        /usr/bin/x86_64-w64-mingw32-gcc  -Wl,--nxcompat -Wl,--whole-archive CMakeFiles/cmTC_6156a.dir/objects.a -Wl,--no-whole-archive -o cmTC_6156a.exe -Wl,--out-implib,libcmTC_6156a.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_6156a.dir/linkLibs.rsp
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-YuqIMn'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.31/Modules/Internal/CheckSourceCompiles.cmake:108 (try_compile)"
+      - "/usr/share/cmake-3.31/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.31/Modules/CheckCCompilerFlag.cmake:56 (cmake_check_compiler_flag)"
+      - "build-windows/_deps/glfw-src/CMakeLists.txt:128 (check_c_compiler_flag)"
+    checks:
+      - "Performing Test _GLFW_HAS_ASLR"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-jDMtJx"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-jDMtJx"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-windows/_deps/glfw-src/CMake/modules"
+    buildResult:
+      variable: "_GLFW_HAS_ASLR"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-jDMtJx'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_4fdae/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_4fdae.dir/build.make CMakeFiles/cmTC_4fdae.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-jDMtJx'
+        Building C object CMakeFiles/cmTC_4fdae.dir/src.c.obj
+        /usr/bin/x86_64-w64-mingw32-gcc -D_GLFW_HAS_ASLR  -Wl,--dynamicbase -o CMakeFiles/cmTC_4fdae.dir/src.c.obj -c /home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-jDMtJx/src.c
+        Linking C executable cmTC_4fdae.exe
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4fdae.dir/link.txt --verbose=1
+        /usr/bin/cmake -E rm -f CMakeFiles/cmTC_4fdae.dir/objects.a
+        /usr/bin/x86_64-w64-mingw32-ar qc CMakeFiles/cmTC_4fdae.dir/objects.a @CMakeFiles/cmTC_4fdae.dir/objects1.rsp
+        /usr/bin/x86_64-w64-mingw32-gcc  -Wl,--dynamicbase -Wl,--whole-archive CMakeFiles/cmTC_4fdae.dir/objects.a -Wl,--no-whole-archive -o cmTC_4fdae.exe -Wl,--out-implib,libcmTC_4fdae.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_4fdae.dir/linkLibs.rsp
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-jDMtJx'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.31/Modules/Internal/CheckSourceCompiles.cmake:108 (try_compile)"
+      - "/usr/share/cmake-3.31/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.31/Modules/CheckCCompilerFlag.cmake:56 (cmake_check_compiler_flag)"
+      - "build-windows/_deps/glfw-src/CMakeLists.txt:135 (check_c_compiler_flag)"
+    checks:
+      - "Performing Test _GLFW_HAS_64ASLR"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-n5uECp"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-n5uECp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-windows/_deps/glfw-src/CMake/modules"
+    buildResult:
+      variable: "_GLFW_HAS_64ASLR"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-n5uECp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_82b4f/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_82b4f.dir/build.make CMakeFiles/cmTC_82b4f.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-n5uECp'
+        Building C object CMakeFiles/cmTC_82b4f.dir/src.c.obj
+        /usr/bin/x86_64-w64-mingw32-gcc -D_GLFW_HAS_64ASLR  -Wl,--high-entropy-va -o CMakeFiles/cmTC_82b4f.dir/src.c.obj -c /home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-n5uECp/src.c
+        Linking C executable cmTC_82b4f.exe
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_82b4f.dir/link.txt --verbose=1
+        /usr/bin/cmake -E rm -f CMakeFiles/cmTC_82b4f.dir/objects.a
+        /usr/bin/x86_64-w64-mingw32-ar qc CMakeFiles/cmTC_82b4f.dir/objects.a @CMakeFiles/cmTC_82b4f.dir/objects1.rsp
+        /usr/bin/x86_64-w64-mingw32-gcc  -Wl,--high-entropy-va -Wl,--whole-archive CMakeFiles/cmTC_82b4f.dir/objects.a -Wl,--no-whole-archive -o cmTC_82b4f.exe -Wl,--out-implib,libcmTC_82b4f.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_82b4f.dir/linkLibs.rsp
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeScratch/TryCompile-n5uECp'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "build-windows/_deps/fastsimd-src/cmake/ArchDetect.cmake:15 (try_compile)"
+      - "build-windows/_deps/fastsimd-src/CMakeLists.txt:22 (target_architecture)"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-windows/CPM_modules;"
+    buildResult:
+      variable: "compile_result_unused"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d09bc/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_d09bc.dir/build.make CMakeFiles/cmTC_d09bc.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_d09bc.dir/ArchDetect.cpp.obj
+        /usr/bin/x86_64-w64-mingw32-g++   -std=gnu++17 -o CMakeFiles/cmTC_d09bc.dir/ArchDetect.cpp.obj -c /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp:15:16: error: static assertion failed: FASTSIMD_ARCH<X86=SSE2>
+           15 | static_assert( 0, "FASTSIMD_ARCH<" TO_LITERAL( FASTSIMD_ARCH_NAME() ) ">" );
+              |                ^
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:49: error: expected unqualified-id before string constant
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              |                                                 ^
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp:3:32: note: in definition of macro ‘TO_LITERAL_’
+            3 | #define TO_LITERAL_( string ) #string
+              |                                ^~~~~~
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:1: note: in expansion of macro ‘TO_LITERAL’
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              | ^~~~~~~~~~
+        gmake[1]: *** [CMakeFiles/cmTC_d09bc.dir/build.make:81: CMakeFiles/cmTC_d09bc.dir/ArchDetect.cpp.obj] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:134: cmTC_d09bc/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "build-windows/_deps/fastsimd-src/dispatch/cmake/ClassSIMD.cmake:145 (try_compile)"
+      - "external/FastNoise2/src/CMakeLists.txt:69 (fastsimd_create_dispatch_library)"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-windows/CPM_modules;"
+    buildResult:
+      variable: "compile_result_unused"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_bdd62/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_bdd62.dir/build.make CMakeFiles/cmTC_bdd62.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_bdd62.dir/ArchDetect.cpp.obj
+        /usr/bin/x86_64-w64-mingw32-g++ -DTEST_FEATURE_SET_ACTIVE=SSE2  -std=gnu++17 -o CMakeFiles/cmTC_bdd62.dir/ArchDetect.cpp.obj -c /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp:15:16: error: static assertion failed: FASTSIMD_ARCH<X86=SSE2>
+           15 | static_assert( 0, "FASTSIMD_ARCH<" TO_LITERAL( FASTSIMD_ARCH_NAME() ) ">" );
+              |                ^
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:49: error: expected unqualified-id before string constant
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              |                                                 ^
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp:3:32: note: in definition of macro ‘TO_LITERAL_’
+            3 | #define TO_LITERAL_( string ) #string
+              |                                ^~~~~~
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:1: note: in expansion of macro ‘TO_LITERAL’
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              | ^~~~~~~~~~
+        gmake[1]: *** [CMakeFiles/cmTC_bdd62.dir/build.make:81: CMakeFiles/cmTC_bdd62.dir/ArchDetect.cpp.obj] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:134: cmTC_bdd62/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "build-windows/_deps/fastsimd-src/dispatch/cmake/ClassSIMD.cmake:145 (try_compile)"
+      - "external/FastNoise2/src/CMakeLists.txt:69 (fastsimd_create_dispatch_library)"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-windows/CPM_modules;"
+    buildResult:
+      variable: "compile_result_unused"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_2212e/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_2212e.dir/build.make CMakeFiles/cmTC_2212e.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_2212e.dir/ArchDetect.cpp.obj
+        /usr/bin/x86_64-w64-mingw32-g++ -DTEST_FEATURE_SET_ACTIVE=SSE41  -std=gnu++17 -o CMakeFiles/cmTC_2212e.dir/ArchDetect.cpp.obj -c /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp:15:16: error: static assertion failed: FASTSIMD_ARCH<X86=SSE2>
+           15 | static_assert( 0, "FASTSIMD_ARCH<" TO_LITERAL( FASTSIMD_ARCH_NAME() ) ">" );
+              |                ^
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:49: error: expected unqualified-id before string constant
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              |                                                 ^
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp:3:32: note: in definition of macro ‘TO_LITERAL_’
+            3 | #define TO_LITERAL_( string ) #string
+              |                                ^~~~~~
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:1: note: in expansion of macro ‘TO_LITERAL’
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              | ^~~~~~~~~~
+        gmake[1]: *** [CMakeFiles/cmTC_2212e.dir/build.make:81: CMakeFiles/cmTC_2212e.dir/ArchDetect.cpp.obj] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:134: cmTC_2212e/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "build-windows/_deps/fastsimd-src/dispatch/cmake/ClassSIMD.cmake:145 (try_compile)"
+      - "external/FastNoise2/src/CMakeLists.txt:69 (fastsimd_create_dispatch_library)"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-windows/CPM_modules;"
+    buildResult:
+      variable: "compile_result_unused"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_ef0c2/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_ef0c2.dir/build.make CMakeFiles/cmTC_ef0c2.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_ef0c2.dir/ArchDetect.cpp.obj
+        /usr/bin/x86_64-w64-mingw32-g++ -DTEST_FEATURE_SET_ACTIVE=AVX2  -std=gnu++17 -o CMakeFiles/cmTC_ef0c2.dir/ArchDetect.cpp.obj -c /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp:15:16: error: static assertion failed: FASTSIMD_ARCH<X86=SSE2>
+           15 | static_assert( 0, "FASTSIMD_ARCH<" TO_LITERAL( FASTSIMD_ARCH_NAME() ) ">" );
+              |                ^
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:49: error: expected unqualified-id before string constant
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              |                                                 ^
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp:3:32: note: in definition of macro ‘TO_LITERAL_’
+            3 | #define TO_LITERAL_( string ) #string
+              |                                ^~~~~~
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:1: note: in expansion of macro ‘TO_LITERAL’
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              | ^~~~~~~~~~
+        gmake[1]: *** [CMakeFiles/cmTC_ef0c2.dir/build.make:81: CMakeFiles/cmTC_ef0c2.dir/ArchDetect.cpp.obj] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:134: cmTC_ef0c2/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "build-windows/_deps/fastsimd-src/dispatch/cmake/ClassSIMD.cmake:145 (try_compile)"
+      - "external/FastNoise2/src/CMakeLists.txt:69 (fastsimd_create_dispatch_library)"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-windows/CPM_modules;"
+    buildResult:
+      variable: "compile_result_unused"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d2c2a/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_d2c2a.dir/build.make CMakeFiles/cmTC_d2c2a.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_d2c2a.dir/ArchDetect.cpp.obj
+        /usr/bin/x86_64-w64-mingw32-g++ -DTEST_FEATURE_SET_ACTIVE=AVX512  -std=gnu++17 -o CMakeFiles/cmTC_d2c2a.dir/ArchDetect.cpp.obj -c /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp:15:16: error: static assertion failed: FASTSIMD_ARCH<X86=SSE2>
+           15 | static_assert( 0, "FASTSIMD_ARCH<" TO_LITERAL( FASTSIMD_ARCH_NAME() ) ">" );
+              |                ^
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:49: error: expected unqualified-id before string constant
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              |                                                 ^
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp:3:32: note: in definition of macro ‘TO_LITERAL_’
+            3 | #define TO_LITERAL_( string ) #string
+              |                                ^~~~~~
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp:18:1: note: in expansion of macro ‘TO_LITERAL’
+           18 | TO_LITERAL( FASTSIMD_ARCH<FASTSIMD_ARCH_NAME()> );
+              | ^~~~~~~~~~
+        gmake[1]: *** [CMakeFiles/cmTC_d2c2a.dir/build.make:81: CMakeFiles/cmTC_d2c2a.dir/ArchDetect.cpp.obj] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:134: cmTC_d2c2a/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "build-windows/_deps/fastsimd-src/dispatch/cmake/ClassSIMD.cmake:145 (try_compile)"
+      - "external/FastNoise2/src/CMakeLists.txt:69 (fastsimd_create_dispatch_library)"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-windows/CPM_modules;"
+    buildResult:
+      variable: "compile_result_unused"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_ea858/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_ea858.dir/build.make CMakeFiles/cmTC_ea858.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_ea858.dir/ArchDetect.cpp.obj
+        /usr/bin/x86_64-w64-mingw32-g++ -DTEST_FEATURE_SET_ACTIVE=NEON  -std=gnu++17 -o CMakeFiles/cmTC_ea858.dir/ArchDetect.cpp.obj -c /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp
+        In file included from /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp:1:
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/../include/FastSIMD/Utility/ArchDetect.h:92:80: error: missing binary operator before token "("
+           92 | #define FASTSIMD_FEATURE_VALUE_IMPL( feature ) FASTSIMD_FEATURE_VALUE_##feature()
+              |                                                                                ^
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/../include/FastSIMD/Utility/ArchDetect.h:91:43: note: in expansion of macro ‘FASTSIMD_FEATURE_VALUE_IMPL’
+           91 | #define FASTSIMD_FEATURE_VALUE( feature ) FASTSIMD_FEATURE_VALUE_IMPL( feature )
+              |                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp:9:5: note: in expansion of macro ‘FASTSIMD_FEATURE_VALUE’
+            9 | #if FASTSIMD_FEATURE_VALUE( TEST_FEATURE_SET_ACTIVE ) > 0
+              |     ^~~~~~~~~~~~~~~~~~~~~~
+        gmake[1]: *** [CMakeFiles/cmTC_ea858.dir/build.make:81: CMakeFiles/cmTC_ea858.dir/ArchDetect.cpp.obj] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:134: cmTC_ea858/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "build-windows/_deps/fastsimd-src/dispatch/cmake/ClassSIMD.cmake:145 (try_compile)"
+      - "external/FastNoise2/src/CMakeLists.txt:69 (fastsimd_create_dispatch_library)"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-windows/CPM_modules;"
+    buildResult:
+      variable: "compile_result_unused"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_48597/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_48597.dir/build.make CMakeFiles/cmTC_48597.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_48597.dir/ArchDetect.cpp.obj
+        /usr/bin/x86_64-w64-mingw32-g++ -DTEST_FEATURE_SET_ACTIVE=AARCH64  -std=gnu++17 -o CMakeFiles/cmTC_48597.dir/ArchDetect.cpp.obj -c /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp
+        In file included from /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp:1:
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/../include/FastSIMD/Utility/ArchDetect.h:92:80: error: missing binary operator before token "("
+           92 | #define FASTSIMD_FEATURE_VALUE_IMPL( feature ) FASTSIMD_FEATURE_VALUE_##feature()
+              |                                                                                ^
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/../include/FastSIMD/Utility/ArchDetect.h:91:43: note: in expansion of macro ‘FASTSIMD_FEATURE_VALUE_IMPL’
+           91 | #define FASTSIMD_FEATURE_VALUE( feature ) FASTSIMD_FEATURE_VALUE_IMPL( feature )
+              |                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp:9:5: note: in expansion of macro ‘FASTSIMD_FEATURE_VALUE’
+            9 | #if FASTSIMD_FEATURE_VALUE( TEST_FEATURE_SET_ACTIVE ) > 0
+              |     ^~~~~~~~~~~~~~~~~~~~~~
+        gmake[1]: *** [CMakeFiles/cmTC_48597.dir/build.make:81: CMakeFiles/cmTC_48597.dir/ArchDetect.cpp.obj] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:134: cmTC_48597/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "build-windows/_deps/fastsimd-src/dispatch/cmake/ClassSIMD.cmake:145 (try_compile)"
+      - "external/FastNoise2/src/CMakeLists.txt:69 (fastsimd_create_dispatch_library)"
+    directories:
+      source: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp"
+      binary: "/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/Games/SpaceGameProject/build-windows/CPM_modules;"
+    buildResult:
+      variable: "compile_result_unused"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_0a5ea/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_0a5ea.dir/build.make CMakeFiles/cmTC_0a5ea.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_0a5ea.dir/ArchDetect.cpp.obj
+        /usr/bin/x86_64-w64-mingw32-g++ -DTEST_FEATURE_SET_ACTIVE=WASM  -std=gnu++17 -o CMakeFiles/cmTC_0a5ea.dir/ArchDetect.cpp.obj -c /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp
+        In file included from /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp:1:
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/../include/FastSIMD/Utility/ArchDetect.h:92:80: error: missing binary operator before token "("
+           92 | #define FASTSIMD_FEATURE_VALUE_IMPL( feature ) FASTSIMD_FEATURE_VALUE_##feature()
+              |                                                                                ^
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/../include/FastSIMD/Utility/ArchDetect.h:91:43: note: in expansion of macro ‘FASTSIMD_FEATURE_VALUE_IMPL’
+           91 | #define FASTSIMD_FEATURE_VALUE( feature ) FASTSIMD_FEATURE_VALUE_IMPL( feature )
+              |                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+        /home/ubuntu/Games/SpaceGameProject/build-windows/_deps/fastsimd-src/cmake/ArchDetect.cpp:9:5: note: in expansion of macro ‘FASTSIMD_FEATURE_VALUE’
+            9 | #if FASTSIMD_FEATURE_VALUE( TEST_FEATURE_SET_ACTIVE ) > 0
+              |     ^~~~~~~~~~~~~~~~~~~~~~
+        gmake[1]: *** [CMakeFiles/cmTC_0a5ea.dir/build.make:81: CMakeFiles/cmTC_0a5ea.dir/ArchDetect.cpp.obj] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:134: cmTC_0a5ea/fast] Error 2
+        
+      exitCode: 2
+...

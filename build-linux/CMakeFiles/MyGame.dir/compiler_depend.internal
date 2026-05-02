@@ -2069,7 +2069,6 @@ MyGame
  /usr/lib/x86_64-linux-gnu/libOpenGL.so
  /usr/lib/x86_64-linux-gnu/libX11.so
  /usr/lib/x86_64-linux-gnu/libc_nonshared.a
- /usr/lib/x86_64-linux-gnu/libfreetype.so
  /usr/lib/x86_64-linux-gnu/librt.a
  /home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/MyGame.dir/src/game/game.cpp.o
  /home/ubuntu/Games/SpaceGameProject/build-linux/CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.o
