@@ -281,6 +281,24 @@ CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//Enable to build RPM source packages
+CPACK_SOURCE_RPM:BOOL=OFF
+
+//Enable to build TBZ2 source packages
+CPACK_SOURCE_TBZ2:BOOL=ON
+
+//Enable to build TGZ source packages
+CPACK_SOURCE_TGZ:BOOL=ON
+
+//Enable to build TXZ source packages
+CPACK_SOURCE_TXZ:BOOL=ON
+
+//Enable to build TZ source packages
+CPACK_SOURCE_TZ:BOOL=ON
+
+//Enable to build ZIP source packages
+CPACK_SOURCE_ZIP:BOOL=OFF
+
 //Don't create a package lock file in the binary path
 CPM_DONT_CREATE_PACKAGE_LOCK:BOOL=OFF
 
@@ -343,6 +361,10 @@ FETCHCONTENT_QUIET:BOOL=ON
 FETCHCONTENT_SOURCE_DIR_FASTSIMD:PATH=
 
 //When not empty, overrides where to find pre-populated content
+// for freetype
+FETCHCONTENT_SOURCE_DIR_FREETYPE:PATH=
+
+//When not empty, overrides where to find pre-populated content
 // for glfw
 FETCHCONTENT_SOURCE_DIR_GLFW:PATH=
 
@@ -351,6 +373,9 @@ FETCHCONTENT_UPDATES_DISCONNECTED:BOOL=OFF
 
 //Enables UPDATE_DISCONNECTED behavior just for population of FastSIMD
 FETCHCONTENT_UPDATES_DISCONNECTED_FASTSIMD:BOOL=OFF
+
+//Enables UPDATE_DISCONNECTED behavior just for population of freetype
+FETCHCONTENT_UPDATES_DISCONNECTED_FREETYPE:BOOL=OFF
 
 //Enables UPDATE_DISCONNECTED behavior just for population of glfw
 FETCHCONTENT_UPDATES_DISCONNECTED_GLFW:BOOL=OFF
@@ -366,6 +391,25 @@ FREETYPE_LIBRARY_DEBUG:FILEPATH=FREETYPE_LIBRARY_DEBUG-NOTFOUND
 
 //Path to a library.
 FREETYPE_LIBRARY_RELEASE:FILEPATH=/usr/lib/x86_64-linux-gnu/libfreetype.so
+
+//Disable support of compressed WOFF2 fonts.
+FT_DISABLE_BROTLI:BOOL=ON
+
+//Disable support of bzip2 compressed fonts.
+FT_DISABLE_BZIP2:BOOL=ON
+
+//Disable HarfBuzz (used for improving auto-hinting of OpenType
+// fonts).
+FT_DISABLE_HARFBUZZ:BOOL=ON
+
+//Disable support of PNG compressed OpenType embedded bitmaps.
+FT_DISABLE_PNG:BOOL=ON
+
+//Disable use of system zlib and use internal zlib library instead.
+FT_DISABLE_ZLIB:BOOL=ON
+
+//Enable support for meaningful error descriptions.
+FT_ENABLE_ERROR_STRINGS:BOOL=OFF
 
 //Value Computed by CMake
 FastNoise2_BINARY_DIR:STATIC=/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2
@@ -468,6 +512,12 @@ OPENGL_opengl_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libOpenGL.so
 
 //Path to a file.
 OPENGL_xmesa_INCLUDE_DIR:PATH=OPENGL_xmesa_INCLUDE_DIR-NOTFOUND
+
+//Arguments to supply to pkg-config
+PKG_CONFIG_ARGN:STRING=
+
+//pkg-config executable
+PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
 
 //Path to a library.
 RT_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/librt.a
@@ -877,6 +927,15 @@ X11_xkbfile_INCLUDE_PATH:PATH=X11_xkbfile_INCLUDE_PATH-NOTFOUND
 //Path to a library.
 X11_xkbfile_LIB:FILEPATH=X11_xkbfile_LIB-NOTFOUND
 
+//Value Computed by CMake
+freetype_BINARY_DIR:STATIC=/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/freetype-build
+
+//Value Computed by CMake
+freetype_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+freetype_SOURCE_DIR:STATIC=/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/freetype-src
+
 
 ########################
 # INTERNAL cache entries
@@ -1026,7 +1085,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=7
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=8
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -1071,6 +1130,18 @@ CMAKE_TAPI-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_SOURCE_RPM
+CPACK_SOURCE_RPM-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_SOURCE_TBZ2
+CPACK_SOURCE_TBZ2-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_SOURCE_TGZ
+CPACK_SOURCE_TGZ-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_SOURCE_TXZ
+CPACK_SOURCE_TXZ-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_SOURCE_TZ
+CPACK_SOURCE_TZ-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_SOURCE_ZIP
+CPACK_SOURCE_ZIP-ADVANCED:INTERNAL=1
 CPM_DIRECTORY:INTERNAL=/home/ubuntu/Games/SpaceGameProject/external/FastNoise2/cmake
 //Don't download or configure dependencies (for testing)
 CPM_DRY_RUN:INTERNAL=OFF
@@ -1087,6 +1158,8 @@ CPM_VERSION:INTERNAL=0.40.2
 FIND_PACKAGE_MESSAGE_DETAILS_Freetype:INTERNAL=[/usr/lib/x86_64-linux-gnu/libfreetype.so][/usr/include/freetype2][v2.13.3()]
 //Details about finding OpenGL
 FIND_PACKAGE_MESSAGE_DETAILS_OpenGL:INTERNAL=[/usr/lib/x86_64-linux-gnu/libOpenGL.so][/usr/lib/x86_64-linux-gnu/libGLX.so][/usr/include][c ][v()]
+//Details about finding PkgConfig
+FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/usr/bin/pkg-config][v1.8.1()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //Details about finding X11
@@ -1101,6 +1174,10 @@ FREETYPE_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
 FREETYPE_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: GIT_EXECUTABLE
 GIT_EXECUTABLE-ADVANCED:INTERNAL=1
+//Have include fcntl.h
+HAVE_FCNTL_H:INTERNAL=1
+//Have include unistd.h
+HAVE_UNISTD_H:INTERNAL=1
 //ADVANCED property for variable: MATH_LIBRARY
 MATH_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENGL_EGL_INCLUDE_DIR
@@ -1129,6 +1206,10 @@ OPENGL_glx_LIBRARY-ADVANCED:INTERNAL=1
 OPENGL_opengl_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENGL_xmesa_INCLUDE_DIR
 OPENGL_xmesa_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PKG_CONFIG_ARGN
+PKG_CONFIG_ARGN-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
+PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: RT_LIBRARY
 RT_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: X11_ICE_INCLUDE_PATH

@@ -163,7 +163,6 @@ MyGame: CMakeFiles/MyGame.dir/compiler_depend.ts
 MyGame: libglad.a
 MyGame: _deps/glfw-build/src/libglfw3.a
 MyGame: external/FastNoise2/src/libFastNoise.a
-MyGame: /usr/lib/x86_64-linux-gnu/libfreetype.so
 MyGame: /usr/lib/x86_64-linux-gnu/librt.a
 MyGame: /usr/lib/x86_64-linux-gnu/libm.so
 MyGame: /usr/lib/x86_64-linux-gnu/libX11.so

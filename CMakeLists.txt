@@ -34,8 +34,18 @@ FetchContent_MakeAvailable(glfw)
 # FastNoise2
 add_subdirectory(external/FastNoise2)
 
-# FreeType
-find_package(Freetype REQUIRED)
+# Remplace find_package(Freetype REQUIRED) par ça :
+FetchContent_Declare(
+    freetype
+    GIT_REPOSITORY https://gitlab.freedesktop.org/freetype/freetype.git
+    GIT_TAG        VER-2-13-2
+)
+set(FT_DISABLE_ZLIB ON CACHE BOOL "" FORCE)
+set(FT_DISABLE_BZIP2 ON CACHE BOOL "" FORCE)
+set(FT_DISABLE_PNG ON CACHE BOOL "" FORCE)
+set(FT_DISABLE_HARFBUZZ ON CACHE BOOL "" FORCE)
+set(FT_DISABLE_BROTLI ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(freetype)
 
 # OpenGL
 find_package(OpenGL REQUIRED)

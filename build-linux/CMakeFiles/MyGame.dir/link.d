@@ -10,7 +10,6 @@ MyGame: \
   libglad.a \
   _deps/glfw-build/src/libglfw3.a \
   external/FastNoise2/src/libFastNoise.a \
-  /usr/lib/x86_64-linux-gnu/libfreetype.so \
   /usr/lib/x86_64-linux-gnu/librt.a \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/libdl.a \
   /usr/lib/x86_64-linux-gnu/libX11.so \
@@ -68,8 +67,6 @@ libglad.a:
 _deps/glfw-build/src/libglfw3.a:
 
 external/FastNoise2/src/libFastNoise.a:
-
-/usr/lib/x86_64-linux-gnu/libfreetype.so:
 
 /usr/lib/x86_64-linux-gnu/librt.a:
 

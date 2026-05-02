@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DFASTNOISE2_VERSION=\"1.1.1\" -DFASTNOISE_STATIC_LIB -DFASTSIMD_IS_RELAXED=1 -DFASTSIMD_STATIC_LIB
 
-CXX_INCLUDES = -I/home/ubuntu/Games/SpaceGameProject/src -I/home/ubuntu/Games/SpaceGameProject/include -I/home/ubuntu/Games/SpaceGameProject/include/glad/include -I/home/ubuntu/Games/SpaceGameProject/external/FastNoise2/include -I/usr/include/freetype2 -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/glfw-src/include -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/include -I/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src/fastsimd/FastSIMD_FastNoise/include
+CXX_INCLUDES = -I/home/ubuntu/Games/SpaceGameProject/src -I/home/ubuntu/Games/SpaceGameProject/include -I/home/ubuntu/Games/SpaceGameProject/include/glad/include -I/home/ubuntu/Games/SpaceGameProject/external/FastNoise2/include -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/glfw-src/include -I/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/fastsimd-src/include -I/home/ubuntu/Games/SpaceGameProject/build-linux/external/FastNoise2/src/fastsimd/FastSIMD_FastNoise/include
 
 CXX_FLAGS = -O3 -DNDEBUG -std=gnu++20
 

@@ -20,6 +20,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "_deps/fastsimd-src/dispatch/cmake/ClassSIMD.cmake"
   "_deps/fastsimd-src/dispatch/cmake/feature_set_source.cpp.in"
   "_deps/fastsimd-src/dispatch/cmake/simd_lib_config.h.in"
+  "_deps/freetype-src/CMakeLists.txt"
   "_deps/glfw-src/CMakeLists.txt"
   "_deps/glfw-src/src/CMakeLists.txt"
   "_deps/glfw-src/src/glfw3.pc.in"
@@ -40,6 +41,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-3.31/Modules/CMakePackageConfigHelpers.cmake"
   "/usr/share/cmake-3.31/Modules/CMakeSystemSpecificInformation.cmake"
   "/usr/share/cmake-3.31/Modules/CMakeSystemSpecificInitialize.cmake"
+  "/usr/share/cmake-3.31/Modules/CPack.cmake"
+  "/usr/share/cmake-3.31/Modules/CPackComponent.cmake"
   "/usr/share/cmake-3.31/Modules/CheckCSourceCompiles.cmake"
   "/usr/share/cmake-3.31/Modules/CheckFunctionExists.cmake"
   "/usr/share/cmake-3.31/Modules/CheckIncludeFile.cmake"
@@ -51,11 +54,11 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-3.31/Modules/ExternalProject/shared_internal_commands.cmake"
   "/usr/share/cmake-3.31/Modules/FetchContent.cmake"
   "/usr/share/cmake-3.31/Modules/FetchContent/CMakeLists.cmake.in"
-  "/usr/share/cmake-3.31/Modules/FindFreetype.cmake"
   "/usr/share/cmake-3.31/Modules/FindGit.cmake"
   "/usr/share/cmake-3.31/Modules/FindOpenGL.cmake"
   "/usr/share/cmake-3.31/Modules/FindPackageHandleStandardArgs.cmake"
   "/usr/share/cmake-3.31/Modules/FindPackageMessage.cmake"
+  "/usr/share/cmake-3.31/Modules/FindPkgConfig.cmake"
   "/usr/share/cmake-3.31/Modules/FindThreads.cmake"
   "/usr/share/cmake-3.31/Modules/FindX11.cmake"
   "/usr/share/cmake-3.31/Modules/GNUInstallDirs.cmake"
@@ -76,8 +79,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-3.31/Modules/Platform/Linux-Initialize.cmake"
   "/usr/share/cmake-3.31/Modules/Platform/Linux.cmake"
   "/usr/share/cmake-3.31/Modules/Platform/UnixPaths.cmake"
-  "/usr/share/cmake-3.31/Modules/SelectLibraryConfigurations.cmake"
   "/usr/share/cmake-3.31/Modules/WriteBasicConfigVersionFile.cmake"
+  "/usr/share/cmake-3.31/Templates/CPackConfig.cmake.in"
   )
 
 # The corresponding makefile is:
@@ -89,6 +92,7 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "_deps/glfw-subbuild/CMakeLists.txt"
+  "_deps/freetype-subbuild/CMakeLists.txt"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "_deps/glfw-build/src/glfw3Config.cmake"
   "_deps/glfw-build/src/glfw3ConfigVersion.cmake"
@@ -108,6 +112,10 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "external/FastNoise2/src/CMakeFiles/CMakeDirectoryInformation.cmake"
   "_deps/fastsimd-build/CMakeFiles/CMakeDirectoryInformation.cmake"
   "_deps/fastsimd-build/dispatch/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "_deps/freetype-build/freetype-config-version.cmake"
+  "CPackConfig.cmake"
+  "CPackSourceConfig.cmake"
+  "_deps/freetype-build/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -119,4 +127,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "external/FastNoise2/src/CMakeFiles/FastNoise.dir/DependInfo.cmake"
   "external/FastNoise2/src/CMakeFiles/FastSIMD_FastNoise.dir/DependInfo.cmake"
   "_deps/fastsimd-build/CMakeFiles/FastSIMD.dir/DependInfo.cmake"
+  "_deps/freetype-build/CMakeFiles/freetype.dir/DependInfo.cmake"
   )
