@@ -44,12 +44,22 @@ void Game::update() {
 
     renderer.camera.position += dir * speed * deltaTime;
 
-    chunkManager.updateLoadedChunks(
-        renderer.camera.position[0],
-        renderer.camera.position[1],
-        32.0f, // match shader uTileSize x
-        5
-    );
+    // In Game::update() convert camera pixel pos to tile grid pos
+    float tileW = 32.0f; // must match shader uTileSize.x
+    float tileH = 16.0f; // must match shader uTileSize.y
+
+    // Inverse iso projection
+    float camPixelX = renderer.camera.position[0];
+    float camPixelY = renderer.camera.position[1];
+
+    // Invert: pixelX = (gx - gy) * tileW/2
+    //         pixelY = (gx + gy) * tileH/2
+    // Solve:  gx = pixelX/tileW + pixelY/tileH
+    //         gy = pixelY/tileH - pixelX/tileW
+    float gridX = camPixelX / tileW + camPixelY / tileH;
+    float gridY = camPixelY / tileH - camPixelX / tileW;
+
+    chunkManager.updateLoadedChunks(gridX, gridY, 1.0f, 5);
 }
 
 void Game::render() {
