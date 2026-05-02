@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 # =============================
-# ?? Colors
+# Colors
 # =============================
 GREEN="\033[1;32m"
 CYAN="\033[1;36m"
@@ -9,7 +9,7 @@ RED="\033[1;31m"
 YELLOW="\033[1;33m"
 NC="\033[0m"
 # =============================
-# ?? Defaults
+# Defaults
 # =============================
 PROJECT_NAME="SpaceExplorationGame"
 BUILD_LINUX="build-linux"
@@ -23,7 +23,7 @@ PUSH_UPSTREAM=false
 CLEAN_BUILD=false
 TOOLCHAIN_FILE="$(pwd)/toolchain-windows.cmake"
 # =============================
-# ?? Usage
+# Usage
 # =============================
 usage() {
     echo -e "${CYAN}Usage: $0 [options]${NC}"
@@ -46,7 +46,7 @@ usage() {
     exit 0
 }
 # =============================
-# ?? Parse Arguments
+# Parse Arguments
 # =============================
 while getopts "m:t:bpwcuh" opt; do
     case $opt in
@@ -58,15 +58,15 @@ while getopts "m:t:bpwcuh" opt; do
         c) CLEAN_BUILD=true ;;
         u) PUSH_UPSTREAM=true ;;
         h) usage ;;
-        *) echo -e "${RED}Unknown option: -$OPTARG${NC}"; usage ;;
+        *) echo -e "${RED}[ERROR] Unknown option: -$OPTARG${NC}"; usage ;;
     esac
 done
 # =============================
-# ??? Generate toolchain if missing
+# Generate toolchain if missing
 # =============================
 generate_toolchain() {
     if [ ! -f "$TOOLCHAIN_FILE" ]; then
-        echo -e "${YELLOW}??  toolchain-windows.cmake introuvable, génération automatique...${NC}"
+        echo -e "${YELLOW}[TOOLCHAIN] toolchain-windows.cmake not found, generating...${NC}"
         cat > "$TOOLCHAIN_FILE" << 'EOF'
 set(CMAKE_SYSTEM_NAME Windows)
 set(CMAKE_SYSTEM_PROCESSOR x86_64)
@@ -80,85 +80,88 @@ set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
 set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 EOF
-        echo -e "${GREEN}? toolchain-windows.cmake généré${NC}"
+        echo -e "${GREEN}[TOOLCHAIN] toolchain-windows.cmake generated OK${NC}"
+    else
+        echo -e "${GREEN}[TOOLCHAIN] toolchain-windows.cmake found${NC}"
     fi
 }
 # =============================
-# ?? BUILD LINUX
+# BUILD LINUX
 # =============================
 if [ "$DO_BUILD" = true ]; then
-    echo -e "${CYAN}?? Build Linux ($BUILD_TYPE)...${NC}"
+    echo -e "${CYAN}[LINUX] Starting Linux build ($BUILD_TYPE)...${NC}"
     if [ "$CLEAN_BUILD" = true ]; then
-        echo -e "${YELLOW}?? Cleaning $BUILD_LINUX...${NC}"
+        echo -e "${YELLOW}[LINUX] Cleaning $BUILD_LINUX...${NC}"
         rm -rf "$BUILD_LINUX"
     fi
     mkdir -p "$BUILD_LINUX"
+    echo -e "${CYAN}[LINUX] Running CMake configure...${NC}"
     cmake -B "$BUILD_LINUX" -DCMAKE_BUILD_TYPE="$BUILD_TYPE"
+    echo -e "${CYAN}[LINUX] Running CMake build...${NC}"
     cmake --build "$BUILD_LINUX" -j$(nproc)
-    echo -e "${CYAN}?? Copying assets...${NC}"
+    echo -e "${CYAN}[LINUX] Copying assets...${NC}"
     rm -rf "$BUILD_LINUX/assets"
     cp -r assets "$BUILD_LINUX/assets"
-    echo -e "${GREEN}? Linux build OK${NC}"
+    echo -e "${GREEN}[LINUX] Build OK${NC}"
     # =============================
-    # ?? BUILD WINDOWS (optional)
+    # BUILD WINDOWS (optional)
     # =============================
     if [ "$DO_WINDOWS" = true ]; then
         generate_toolchain
-        echo -e "${CYAN}?? Build Windows...${NC}"
+        echo -e "${CYAN}[WINDOWS] Starting Windows build ($BUILD_TYPE)...${NC}"
         if [ "$CLEAN_BUILD" = true ]; then
-            echo -e "${YELLOW}?? Cleaning $BUILD_WINDOWS...${NC}"
+            echo -e "${YELLOW}[WINDOWS] Cleaning $BUILD_WINDOWS...${NC}"
             rm -rf "$BUILD_WINDOWS"
         fi
         mkdir -p "$BUILD_WINDOWS"
+        echo -e "${CYAN}[WINDOWS] Running CMake configure with MinGW toolchain...${NC}"
         cmake -B "$BUILD_WINDOWS" \
             -DCMAKE_BUILD_TYPE="$BUILD_TYPE" \
             -DCMAKE_TOOLCHAIN_FILE="$TOOLCHAIN_FILE"
+        echo -e "${CYAN}[WINDOWS] Running CMake build...${NC}"
         cmake --build "$BUILD_WINDOWS" -j$(nproc)
-        echo -e "${CYAN}?? Copying assets...${NC}"
+        echo -e "${CYAN}[WINDOWS] Copying assets...${NC}"
         rm -rf "$BUILD_WINDOWS/assets"
         cp -r assets "$BUILD_WINDOWS/assets"
         # =============================
-        # ?? Copy MinGW DLLs
+        # Copy MinGW DLLs
         # =============================
-        echo -e "${CYAN}?? Copying MinGW DLLs...${NC}"
-        MINGW_GCC_VER=$(x86_64-w64-mingw32-gcc -dumpversion | cut -d. -f1)
-        MINGW_DLL_PATH="/usr/lib/gcc/x86_64-w64-mingw32/${MINGW_GCC_VER}-win32"
-        if [ ! -d "$MINGW_DLL_PATH" ]; then
-            MINGW_DLL_PATH=$(dirname $(x86_64-w64-mingw32-gcc --print-libgcc-file-name))
-        fi
-        MINGW_SYSROOT="/usr/x86_64-w64-mingw32/lib"
+        echo -e "${CYAN}[WINDOWS] Copying MinGW DLLs...${NC}"
         DLLS=(
-            "$MINGW_DLL_PATH/libstdc++-6.dll"
-            "$MINGW_DLL_PATH/libgcc_s_seh-1.dll"
-            "$MINGW_SYSROOT/libwinpthread-1.dll"
+            "/usr/lib/gcc/x86_64-w64-mingw32/13-win32/libstdc++-6.dll"
+            "/usr/lib/gcc/x86_64-w64-mingw32/13-win32/libgcc_s_seh-1.dll"
+            "/usr/x86_64-w64-mingw32/lib/libwinpthread-1.dll"
         )
         for dll in "${DLLS[@]}"; do
             if [ -f "$dll" ]; then
                 cp "$dll" "$BUILD_WINDOWS/"
-                echo -e "${GREEN}  ? $(basename $dll)${NC}"
+                echo -e "${GREEN}[WINDOWS] DLL copied: $(basename $dll)${NC}"
             else
-                echo -e "${YELLOW}  ??  Introuvable : $dll${NC}"
+                echo -e "${RED}[WINDOWS] DLL not found: $dll${NC}"
             fi
         done
-        echo -e "${GREEN}? Windows build OK${NC}"
+        echo -e "${GREEN}[WINDOWS] Build OK${NC}"
     fi
 fi
 # =============================
-# ?? Git Push
+# Git Push
 # =============================
 if [ "$DO_PUSH" = true ]; then
-    echo -e "${CYAN}?? Committing and pushing...${NC}"
+    echo -e "${CYAN}[GIT] Staging all changes...${NC}"
     git add .
     if git diff --cached --quiet; then
-        echo -e "${YELLOW}??  Nothing to commit, skipping commit${NC}"
+        echo -e "${YELLOW}[GIT] Nothing to commit, skipping commit${NC}"
     else
+        echo -e "${CYAN}[GIT] Committing: $COMMIT_MSG${NC}"
         git commit -m "$COMMIT_MSG"
     fi
     if [ "$PUSH_UPSTREAM" = true ]; then
+        echo -e "${CYAN}[GIT] Pushing with --set-upstream origin main...${NC}"
         git push --set-upstream origin main
     else
+        echo -e "${CYAN}[GIT] Pushing...${NC}"
         git push
     fi
-    echo -e "${GREEN}?? Push done${NC}"
+    echo -e "${GREEN}[GIT] Push done${NC}"
 fi
-echo -e "${GREEN}? All done!${NC}"
+echo -e "${GREEN}[DONE] All done!${NC}"
