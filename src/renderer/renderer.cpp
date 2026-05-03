@@ -646,6 +646,15 @@ Mesh Renderer::loadGLTF(const std::string& path) {
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     }
 
+    std::cerr << "posView.byteOffset=" << posView.byteOffset
+          << " posAccessor.byteOffset=" << posAccessor.byteOffset
+          << " total offset=" << (posView.byteOffset + posAccessor.byteOffset)
+          << " buffer size=" << posBuffer.data.size() << std::endl;
+
+    // Vérifiez les 3 premiers vertices
+    std::cerr << "v0=(" << positions[0] << "," << positions[1] << "," << positions[2] << ")" << std::endl;
+    std::cerr << "v1=(" << positions[3] << "," << positions[4] << "," << positions[5] << ")" << std::endl;
+
     return mesh;
 }
 
