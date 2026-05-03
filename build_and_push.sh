@@ -75,8 +75,8 @@ fi
 generate_gitignore() {
     cat > .gitignore << 'EOF'
 # Build artifacts
-build-linux/
-build-windows/
+build-linux/*
+build-windows/*
 
 # Keep exe, dlls and assets in build dirs
 !build-linux/MyGame
