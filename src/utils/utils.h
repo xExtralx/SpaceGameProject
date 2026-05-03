@@ -170,6 +170,7 @@ struct Mat4 {
         m.data[0]  = x;
         m.data[5]  = y;
         m.data[10] = z;
+        m.data[15] = 1.0f;
         return m;
     }
 

@@ -60,11 +60,20 @@ int Renderer::init() {
     glViewport(0, 0, width, height);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glDisable(GL_DEPTH_TEST);
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
 
     glfwSwapInterval(1);
     glfwSetMouseButtonCallback(window, Renderer::mouse_button_callback);
     glfwSetKeyCallback(window, Renderer::key_callback);
+
+    glGenTextures(1, &fallbackWhiteTexture);
+    glBindTexture(GL_TEXTURE_2D, fallbackWhiteTexture);
+    unsigned char white[4] = {255, 255, 255, 255};
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, white);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glBindTexture(GL_TEXTURE_2D, 0);
 
     monitor = glfwGetPrimaryMonitor();
     mode    = glfwGetVideoMode(monitor);
@@ -113,6 +122,12 @@ void Renderer::initPixelFBO() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, pixelTexture, 0);
+
+    GLuint depthRBO;
+    glGenRenderbuffers(1, &depthRBO);
+    glBindRenderbuffer(GL_RENDERBUFFER, depthRBO);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, RENDER_WIDTH, RENDER_HEIGHT);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthRBO);
 
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
         std::cerr << "[FBO] Pixel FBO not complete!" << std::endl;
@@ -197,7 +212,7 @@ void Renderer::clear() {
     glBindFramebuffer(GL_FRAMEBUFFER, pixelFBO);
     glViewport(0, 0, RENDER_WIDTH, RENDER_HEIGHT);
     glClearColor(0.05f, 0.05f, 0.08f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     tileVertices.clear();
     colorVertices.clear();
@@ -641,12 +656,11 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
     meshShader->setMat4("uModel",    transform);
 
     // Texture
-    meshShader->setInt("uTexture", 0);
     glActiveTexture(GL_TEXTURE0);
     if (mesh.textureID)
         glBindTexture(GL_TEXTURE_2D, mesh.textureID);
     else
-        glBindTexture(GL_TEXTURE_2D, 0);
+        glBindTexture(GL_TEXTURE_2D, fallbackWhiteTexture);
 
     // Draw
     glBindVertexArray(mesh.VAO);

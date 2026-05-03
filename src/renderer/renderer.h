@@ -150,6 +150,8 @@ private:
     GLuint               tileQuadVBO = 0;
     GLuint               tilesetTexture = 0;
 
+    GLuint               fallbackWhiteTexture = 0;
+
     std::unordered_map<ChunkPos, ChunkRenderData, ChunkPosHash> chunkRenderData;
 };
 
