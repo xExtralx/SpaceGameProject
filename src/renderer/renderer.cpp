@@ -700,6 +700,6 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
 
     // Draw
     glBindVertexArray(mesh.VAO);
-    glDrawArrays(GL_TRIANGLES, 0, 3); // ← pas d'EBO, juste 3 vertices hardcodés
+    glDrawElements(GL_TRIANGLES, mesh.indexCount, GL_UNSIGNED_INT, nullptr);
     glBindVertexArray(0);
 }
