@@ -1,2 +1,0 @@
-/usr/bin/x86_64-w64-mingw32-ar qc libtinygltf.a CMakeFiles/tinygltf.dir/tiny_gltf.cc.obj
-/usr/bin/x86_64-w64-mingw32-ranlib libtinygltf.a
