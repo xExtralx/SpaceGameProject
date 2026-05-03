@@ -25,7 +25,7 @@ void Game::init() {
 
     // Init
     RecipeDB::registerRecipe({"smelt_iron", {{"iron_ore", 2}}, {{"iron_plate", 1}}, 3.0f});
-    auto smelter = world.createBuilding("models/smelter.gltf", 10, 5, "smelt_iron");
+    auto smelter = world.createBuilding("assets/models/smelter.gltf", 10, 5, "smelt_iron");
     world.get<CInventory>(smelter).addItem("iron_ore", 20);
 }
 
