@@ -9,6 +9,6 @@ uniform mat4 uModel;
 out vec2 vUV;
 
 void main() {
-    vUV         = aUV;
-    gl_Position = uViewProj * uModel * vec4(aPos, 1.0);
+    gl_Position = vec4(aPos * 0.5, 1.0); // ignore tout, force NDC direct
+    vUV = aUV;
 }
