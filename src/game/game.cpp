@@ -74,7 +74,7 @@ void Game::update() {
 
 void Game::render() {
     renderer.clear();
-    renderer.renderChunks(chunkManager);
+    // renderer.renderChunks(chunkManager);
     renderer.draw();
     renderer.present();
     renderer.update();
