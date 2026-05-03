@@ -677,6 +677,9 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
     }
 
     meshShader->use();
+    std::cerr << "meshShader ID: " << meshShader->ID << std::endl;
+
+    meshShader->setInt("uTexture", 0); // ← AJOUTEZ ÇA aussi
 
     // Matrices
     Mat4 viewProj = camera.getViewProj(RENDER_WIDTH, RENDER_HEIGHT);
