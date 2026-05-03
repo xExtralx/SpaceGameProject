@@ -75,15 +75,16 @@ void Game::update() {
 
 void Game::render() {
     renderer.clear();
+    // renderer.renderChunks(chunkManager);
+    world.renderMeshes(renderer);
+    Mesh& mesh = renderer.meshCache["models/cube.glb"];
+    std::cerr << "indexCount: " << mesh.indexCount << std::endl;
+    std::cerr << "VAO: " << mesh.VAO << std::endl;
 
-    // TEST DIRECT — bypass total du ECS
-    if (renderer.meshCache.count("assets/models/smelter.gltf") == 0)
-        renderer.meshCache["assets/models/smelter.gltf"] = renderer.loadGLTF("assets/models/smelter.gltf");
-
-    Mat4 transform = Mat4::translate(0.0f, 0.0f, 0.0f)
-                   * Mat4::scale(128.0f, 128.0f, 128.0f);
-    renderer.renderMesh(renderer.meshCache["assets/models/smelter.gltf"], transform);
-
+    GLenum err = glGetError();
+    if (err != GL_NO_ERROR)
+        std::cerr << "GL Error: " << err << std::endl;
+    
     renderer.draw();
     renderer.present();
     renderer.update();

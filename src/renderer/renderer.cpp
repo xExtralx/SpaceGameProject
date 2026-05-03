@@ -641,6 +641,12 @@ Mesh Renderer::loadGLTF(const std::string& path) {
 }
 
 void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
+    // DEBUG
+    GLint currentFBO;
+    glGetIntegerv(GL_FRAMEBUFFER_BINDING, &currentFBO);
+    std::cerr << "renderMesh FBO: " << currentFBO << " (expected: " << pixelFBO << ")" << std::endl;
+    std::cerr << "indexCount: " << mesh.indexCount << std::endl;
+    
     if (!meshShader) {
         meshShader = new Shader(
             FileManager::LoadTextFile("shader/mesh.vert"),
