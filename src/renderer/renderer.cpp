@@ -699,6 +699,7 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
     std::cerr << "Viewport: " << viewport[0] << " " << viewport[1] << " " << viewport[2] << " " << viewport[3] << std::endl;
 
     // Draw
+    glDisable(GL_CULL_FACE); // ← ajoutez avant le draw
     glBindVertexArray(mesh.VAO);
     glDrawElements(GL_TRIANGLES, mesh.indexCount, GL_UNSIGNED_INT, nullptr);
     glBindVertexArray(0);
