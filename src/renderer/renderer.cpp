@@ -224,10 +224,11 @@ void Renderer::draw() {
 }
 
 void Renderer::present() const {
-    // Upscale low res FBO to screen with nearest neighbor
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glViewport(0, 0, width, height);
     glClear(GL_COLOR_BUFFER_BIT);
+
+    glDisable(GL_DEPTH_TEST); // ← AJOUTEZ ÇA
 
     upscaleShader->use();
     upscaleShader->setInt("uTexture", 0);
@@ -236,6 +237,8 @@ void Renderer::present() const {
     glBindVertexArray(screenVAO);
     glDrawArrays(GL_TRIANGLES, 0, 6);
     glBindVertexArray(0);
+
+    glEnable(GL_DEPTH_TEST);
 
     glfwSwapBuffers(window);
     glfwPollEvents();
