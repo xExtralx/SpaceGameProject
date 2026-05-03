@@ -553,13 +553,22 @@ Mesh Renderer::loadGLTF(const std::string& path) {
     std::string err, warn;
 
     bool ok = loader.LoadASCIIFromFile(&model, &err, &warn, path);
+    std::cerr << "[GLTF] path=" << path << " ok=" << ok << std::endl;
+    if (!warn.empty()) std::cerr << "[GLTF] warn: " << warn << std::endl;
+    if (!err.empty())  std::cerr << "[GLTF] err:  " << err  << std::endl;
+    if (!ok) return {};
+
+    std::cerr << "[GLTF] meshes=" << model.meshes.size() << std::endl;
+    if (model.meshes.empty()) return {};
+
+    auto& primitive = model.meshes[0].primitives[0];
+    std::cerr << "[GLTF] has POSITION=" << primitive.attributes.count("POSITION") << std::endl;
+    std::cerr << "[GLTF] indices accessor=" << primitive.indices << std::endl;
+
     if (!ok) {
         std::cerr << "[GLTF] Failed to load: " << path << " - " << err << std::endl;
         return {};
     }
-
-    // Prend le premier mesh
-    auto& primitive = model.meshes[0].primitives[0];
 
     std::vector<float> vertices;
     std::vector<unsigned int> indices;
@@ -646,7 +655,8 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
     glGetIntegerv(GL_FRAMEBUFFER_BINDING, &currentFBO);
     std::cerr << "renderMesh FBO: " << currentFBO << " (expected: " << pixelFBO << ")" << std::endl;
     std::cerr << "indexCount: " << mesh.indexCount << std::endl;
-    
+    if (mesh.VAO == 0 || mesh.indexCount == 0) return;
+
     if (!meshShader) {
         meshShader = new Shader(
             FileManager::LoadTextFile("shader/mesh.vert"),

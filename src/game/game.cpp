@@ -77,14 +77,6 @@ void Game::render() {
     renderer.clear();
     // renderer.renderChunks(chunkManager);
     world.renderMeshes(renderer);
-    Mesh& mesh = renderer.meshCache["models/cube.glb"];
-    std::cerr << "indexCount: " << mesh.indexCount << std::endl;
-    std::cerr << "VAO: " << mesh.VAO << std::endl;
-
-    GLenum err = glGetError();
-    if (err != GL_NO_ERROR)
-        std::cerr << "GL Error: " << err << std::endl;
-    
     renderer.draw();
     renderer.present();
     renderer.update();
