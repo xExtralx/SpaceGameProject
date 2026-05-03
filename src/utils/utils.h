@@ -162,6 +162,7 @@ struct Mat4 {
         m.data[12] = x;
         m.data[13] = y;
         m.data[14] = z;
+        m.data[15] = 1.0f;
         return m;
     }
 
@@ -181,6 +182,7 @@ struct Mat4 {
         Mat4 m;
         m.data[0] =  c;  m.data[4] = -s;
         m.data[1] =  s;  m.data[5] =  c;
+        m.data[15] = 1.0f;
         return m;
     }
 
