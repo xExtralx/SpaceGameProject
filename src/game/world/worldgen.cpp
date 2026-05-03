@@ -148,12 +148,12 @@ bool ChunkManager::hasChunk(ChunkPos pos) const {
     return chunks.find(pos) != chunks.end();
 }
 
-void ChunkManager::updateLoadedChunks(float worldX, float worldY,
+void ChunkManager::updateLoadedChunks(float gridX, float gridY,
                                        float tileSize, int renderDistance) {
     int32_t camChunkX = static_cast<int32_t>(
-        std::floor(worldX / (tileSize * CHUNK_SIZE)));
+        std::floor(gridX / CHUNK_SIZE));
     int32_t camChunkY = static_cast<int32_t>(
-        std::floor(worldY / (tileSize * CHUNK_SIZE)));
+        std::floor(gridY / CHUNK_SIZE));
 
     for (int dy = -renderDistance; dy <= renderDistance; dy++)
         for (int dx = -renderDistance; dx <= renderDistance; dx++) {

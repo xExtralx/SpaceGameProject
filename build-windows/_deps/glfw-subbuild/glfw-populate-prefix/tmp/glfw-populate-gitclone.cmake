@@ -36,7 +36,7 @@ set(number_of_tries 0)
 while(error_code AND number_of_tries LESS 3)
   execute_process(
     COMMAND "/usr/bin/git"
-            clone --no-checkout --config "advice.detachedHead=false" "https://github.com/glfw/glfw.git" "glfw-src"
+            clone --no-checkout --depth 1 --no-single-branch --config "advice.detachedHead=false" "https://github.com/glfw/glfw.git" "glfw-src"
     WORKING_DIRECTORY "/home/ubuntu/Games/SpaceGameProject/build-windows/_deps"
     RESULT_VARIABLE error_code
     ${maybe_show_command}

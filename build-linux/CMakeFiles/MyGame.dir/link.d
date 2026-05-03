@@ -2,14 +2,17 @@ MyGame: \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o \
   /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o \
+  CMakeFiles/MyGame.dir/src/game/ECS/ecs.cpp.o \
   CMakeFiles/MyGame.dir/src/game/game.cpp.o \
   CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.o \
   CMakeFiles/MyGame.dir/src/main.cpp.o \
   CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.o \
+  CMakeFiles/MyGame.dir/src/stb_impl.cpp.o \
   CMakeFiles/MyGame.dir/src/utils/utils.cpp.o \
   libglad.a \
   _deps/glfw-build/src/libglfw3.a \
   external/FastNoise2/src/libFastNoise.a \
+  _deps/freetype-build/libfreetype.a \
   /usr/lib/x86_64-linux-gnu/librt.a \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/libdl.a \
   /usr/lib/x86_64-linux-gnu/libX11.so \
@@ -52,6 +55,8 @@ MyGame: \
 
 /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o:
 
+CMakeFiles/MyGame.dir/src/game/ECS/ecs.cpp.o:
+
 CMakeFiles/MyGame.dir/src/game/game.cpp.o:
 
 CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.o:
@@ -60,6 +65,8 @@ CMakeFiles/MyGame.dir/src/main.cpp.o:
 
 CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.o:
 
+CMakeFiles/MyGame.dir/src/stb_impl.cpp.o:
+
 CMakeFiles/MyGame.dir/src/utils/utils.cpp.o:
 
 libglad.a:
@@ -67,6 +74,8 @@ libglad.a:
 _deps/glfw-build/src/libglfw3.a:
 
 external/FastNoise2/src/libFastNoise.a:
+
+_deps/freetype-build/libfreetype.a:
 
 /usr/lib/x86_64-linux-gnu/librt.a:
 

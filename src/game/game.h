@@ -7,6 +7,7 @@
 
 #include "../renderer/renderer.h"
 #include "world/worldgen.h"
+#include "ECS/ecs.h"
 
 class Game {
 public:
@@ -41,6 +42,9 @@ private:
     ChunkManager chunkManager; // default seed
 
     bool keys[1024] = {};  // tracks which keys are held down
+
+    ECSWorld world;
+    float    dt = 0.0f;
 };
 
 

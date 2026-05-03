@@ -1,1 +1,1 @@
- libglad.a "_deps/glfw-build/src/libglfw3.a" external/FastNoise2/src/libFastNoise.a -lopengl32 -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
+ libglad.a "_deps/glfw-build/src/libglfw3.a" external/FastNoise2/src/libFastNoise.a -lopengl32 "_deps/freetype-build/libfreetype.a" -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 

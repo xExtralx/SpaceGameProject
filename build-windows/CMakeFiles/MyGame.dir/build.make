@@ -72,11 +72,26 @@ include CMakeFiles/MyGame.dir/flags.make
 CMakeFiles/MyGame.dir/codegen:
 .PHONY : CMakeFiles/MyGame.dir/codegen
 
+CMakeFiles/MyGame.dir/src/game/ECS/ecs.cpp.obj: CMakeFiles/MyGame.dir/flags.make
+CMakeFiles/MyGame.dir/src/game/ECS/ecs.cpp.obj: CMakeFiles/MyGame.dir/includes_CXX.rsp
+CMakeFiles/MyGame.dir/src/game/ECS/ecs.cpp.obj: /home/ubuntu/Games/SpaceGameProject/src/game/ECS/ecs.cpp
+CMakeFiles/MyGame.dir/src/game/ECS/ecs.cpp.obj: CMakeFiles/MyGame.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/MyGame.dir/src/game/ECS/ecs.cpp.obj"
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MyGame.dir/src/game/ECS/ecs.cpp.obj -MF CMakeFiles/MyGame.dir/src/game/ECS/ecs.cpp.obj.d -o CMakeFiles/MyGame.dir/src/game/ECS/ecs.cpp.obj -c /home/ubuntu/Games/SpaceGameProject/src/game/ECS/ecs.cpp
+
+CMakeFiles/MyGame.dir/src/game/ECS/ecs.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/MyGame.dir/src/game/ECS/ecs.cpp.i"
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/Games/SpaceGameProject/src/game/ECS/ecs.cpp > CMakeFiles/MyGame.dir/src/game/ECS/ecs.cpp.i
+
+CMakeFiles/MyGame.dir/src/game/ECS/ecs.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MyGame.dir/src/game/ECS/ecs.cpp.s"
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/Games/SpaceGameProject/src/game/ECS/ecs.cpp -o CMakeFiles/MyGame.dir/src/game/ECS/ecs.cpp.s
+
 CMakeFiles/MyGame.dir/src/game/game.cpp.obj: CMakeFiles/MyGame.dir/flags.make
 CMakeFiles/MyGame.dir/src/game/game.cpp.obj: CMakeFiles/MyGame.dir/includes_CXX.rsp
 CMakeFiles/MyGame.dir/src/game/game.cpp.obj: /home/ubuntu/Games/SpaceGameProject/src/game/game.cpp
 CMakeFiles/MyGame.dir/src/game/game.cpp.obj: CMakeFiles/MyGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/MyGame.dir/src/game/game.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/MyGame.dir/src/game/game.cpp.obj"
 	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MyGame.dir/src/game/game.cpp.obj -MF CMakeFiles/MyGame.dir/src/game/game.cpp.obj.d -o CMakeFiles/MyGame.dir/src/game/game.cpp.obj -c /home/ubuntu/Games/SpaceGameProject/src/game/game.cpp
 
 CMakeFiles/MyGame.dir/src/game/game.cpp.i: cmake_force
@@ -91,7 +106,7 @@ CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.obj: CMakeFiles/MyGame.dir/fla
 CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.obj: CMakeFiles/MyGame.dir/includes_CXX.rsp
 CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.obj: /home/ubuntu/Games/SpaceGameProject/src/game/world/worldgen.cpp
 CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.obj: CMakeFiles/MyGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.obj"
 	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.obj -MF CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.obj.d -o CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.obj -c /home/ubuntu/Games/SpaceGameProject/src/game/world/worldgen.cpp
 
 CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.i: cmake_force
@@ -106,7 +121,7 @@ CMakeFiles/MyGame.dir/src/main.cpp.obj: CMakeFiles/MyGame.dir/flags.make
 CMakeFiles/MyGame.dir/src/main.cpp.obj: CMakeFiles/MyGame.dir/includes_CXX.rsp
 CMakeFiles/MyGame.dir/src/main.cpp.obj: /home/ubuntu/Games/SpaceGameProject/src/main.cpp
 CMakeFiles/MyGame.dir/src/main.cpp.obj: CMakeFiles/MyGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/MyGame.dir/src/main.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/MyGame.dir/src/main.cpp.obj"
 	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MyGame.dir/src/main.cpp.obj -MF CMakeFiles/MyGame.dir/src/main.cpp.obj.d -o CMakeFiles/MyGame.dir/src/main.cpp.obj -c /home/ubuntu/Games/SpaceGameProject/src/main.cpp
 
 CMakeFiles/MyGame.dir/src/main.cpp.i: cmake_force
@@ -121,7 +136,7 @@ CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.obj: CMakeFiles/MyGame.dir/flags
 CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.obj: CMakeFiles/MyGame.dir/includes_CXX.rsp
 CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.obj: /home/ubuntu/Games/SpaceGameProject/src/renderer/renderer.cpp
 CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.obj: CMakeFiles/MyGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.obj"
 	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.obj -MF CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.obj.d -o CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.obj -c /home/ubuntu/Games/SpaceGameProject/src/renderer/renderer.cpp
 
 CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.i: cmake_force
@@ -132,11 +147,26 @@ CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.s"
 	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/Games/SpaceGameProject/src/renderer/renderer.cpp -o CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.s
 
+CMakeFiles/MyGame.dir/src/stb_impl.cpp.obj: CMakeFiles/MyGame.dir/flags.make
+CMakeFiles/MyGame.dir/src/stb_impl.cpp.obj: CMakeFiles/MyGame.dir/includes_CXX.rsp
+CMakeFiles/MyGame.dir/src/stb_impl.cpp.obj: /home/ubuntu/Games/SpaceGameProject/src/stb_impl.cpp
+CMakeFiles/MyGame.dir/src/stb_impl.cpp.obj: CMakeFiles/MyGame.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/MyGame.dir/src/stb_impl.cpp.obj"
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MyGame.dir/src/stb_impl.cpp.obj -MF CMakeFiles/MyGame.dir/src/stb_impl.cpp.obj.d -o CMakeFiles/MyGame.dir/src/stb_impl.cpp.obj -c /home/ubuntu/Games/SpaceGameProject/src/stb_impl.cpp
+
+CMakeFiles/MyGame.dir/src/stb_impl.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/MyGame.dir/src/stb_impl.cpp.i"
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/Games/SpaceGameProject/src/stb_impl.cpp > CMakeFiles/MyGame.dir/src/stb_impl.cpp.i
+
+CMakeFiles/MyGame.dir/src/stb_impl.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MyGame.dir/src/stb_impl.cpp.s"
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/Games/SpaceGameProject/src/stb_impl.cpp -o CMakeFiles/MyGame.dir/src/stb_impl.cpp.s
+
 CMakeFiles/MyGame.dir/src/utils/utils.cpp.obj: CMakeFiles/MyGame.dir/flags.make
 CMakeFiles/MyGame.dir/src/utils/utils.cpp.obj: CMakeFiles/MyGame.dir/includes_CXX.rsp
 CMakeFiles/MyGame.dir/src/utils/utils.cpp.obj: /home/ubuntu/Games/SpaceGameProject/src/utils/utils.cpp
 CMakeFiles/MyGame.dir/src/utils/utils.cpp.obj: CMakeFiles/MyGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/MyGame.dir/src/utils/utils.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/MyGame.dir/src/utils/utils.cpp.obj"
 	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MyGame.dir/src/utils/utils.cpp.obj -MF CMakeFiles/MyGame.dir/src/utils/utils.cpp.obj.d -o CMakeFiles/MyGame.dir/src/utils/utils.cpp.obj -c /home/ubuntu/Games/SpaceGameProject/src/utils/utils.cpp
 
 CMakeFiles/MyGame.dir/src/utils/utils.cpp.i: cmake_force
@@ -149,28 +179,33 @@ CMakeFiles/MyGame.dir/src/utils/utils.cpp.s: cmake_force
 
 # Object files for target MyGame
 MyGame_OBJECTS = \
+"CMakeFiles/MyGame.dir/src/game/ECS/ecs.cpp.obj" \
 "CMakeFiles/MyGame.dir/src/game/game.cpp.obj" \
 "CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.obj" \
 "CMakeFiles/MyGame.dir/src/main.cpp.obj" \
 "CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.obj" \
+"CMakeFiles/MyGame.dir/src/stb_impl.cpp.obj" \
 "CMakeFiles/MyGame.dir/src/utils/utils.cpp.obj"
 
 # External object files for target MyGame
 MyGame_EXTERNAL_OBJECTS =
 
+MyGame.exe: CMakeFiles/MyGame.dir/src/game/ECS/ecs.cpp.obj
 MyGame.exe: CMakeFiles/MyGame.dir/src/game/game.cpp.obj
 MyGame.exe: CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.obj
 MyGame.exe: CMakeFiles/MyGame.dir/src/main.cpp.obj
 MyGame.exe: CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.obj
+MyGame.exe: CMakeFiles/MyGame.dir/src/stb_impl.cpp.obj
 MyGame.exe: CMakeFiles/MyGame.dir/src/utils/utils.cpp.obj
 MyGame.exe: CMakeFiles/MyGame.dir/build.make
 MyGame.exe: libglad.a
 MyGame.exe: _deps/glfw-build/src/libglfw3.a
 MyGame.exe: external/FastNoise2/src/libFastNoise.a
+MyGame.exe: _deps/freetype-build/libfreetype.a
 MyGame.exe: CMakeFiles/MyGame.dir/linkLibs.rsp
 MyGame.exe: CMakeFiles/MyGame.dir/objects1.rsp
 MyGame.exe: CMakeFiles/MyGame.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable MyGame.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ubuntu/Games/SpaceGameProject/build-windows/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable MyGame.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/MyGame.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

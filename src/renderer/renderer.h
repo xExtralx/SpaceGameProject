@@ -8,6 +8,7 @@
 #include "../utils/utils.h"
 #include "texture/texture.h"
 #include "../game/world/worldgen.h"
+#include "tiny_gltf.h"
 
 struct ChunkRenderData {
     GLuint VAO = 0;
@@ -30,8 +31,8 @@ struct Camera {
     Mat4 getViewProj(int renderW, int renderH) const {
         // Snap to nearest pixel in screen space, accounting for zoom
         float pixelSize = 1.0f / zoom; // world units per screen pixel
-        float snappedX  = std::round(position[0] / pixelSize) * pixelSize;
-        float snappedY  = std::round(position[1] / pixelSize) * pixelSize;
+        float snappedX = std::round(position[0] / pixelSize) * pixelSize;
+        float snappedY = std::round(position[1] / pixelSize) * pixelSize;
 
         float halfW = (renderW * 0.5f) / zoom;
         float halfH = (renderH * 0.5f) / zoom;
@@ -56,6 +57,12 @@ struct TileVertex {
 struct ColorVertex {
     Vec3 pos;
     Vec4 color;
+};
+
+struct Mesh {
+    GLuint VAO = 0, VBO = 0, EBO = 0;
+    int indexCount = 0;
+    GLuint textureID = 0;
 };
 
 class Renderer {
@@ -95,7 +102,15 @@ public:
     void uploadChunk(const Chunk& chunk);
     void renderChunks(const ChunkManager& chunkManager);
     Vec2 tileTypeToUV(TileType type) const;
+
+    // Meshes
+
+    Mesh loadGLTF(const std::string& path);
+    void renderMesh(const Mesh& mesh, const Mat4& transform);
+    std::unordered_map<std::string, Mesh> meshCache;
+
 private:
+
     int width  = 0;
     int height = 0;
 
@@ -108,6 +123,7 @@ private:
     Shader* colorShader   = nullptr;
     Shader* imageShader   = nullptr;
     Shader* upscaleShader = nullptr;
+    Shader* meshShader    = nullptr;
 
     // Tile geometry (textured)
     std::vector<TileVertex>  tileVertices;

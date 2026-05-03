@@ -22,6 +22,11 @@ void Game::init() {
     glfwSetWindowUserPointer(renderer.getWindow(), this);
     glfwSetMouseButtonCallback(renderer.getWindow(), Renderer::mouse_button_callback);
     glfwSetScrollCallback(renderer.getWindow(), Game::scroll_callback);
+
+    // Init
+    RecipeDB::registerRecipe({"smelt_iron", {{"iron_ore", 2}}, {{"iron_plate", 1}}, 3.0f});
+    auto smelter = world.createBuilding("models/smelter.gltf", 10, 5, "smelt_iron");
+    world.get<CInventory>(smelter).addItem("iron_ore", 20);
 }
 
 void Game::update() {
@@ -60,6 +65,11 @@ void Game::update() {
     float gridY = camPixelY / tileH - camPixelX / tileW;
 
     chunkManager.updateLoadedChunks(gridX, gridY, 1.0f, 5);
+
+    // ECS
+
+    world.updateCrafters(deltaTime);
+    world.updateBelts(deltaTime);
 }
 
 void Game::render() {
@@ -68,6 +78,8 @@ void Game::render() {
     renderer.draw();
     renderer.present();
     renderer.update();
+
+    world.renderMeshes(renderer);
 }
 
 bool Game::shouldClose() const {

@@ -27,7 +27,7 @@ set_property(GLOBAL PROPERTY _CMAKE_FindGit_GIT_EXECUTABLE_VERSION
 
 include(ExternalProject)
 ExternalProject_Add(freetype-populate
-                     "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://gitlab.freedesktop.org/freetype/freetype.git" "EXTERNALPROJECT_INTERNAL_ARGUMENT_SEPARATOR" "GIT_TAG" "VER-2-13-2"
+                     "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://gitlab.freedesktop.org/freetype/freetype.git" "EXTERNALPROJECT_INTERNAL_ARGUMENT_SEPARATOR" "GIT_TAG" "VER-2-13-2" "GIT_SHALLOW" "TRUE"
                     SOURCE_DIR          "/home/ubuntu/Games/SpaceGameProject/build-windows/_deps/freetype-src"
                     BINARY_DIR          "/home/ubuntu/Games/SpaceGameProject/build-windows/_deps/freetype-build"
                     CONFIGURE_COMMAND   ""

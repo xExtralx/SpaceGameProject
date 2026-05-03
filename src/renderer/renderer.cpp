@@ -78,12 +78,17 @@ int Renderer::init() {
         FileManager::LoadTextFile("shader/image.frag")
     );
 
-    tilesetTexture = TextureManager::getInstance().loadTexture("textures/tileset/atlas.png");
-
     tileShader = new Shader(
         FileManager::LoadTextFile("shader/tile.vert"),
         FileManager::LoadTextFile("shader/tile.frag")
     );
+
+    meshShader = new Shader(
+        FileManager::LoadTextFile("shader/mesh.vert"),
+        FileManager::LoadTextFile("shader/mesh.frag")
+    );
+
+    tilesetTexture = TextureManager::getInstance().loadTexture("textures/tileset/atlas.png");
 
     initTileQuad();
 
@@ -521,4 +526,130 @@ void Renderer::renderChunks(const ChunkManager& chunkManager) {
         glDrawArraysInstanced(GL_TRIANGLES, 0, 6, rd.instanceCount);
         glBindVertexArray(0);
     }
+}
+
+// =====================
+// Meshes
+// =====================
+
+Mesh Renderer::loadGLTF(const std::string& path) {
+    tinygltf::Model model;
+    tinygltf::TinyGLTF loader;
+    std::string err, warn;
+
+    bool ok = loader.LoadASCIIFromFile(&model, &err, &warn, path);
+    if (!ok) {
+        std::cerr << "[GLTF] Failed to load: " << path << " - " << err << std::endl;
+        return {};
+    }
+
+    // Prend le premier mesh
+    auto& primitive = model.meshes[0].primitives[0];
+
+    std::vector<float> vertices;
+    std::vector<unsigned int> indices;
+
+    // Positions
+    auto& posAccessor = model.accessors[primitive.attributes["POSITION"]];
+    auto& posView     = model.bufferViews[posAccessor.bufferView];
+    auto& posBuffer   = model.buffers[posView.buffer];
+    const float* positions = reinterpret_cast<const float*>(
+        posBuffer.data.data() + posView.byteOffset + posAccessor.byteOffset);
+
+    // UVs
+    const float* uvs = nullptr;
+    if (primitive.attributes.count("TEXCOORD_0")) {
+        auto& uvAccessor = model.accessors[primitive.attributes["TEXCOORD_0"]];
+        auto& uvView     = model.bufferViews[uvAccessor.bufferView];
+        uvs = reinterpret_cast<const float*>(
+            model.buffers[uvView.buffer].data.data() + uvView.byteOffset + uvAccessor.byteOffset);
+    }
+
+    for (size_t i = 0; i < posAccessor.count; i++) {
+        vertices.push_back(positions[i * 3 + 0]);
+        vertices.push_back(positions[i * 3 + 1]);
+        vertices.push_back(positions[i * 3 + 2]);
+        if (uvs) {
+            vertices.push_back(uvs[i * 2 + 0]);
+            vertices.push_back(uvs[i * 2 + 1]);
+        } else {
+            vertices.push_back(0.0f);
+            vertices.push_back(0.0f);
+        }
+    }
+
+    // Indices
+    auto& idxAccessor = model.accessors[primitive.indices];
+    auto& idxView     = model.bufferViews[idxAccessor.bufferView];
+    const unsigned short* rawIdx = reinterpret_cast<const unsigned short*>(
+        model.buffers[idxView.buffer].data.data() + idxView.byteOffset + idxAccessor.byteOffset);
+    for (size_t i = 0; i < idxAccessor.count; i++)
+        indices.push_back(rawIdx[i]);
+
+    // Upload GPU
+    Mesh mesh;
+    glGenVertexArrays(1, &mesh.VAO);
+    glGenBuffers(1, &mesh.VBO);
+    glGenBuffers(1, &mesh.EBO);
+
+    glBindVertexArray(mesh.VAO);
+    glBindBuffer(GL_ARRAY_BUFFER, mesh.VBO);
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), vertices.data(), GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), indices.data(), GL_STATIC_DRAW);
+
+    // pos (location 0) — vec3
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    // uv (location 1) — vec2
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+
+    glBindVertexArray(0);
+
+    mesh.indexCount = static_cast<int>(indices.size());
+
+    // Texture du modele si présente
+    if (!model.textures.empty()) {
+        auto& tex = model.textures[0];
+        auto& img = model.images[tex.source];
+        glGenTextures(1, &mesh.textureID);
+        glBindTexture(GL_TEXTURE_2D, mesh.textureID);
+        
+        GLenum format = (img.component == 4) ? GL_RGBA : GL_RGB;
+        glTexImage2D(GL_TEXTURE_2D, 0, format, img.width, img.height, 0, format, GL_UNSIGNED_BYTE, img.image.data());
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    }
+
+    return mesh;
+}
+
+void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
+    if (!meshShader) {
+        meshShader = new Shader(
+            FileManager::LoadTextFile("shader/mesh.vert"),
+            FileManager::LoadTextFile("shader/mesh.frag")
+        );
+    }
+
+    meshShader->use();
+
+    // Matrices
+    Mat4 viewProj = camera.getViewProj(RENDER_WIDTH, RENDER_HEIGHT);
+    meshShader->setMat4("uViewProj", viewProj);
+    meshShader->setMat4("uModel",    transform);
+
+    // Texture
+    meshShader->setInt("uTexture", 0);
+    glActiveTexture(GL_TEXTURE0);
+    if (mesh.textureID)
+        glBindTexture(GL_TEXTURE_2D, mesh.textureID);
+    else
+        glBindTexture(GL_TEXTURE_2D, 0);
+
+    // Draw
+    glBindVertexArray(mesh.VAO);
+    glDrawElements(GL_TRIANGLES, mesh.indexCount, GL_UNSIGNED_INT, nullptr);
+    glBindVertexArray(0);
 }

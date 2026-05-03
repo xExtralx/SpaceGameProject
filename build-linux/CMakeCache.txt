@@ -324,6 +324,40 @@ CPM_USE_LOCAL_PACKAGES:BOOL=OFF
 // nested level.
 CPM_USE_NAMED_CACHE_DIRECTORIES:BOOL=OFF
 
+//Enable building with documentation.
+ENTT_BUILD_DOCS:BOOL=OFF
+
+//Enable building tests.
+ENTT_BUILD_TESTING:BOOL=OFF
+
+//Enable building tools.
+ENTT_BUILD_TOOLS:BOOL=OFF
+
+//Add all EnTT headers to the EnTT target.
+ENTT_INCLUDE_HEADERS:BOOL=OFF
+
+//Add EnTT natvis files to the EnTT target.
+ENTT_INCLUDE_NATVIS:BOOL=OFF
+
+//Enable static analysis with clang-tidy
+ENTT_USE_CLANG_TIDY:BOOL=OFF
+
+//Use libc++ by adding -stdlib=libc++ flag if available.
+ENTT_USE_LIBCPP:BOOL=OFF
+
+//Enable sanitizers by adding -fsanitize=address -fno-omit-frame-pointer
+// -fsanitize=undefined flags if available.
+ENTT_USE_SANITIZER:BOOL=OFF
+
+//Value Computed by CMake
+EnTT_BINARY_DIR:STATIC=/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/entt-build
+
+//Value Computed by CMake
+EnTT_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+EnTT_SOURCE_DIR:STATIC=/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/entt-src
+
 //Enable strict floating point calculations to ensure output from
 // different SIMD feature sets match EXACTLY
 FASTNOISE2_STRICT_FP:BOOL=OFF
@@ -357,6 +391,10 @@ FETCHCONTENT_FULLY_DISCONNECTED:BOOL=OFF
 FETCHCONTENT_QUIET:BOOL=ON
 
 //When not empty, overrides where to find pre-populated content
+// for entt
+FETCHCONTENT_SOURCE_DIR_ENTT:PATH=
+
+//When not empty, overrides where to find pre-populated content
 // for FastSIMD
 FETCHCONTENT_SOURCE_DIR_FASTSIMD:PATH=
 
@@ -368,8 +406,15 @@ FETCHCONTENT_SOURCE_DIR_FREETYPE:PATH=
 // for glfw
 FETCHCONTENT_SOURCE_DIR_GLFW:PATH=
 
+//When not empty, overrides where to find pre-populated content
+// for tinygltf
+FETCHCONTENT_SOURCE_DIR_TINYGLTF:PATH=
+
 //Enables UPDATE_DISCONNECTED behavior for all content population
 FETCHCONTENT_UPDATES_DISCONNECTED:BOOL=OFF
+
+//Enables UPDATE_DISCONNECTED behavior just for population of entt
+FETCHCONTENT_UPDATES_DISCONNECTED_ENTT:BOOL=OFF
 
 //Enables UPDATE_DISCONNECTED behavior just for population of FastSIMD
 FETCHCONTENT_UPDATES_DISCONNECTED_FASTSIMD:BOOL=OFF
@@ -379,6 +424,9 @@ FETCHCONTENT_UPDATES_DISCONNECTED_FREETYPE:BOOL=OFF
 
 //Enables UPDATE_DISCONNECTED behavior just for population of glfw
 FETCHCONTENT_UPDATES_DISCONNECTED_GLFW:BOOL=OFF
+
+//Enables UPDATE_DISCONNECTED behavior just for population of tinygltf
+FETCHCONTENT_UPDATES_DISCONNECTED_TINYGLTF:BOOL=OFF
 
 //Path to a file.
 FREETYPE_INCLUDE_DIR_freetype2:PATH=/usr/include/freetype2
@@ -521,6 +569,26 @@ PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
 
 //Path to a library.
 RT_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/librt.a
+
+//Build glTF builder example
+TINYGLTF_BUILD_BUILDER_EXAMPLE:BOOL=OFF
+
+//Build GL exampels(requires glfw, OpenGL, etc)
+TINYGLTF_BUILD_GL_EXAMPLES:BOOL=OFF
+
+//Build loader_example(load glTF and dump infos)
+TINYGLTF_BUILD_LOADER_EXAMPLE:BOOL=ON
+
+//Build validator exampe
+TINYGLTF_BUILD_VALIDATOR_EXAMPLE:BOOL=OFF
+
+//On: header-only mode. Off: create tinygltf library(No TINYGLTF_IMPLEMENTATION
+// required in your project)
+TINYGLTF_HEADER_ONLY:BOOL=OFF
+
+//Install tinygltf files during install step. Usually set to OFF
+// if you include tinygltf through add_subdirectory()
+TINYGLTF_INSTALL:BOOL=ON
 
 //Path to a file.
 X11_ICE_INCLUDE_PATH:PATH=/usr/include
@@ -936,6 +1004,15 @@ freetype_IS_TOP_LEVEL:STATIC=OFF
 //Value Computed by CMake
 freetype_SOURCE_DIR:STATIC=/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/freetype-src
 
+//Value Computed by CMake
+tinygltf_BINARY_DIR:STATIC=/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/tinygltf-build
+
+//Value Computed by CMake
+tinygltf_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+tinygltf_SOURCE_DIR:STATIC=/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/tinygltf-src
+
 
 ########################
 # INTERNAL cache entries
@@ -1085,7 +1162,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=8
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=10
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

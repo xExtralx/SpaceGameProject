@@ -27,7 +27,7 @@ set_property(GLOBAL PROPERTY _CMAKE_FindGit_GIT_EXECUTABLE_VERSION
 
 include(ExternalProject)
 ExternalProject_Add(glfw-populate
-                     "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://github.com/glfw/glfw.git" "EXTERNALPROJECT_INTERNAL_ARGUMENT_SEPARATOR" "GIT_TAG" "3.3.9"
+                     "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://github.com/glfw/glfw.git" "EXTERNALPROJECT_INTERNAL_ARGUMENT_SEPARATOR" "GIT_TAG" "3.3.9" "GIT_SHALLOW" "TRUE"
                     SOURCE_DIR          "/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/glfw-src"
                     BINARY_DIR          "/home/ubuntu/Games/SpaceGameProject/build-linux/_deps/glfw-build"
                     CONFIGURE_COMMAND   ""

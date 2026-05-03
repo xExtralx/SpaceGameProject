@@ -29,14 +29,7 @@ CMakeFiles/MyGame.dir/src/utils/utils.cpp.obj: \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/mm_malloc.h \
  /usr/share/mingw-w64/include/errno.h \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/std_abs.h \
- /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/stdarg.h \
- /usr/share/mingw-w64/include/stdarg.h \
- /usr/share/mingw-w64/include/_mingw_stdarg.h \
- /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/stddef.h \
- /usr/share/mingw-w64/include/stddef.h \
- /usr/share/mingw-w64/include/string.h \
- /usr/share/mingw-w64/include/sec_api/string_s.h \
- /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/math.h \
+ /home/ubuntu/Games/SpaceGameProject/src/utils/utils.h \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/cmath \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/requires_hosted.h \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/cpp_type_traits.h \
@@ -80,17 +73,14 @@ CMakeFiles/MyGame.dir/src/utils/utils.cpp.obj: \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/tr1/poly_hermite.tcc \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/tr1/poly_laguerre.tcc \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/tr1/riemann_zeta.tcc \
- /usr/share/mingw-w64/include/assert.h \
- /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/stdint.h \
- /usr/share/mingw-w64/include/stdint.h \
- /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/emmintrin.h \
- /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/xmmintrin.h \
- /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/mmintrin.h \
- /home/ubuntu/Games/SpaceGameProject/src/utils/utils.h \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/chrono \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/chrono.h \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/ratio \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/cstdint \
+ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/stdint.h \
+ /usr/share/mingw-w64/include/stdint.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/stddef.h \
+ /usr/share/mingw-w64/include/stddef.h \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/ctime \
  /usr/share/mingw-w64/include/time.h \
  /usr/share/mingw-w64/include/sys/timeb.h \
@@ -260,7 +250,10 @@ CMakeFiles/MyGame.dir/src/utils/utils.cpp.obj: \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/indirect_array.h \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/version \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/cassert \
+ /usr/share/mingw-w64/include/assert.h \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/cstring \
+ /usr/share/mingw-w64/include/string.h \
+ /usr/share/mingw-w64/include/sec_api/string_s.h \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/filesystem \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/fs_fwd.h \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/fs_path.h \

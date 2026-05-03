@@ -137,7 +137,6 @@ struct Vec {
     }
 };
 
-// 4x4 matrix for OpenGL (column major)
 struct Mat4 {
     float data[16] = {
         1,0,0,0,
@@ -156,6 +155,43 @@ struct Mat4 {
         m.data[14] = -(far + near)   / (far - near);
         m.data[15] =  1.0f;
         return m;
+    }
+
+    static Mat4 translate(float x, float y, float z) {
+        Mat4 m;
+        m.data[12] = x;
+        m.data[13] = y;
+        m.data[14] = z;
+        return m;
+    }
+
+    static Mat4 scale(float x, float y, float z) {
+        Mat4 m;
+        m.data[0]  = x;
+        m.data[5]  = y;
+        m.data[10] = z;
+        return m;
+    }
+
+    static Mat4 rotateZ(float degrees) {
+        const float r = degrees * 3.14159265f / 180.0f;
+        const float c = std::cos(r);
+        const float s = std::sin(r);
+        Mat4 m;
+        m.data[0] =  c;  m.data[4] = -s;
+        m.data[1] =  s;  m.data[5] =  c;
+        return m;
+    }
+
+    Mat4 operator*(const Mat4& o) const {
+        Mat4 r;
+        for (int col = 0; col < 4; col++)
+            for (int row = 0; row < 4; row++) {
+                r.data[col*4 + row] = 0;
+                for (int k = 0; k < 4; k++)
+                    r.data[col*4 + row] += data[k*4 + row] * o.data[col*4 + k];
+            }
+        return r;
     }
 
     const float* ptr() const { return data; }

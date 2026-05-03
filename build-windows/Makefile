@@ -235,6 +235,45 @@ glfw/fast:
 .PHONY : glfw/fast
 
 #=============================================================================
+# Target rules for targets named loader_example
+
+# Build rule for target.
+loader_example: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 loader_example
+.PHONY : loader_example
+
+# fast build rule for target.
+loader_example/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/tinygltf-build/CMakeFiles/loader_example.dir/build.make _deps/tinygltf-build/CMakeFiles/loader_example.dir/build
+.PHONY : loader_example/fast
+
+#=============================================================================
+# Target rules for targets named tinygltf
+
+# Build rule for target.
+tinygltf: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tinygltf
+.PHONY : tinygltf
+
+# fast build rule for target.
+tinygltf/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/tinygltf-build/CMakeFiles/tinygltf.dir/build.make _deps/tinygltf-build/CMakeFiles/tinygltf.dir/build
+.PHONY : tinygltf/fast
+
+#=============================================================================
+# Target rules for targets named freetype
+
+# Build rule for target.
+freetype: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 freetype
+.PHONY : freetype
+
+# fast build rule for target.
+freetype/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/freetype-build/CMakeFiles/freetype.dir/build.make _deps/freetype-build/CMakeFiles/freetype.dir/build
+.PHONY : freetype/fast
+
+#=============================================================================
 # Target rules for targets named FastNoise
 
 # Build rule for target.
@@ -273,19 +312,6 @@ FastSIMD/fast:
 	$(MAKE) $(MAKESILENT) -f _deps/fastsimd-build/CMakeFiles/FastSIMD.dir/build.make _deps/fastsimd-build/CMakeFiles/FastSIMD.dir/build
 .PHONY : FastSIMD/fast
 
-#=============================================================================
-# Target rules for targets named freetype
-
-# Build rule for target.
-freetype: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 freetype
-.PHONY : freetype
-
-# fast build rule for target.
-freetype/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/freetype-build/CMakeFiles/freetype.dir/build.make _deps/freetype-build/CMakeFiles/freetype.dir/build
-.PHONY : freetype/fast
-
 include/glad/src/glad.obj: include/glad/src/glad.c.obj
 .PHONY : include/glad/src/glad.obj
 
@@ -309,6 +335,30 @@ include/glad/src/glad.s: include/glad/src/glad.c.s
 include/glad/src/glad.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/glad.dir/build.make CMakeFiles/glad.dir/include/glad/src/glad.c.s
 .PHONY : include/glad/src/glad.c.s
+
+src/game/ECS/ecs.obj: src/game/ECS/ecs.cpp.obj
+.PHONY : src/game/ECS/ecs.obj
+
+# target to build an object file
+src/game/ECS/ecs.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyGame.dir/build.make CMakeFiles/MyGame.dir/src/game/ECS/ecs.cpp.obj
+.PHONY : src/game/ECS/ecs.cpp.obj
+
+src/game/ECS/ecs.i: src/game/ECS/ecs.cpp.i
+.PHONY : src/game/ECS/ecs.i
+
+# target to preprocess a source file
+src/game/ECS/ecs.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyGame.dir/build.make CMakeFiles/MyGame.dir/src/game/ECS/ecs.cpp.i
+.PHONY : src/game/ECS/ecs.cpp.i
+
+src/game/ECS/ecs.s: src/game/ECS/ecs.cpp.s
+.PHONY : src/game/ECS/ecs.s
+
+# target to generate assembly for a file
+src/game/ECS/ecs.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyGame.dir/build.make CMakeFiles/MyGame.dir/src/game/ECS/ecs.cpp.s
+.PHONY : src/game/ECS/ecs.cpp.s
 
 src/game/game.obj: src/game/game.cpp.obj
 .PHONY : src/game/game.obj
@@ -406,6 +456,30 @@ src/renderer/renderer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyGame.dir/build.make CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.s
 .PHONY : src/renderer/renderer.cpp.s
 
+src/stb_impl.obj: src/stb_impl.cpp.obj
+.PHONY : src/stb_impl.obj
+
+# target to build an object file
+src/stb_impl.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyGame.dir/build.make CMakeFiles/MyGame.dir/src/stb_impl.cpp.obj
+.PHONY : src/stb_impl.cpp.obj
+
+src/stb_impl.i: src/stb_impl.cpp.i
+.PHONY : src/stb_impl.i
+
+# target to preprocess a source file
+src/stb_impl.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyGame.dir/build.make CMakeFiles/MyGame.dir/src/stb_impl.cpp.i
+.PHONY : src/stb_impl.cpp.i
+
+src/stb_impl.s: src/stb_impl.cpp.s
+.PHONY : src/stb_impl.s
+
+# target to generate assembly for a file
+src/stb_impl.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyGame.dir/build.make CMakeFiles/MyGame.dir/src/stb_impl.cpp.s
+.PHONY : src/stb_impl.cpp.s
+
 src/utils/utils.obj: src/utils/utils.cpp.obj
 .PHONY : src/utils/utils.obj
 
@@ -452,9 +526,14 @@ help:
 	@echo "... freetype"
 	@echo "... glad"
 	@echo "... glfw"
+	@echo "... loader_example"
+	@echo "... tinygltf"
 	@echo "... include/glad/src/glad.obj"
 	@echo "... include/glad/src/glad.i"
 	@echo "... include/glad/src/glad.s"
+	@echo "... src/game/ECS/ecs.obj"
+	@echo "... src/game/ECS/ecs.i"
+	@echo "... src/game/ECS/ecs.s"
 	@echo "... src/game/game.obj"
 	@echo "... src/game/game.i"
 	@echo "... src/game/game.s"
@@ -467,6 +546,9 @@ help:
 	@echo "... src/renderer/renderer.obj"
 	@echo "... src/renderer/renderer.i"
 	@echo "... src/renderer/renderer.s"
+	@echo "... src/stb_impl.obj"
+	@echo "... src/stb_impl.i"
+	@echo "... src/stb_impl.s"
 	@echo "... src/utils/utils.obj"
 	@echo "... src/utils/utils.i"
 	@echo "... src/utils/utils.s"

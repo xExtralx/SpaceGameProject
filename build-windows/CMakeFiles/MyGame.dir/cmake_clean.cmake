@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/MyGame.dir/src/game/ECS/ecs.cpp.obj"
+  "CMakeFiles/MyGame.dir/src/game/ECS/ecs.cpp.obj.d"
   "CMakeFiles/MyGame.dir/src/game/game.cpp.obj"
   "CMakeFiles/MyGame.dir/src/game/game.cpp.obj.d"
   "CMakeFiles/MyGame.dir/src/game/world/worldgen.cpp.obj"
@@ -7,6 +9,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/MyGame.dir/src/main.cpp.obj.d"
   "CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.obj"
   "CMakeFiles/MyGame.dir/src/renderer/renderer.cpp.obj.d"
+  "CMakeFiles/MyGame.dir/src/stb_impl.cpp.obj"
+  "CMakeFiles/MyGame.dir/src/stb_impl.cpp.obj.d"
   "CMakeFiles/MyGame.dir/src/utils/utils.cpp.obj"
   "CMakeFiles/MyGame.dir/src/utils/utils.cpp.obj.d"
   "MyGame.exe"
