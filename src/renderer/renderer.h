@@ -42,7 +42,7 @@ struct Camera {
         float bottom = snappedY - halfH;
         float top    = snappedY + halfH;
 
-        return Mat4::ortho(left, right, bottom, top, -1.0f, 1.0f);
+        return Mat4::ortho(left, right, bottom, top, -100.0f, 100.0f);
     }
 };
 
