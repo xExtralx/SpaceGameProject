@@ -687,6 +687,14 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
     else
         glBindTexture(GL_TEXTURE_2D, fallbackWhiteTexture);
 
+    GLint currentProgram;
+    glGetIntegerv(GL_CURRENT_PROGRAM, &currentProgram);
+    std::cerr << "Active program: " << currentProgram << " meshShader ID: " << meshShader->ID << std::endl;
+
+    GLint viewport[4];
+    glGetIntegerv(GL_VIEWPORT, viewport);
+    std::cerr << "Viewport: " << viewport[0] << " " << viewport[1] << " " << viewport[2] << " " << viewport[3] << std::endl;
+
     // Draw
     glBindVertexArray(mesh.VAO);
     glDrawArrays(GL_TRIANGLES, 0, 3); // ← pas d'EBO, juste 3 vertices hardcodés

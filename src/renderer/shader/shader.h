@@ -105,15 +105,17 @@ private:
             glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
             if (!success) {
                 glGetShaderInfoLog(shader, 1024, nullptr, infoLog);
-                std::cerr << "❌ Shader compilation error (" << type << "):\n"
-                          << infoLog << std::endl;
+                std::cerr << "❌ Shader compile error (" << type << "):\n" << infoLog << std::endl;
+            } else {
+                std::cerr << "✅ Shader OK: " << type << " (ID=" << shader << ")" << std::endl;
             }
         } else {
             glGetProgramiv(shader, GL_LINK_STATUS, &success);
             if (!success) {
                 glGetProgramInfoLog(shader, 1024, nullptr, infoLog);
-                std::cerr << "❌ Program linking error:\n"
-                          << infoLog << std::endl;
+                std::cerr << "❌ Program link error:\n" << infoLog << std::endl;
+            } else {
+                std::cerr << "✅ Program linked OK (ID=" << shader << ")" << std::endl;
             }
         }
     }
