@@ -145,25 +145,14 @@ struct Mat4 {
         0,0,0,1
     };
 
-    static Mat4 ortho(float left, float right, float bottom, float top, float near, float far) {
-        Mat4 m;
-        m.data[0]  =  2.0f / (right - left);
-        m.data[5]  =  2.0f / (top - bottom);
-        m.data[10] = -2.0f / (far - near);
-        m.data[12] = -(right + left) / (right - left);
-        m.data[13] = -(top + bottom) / (top - bottom);
-        m.data[14] = -(far + near)   / (far - near);
-        m.data[15] =  1.0f;
-        return m;
-    }
-
+    // Column-major : data[col*4 + row]
+    // Translation : col 3 = [tx, ty, tz, 1]
     static Mat4 translate(float x, float y, float z) {
         Mat4 m;
-        m.data[12] = x;
-        m.data[13] = y;
-        m.data[14] = z;
-        m.data[15] = 1.0f;
-        return m;
+        m.data[12] = x;  // col3, row0
+        m.data[13] = y;  // col3, row1
+        m.data[14] = z;  // col3, row2
+        return m;        // data[15]=1 déjà dans l'identité
     }
 
     static Mat4 scale(float x, float y, float z) {
@@ -171,7 +160,6 @@ struct Mat4 {
         m.data[0]  = x;
         m.data[5]  = y;
         m.data[10] = z;
-        m.data[15] = 1.0f;
         return m;
     }
 
@@ -180,21 +168,33 @@ struct Mat4 {
         const float c = std::cos(r);
         const float s = std::sin(r);
         Mat4 m;
-        m.data[0] =  c;  m.data[4] = -s;
-        m.data[1] =  s;  m.data[5] =  c;
-        m.data[15] = 1.0f;
+        m.data[0] =  c;  m.data[4] = -s;  // col0 et col1, row0
+        m.data[1] =  s;  m.data[5] =  c;  // col0 et col1, row1
         return m;
     }
 
+    // ortho column-major (correct pour OpenGL)
+    static Mat4 ortho(float l, float r, float b, float t, float n, float f) {
+        Mat4 m;
+        m.data[0]  =  2.0f / (r - l);
+        m.data[5]  =  2.0f / (t - b);
+        m.data[10] = -2.0f / (f - n);
+        m.data[12] = -(r + l) / (r - l);
+        m.data[13] = -(t + b) / (t - b);
+        m.data[14] = -(f + n) / (f - n);
+        return m;
+    }
+
+    // Multiplication column-major correcte (déjà bonne)
     Mat4 operator*(const Mat4& o) const {
-        Mat4 r;
+        Mat4 result;
         for (int col = 0; col < 4; col++)
             for (int row = 0; row < 4; row++) {
-                r.data[col*4 + row] = 0;
+                result.data[col*4 + row] = 0;
                 for (int k = 0; k < 4; k++)
-                    r.data[col*4 + row] += data[k*4 + row] * o.data[col*4 + k];
+                    result.data[col*4 + row] += data[k*4 + row] * o.data[col*4 + k];
             }
-        return r;
+        return result;
     }
 
     const float* ptr() const { return data; }
