@@ -25,7 +25,7 @@ void Game::init() {
 
     // Init
     RecipeDB::registerRecipe({"smelt_iron", {{"iron_ore", 2}}, {{"iron_plate", 1}}, 3.0f});
-    auto smelter = world.createBuilding("assets/models/smelter.gltf", 10, 5, "smelt_iron");
+    auto smelter = world.createBuilding("assets/models/smelter.gltf", 0, 0, "smelt_iron");
     world.get<CInventory>(smelter).addItem("iron_ore", 20);
 }
 
@@ -75,11 +75,10 @@ void Game::update() {
 void Game::render() {
     renderer.clear();
     // renderer.renderChunks(chunkManager);
+    world.renderMeshes(renderer);
     renderer.draw();
     renderer.present();
     renderer.update();
-
-    world.renderMeshes(renderer);
 }
 
 bool Game::shouldClose() const {
