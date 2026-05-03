@@ -26,7 +26,7 @@ void Game::init() {
     // Init
     RecipeDB::registerRecipe({"smelt_iron", {{"iron_ore", 2}}, {{"iron_plate", 1}}, 3.0f});
     auto smelter = world.createBuilding("assets/models/smelter.gltf", 0, 0, "smelt_iron");
-    world.get<CScale>(smelter) = { 128.0f, 128.0f, 128.0f }; // to be adjusted
+    world.get<CScale>(smelter) = { 32.0f, 32.0f, 32.0f }; // to be adjusted
     world.get<CInventory>(smelter).addItem("iron_ore", 20);
 }
 
@@ -75,8 +75,15 @@ void Game::update() {
 
 void Game::render() {
     renderer.clear();
-    // renderer.renderChunks(chunkManager);
-    world.renderMeshes(renderer);
+
+    // TEST DIRECT — bypass total du ECS
+    if (renderer.meshCache.count("models/smelter.gltf") == 0)
+        renderer.meshCache["models/smelter.gltf"] = renderer.loadGLTF("models/smelter.gltf");
+
+    Mat4 transform = Mat4::translate(0.0f, 0.0f, 0.0f)
+                   * Mat4::scale(128.0f, 128.0f, 128.0f);
+    renderer.renderMesh(renderer.meshCache["models/smelter.gltf"], transform);
+
     renderer.draw();
     renderer.present();
     renderer.update();
