@@ -26,7 +26,7 @@ void Game::init() {
     // Init
     RecipeDB::registerRecipe({"smelt_iron", {{"iron_ore", 2}}, {{"iron_plate", 1}}, 3.0f});
     auto smelter = world.createBuilding("assets/models/smelter.gltf", 0, 0, "smelt_iron");
-    world.get<CScale>(smelter) = { 1.0f, 1.0f, 1.0f }; // to be adjusted
+    // world.get<CScale>(smelter) = { 1.0f, 1.0f, 1.0f }; // to be adjusted
     world.get<CInventory>(smelter).addItem("iron_ore", 20);
 }
 
