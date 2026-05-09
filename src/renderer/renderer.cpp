@@ -211,7 +211,7 @@ void Renderer::initTileBuffer() {
 void Renderer::clear() {
     glBindFramebuffer(GL_FRAMEBUFFER, pixelFBO);
     glViewport(0, 0, RENDER_WIDTH, RENDER_HEIGHT);
-    glClearColor(0.05f, 0.05f, 0.08f, 1.0f);
+    glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     tileVertices.clear();
@@ -669,6 +669,9 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
     std::cerr << "indexCount: " << mesh.indexCount << std::endl;
     if (mesh.VAO == 0 || mesh.indexCount == 0) return;
 
+    glBindFramebuffer(GL_FRAMEBUFFER, pixelFBO);
+    glViewport(0, 0, RENDER_WIDTH, RENDER_HEIGHT);
+
     if (!meshShader) {
         meshShader = new Shader(
             FileManager::LoadTextFile("shader/mesh.vert"),
@@ -683,6 +686,12 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
 
     // Matrices
     Mat4 viewProj = camera.getViewProj(RENDER_WIDTH, RENDER_HEIGHT);
+    std::cerr << "viewProj[0]=" << viewProj.data[0] 
+            << " viewProj[5]=" << viewProj.data[5]
+            << " viewProj[10]=" << viewProj.data[10] << std::endl;
+    std::cerr << "transform[12]=" << transform.data[12]
+            << " transform[13]=" << transform.data[13]
+            << " transform[14]=" << transform.data[14] << std::endl;
     meshShader->setMat4("uViewProj", viewProj);
     meshShader->setMat4("uModel",    transform);
 
@@ -702,8 +711,10 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
     std::cerr << "Viewport: " << viewport[0] << " " << viewport[1] << " " << viewport[2] << " " << viewport[3] << std::endl;
 
     // Draw
+    glDisable(GL_BLEND);
     glDisable(GL_CULL_FACE); // ← ajoutez avant le draw
     glBindVertexArray(mesh.VAO);
     glDrawElements(GL_TRIANGLES, mesh.indexCount, GL_UNSIGNED_INT, nullptr);
     glBindVertexArray(0);
+    glEnable(GL_BLEND);
 }

@@ -74,13 +74,11 @@ void Game::update() {
 }
 
 void Game::render() {
-    renderer.clear();
-    // renderer.renderChunks(chunkManager);
+    renderer.clear();           // Nettoyage de l'écran
     world.renderMeshes(renderer);
-    renderer.draw();
-    renderer.present();
-    renderer.update();
-}
+    renderer.draw();            // Envoi au GPU (Flush)
+    renderer.present();         // Affichage (Swap buffers)
+  }
 
 bool Game::shouldClose() const {
     return renderer.shouldClose();
