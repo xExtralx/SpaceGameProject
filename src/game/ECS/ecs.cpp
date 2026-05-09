@@ -239,11 +239,9 @@ void ECSWorld::renderMeshes(Renderer& renderer) {
         const auto& rotation = m_registry.get_or_emplace<CRotation>(entity);
         const auto& scale    = m_registry.get_or_emplace<CScale>(entity);
 
-        std::cout << "Matrix Scale :" << scale.x << "|" << scale.y << "|" << scale.z << std::endl;
-
         // Build transform — adapt Mat4 helpers to yours
         Mat4 transform = Mat4::translate(pos.x, pos.y, pos.z)
-                       * Mat4::rotateZ(rotation.degrees)
+                       * Mat4::rotate(-35.264f, 45.0f, rotation.degrees)
                        * Mat4::scale(scale.x, scale.y, scale.z);
 
         renderer.renderMesh(renderer.meshCache[mesh.modelPath], transform);

@@ -662,7 +662,7 @@ Mesh Renderer::loadGLTF(const std::string& path) {
 }
 
 void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
-    // DEBUG
+
     GLint currentFBO;
     glGetIntegerv(GL_FRAMEBUFFER_BINDING, &currentFBO);
     std::cerr << "renderMesh FBO: " << currentFBO << " (expected: " << pixelFBO << ")" << std::endl;
@@ -712,7 +712,7 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
 
     // Draw
     glDisable(GL_BLEND);
-    glDisable(GL_CULL_FACE); // ← ajoutez avant le draw
+    glDisable(GL_CULL_FACE);
     glBindVertexArray(mesh.VAO);
     glDrawElements(GL_TRIANGLES, mesh.indexCount, GL_UNSIGNED_INT, nullptr);
     glBindVertexArray(0);

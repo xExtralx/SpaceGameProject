@@ -173,6 +173,28 @@ struct Mat4 {
         return m;
     }
 
+    static Mat4 rotateX(float degrees) {
+        const float r = degrees * 3.14159265f / 180.0f;
+        const float c = std::cos(r), s = std::sin(r);
+        Mat4 m;
+        m.data[5]  =  c; m.data[9]  = -s;
+        m.data[6]  =  s; m.data[10] =  c;
+        return m;
+    }
+
+    static Mat4 rotateY(float degrees) {
+        const float r = degrees * 3.14159265f / 180.0f;
+        const float c = std::cos(r), s = std::sin(r);
+        Mat4 m;
+        m.data[0]  =  c; m.data[8]  =  s;
+        m.data[2]  = -s; m.data[10] =  c;
+        return m;
+    }
+
+    static Mat4 rotate(float x, float y, float z) {
+        return rotateY(y) * rotateX(x) * rotateZ(z);
+    }
+
     // ortho column-major (correct pour OpenGL)
     static Mat4 ortho(float l, float r, float b, float t, float n, float f) {
         Mat4 m;
