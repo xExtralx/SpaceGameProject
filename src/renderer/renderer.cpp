@@ -682,7 +682,7 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
     meshShader->use();
     meshShader->setInt("uTexture", 0);
     meshShader->setInt("uIsOutline", 0);
-    meshShader->setVec4("uOutlineColor", 0.0f, 0.0f, 0.0f, 1.0f);
+    meshShader->setVec4("uOutlineColor", 1.0f, 0.0f, 0.0f, 1.0f);
 
     // Matrices
     Mat4 viewProj = camera.getViewProj(RENDER_WIDTH, RENDER_HEIGHT);
@@ -716,7 +716,7 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
 
 
     // Passe 2 : outline
-    Mat4 outlineTransform = transform * Mat4::scale(1.05f, 1.05f, 1.05f); // ← ordre inversé !
+    Mat4 outlineTransform = transform * Mat4::scale(1.05f, 1.05f, 1.05f);
     meshShader->setMat4("uModel", outlineTransform);
     meshShader->setInt("uIsOutline", 1);
     glCullFace(GL_FRONT);
