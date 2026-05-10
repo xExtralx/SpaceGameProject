@@ -14,7 +14,6 @@ void main() {
     vec3 idL = texture(uMask, vUV - vec2(texel.x, 0.0)).rgb;
     vec3 idD = texture(uMask, vUV - vec2(0.0, texel.y)).rgb;
 
-    // Edge = voisin avec ID différent
     float edge = 0.0;
     edge += float(id != idR);
     edge += float(id != idU);
@@ -23,5 +22,5 @@ void main() {
     edge = min(edge, 1.0);
 
     vec4 color = texture(uTexture, vUV);
-    FragColor = mix(color, vec4(0.0, 0.0, 0.0, 1.0), edge);
+    FragColor = mix(color, vec4(1.0, 0.0, 0.0, 1.0), edge);
 }
