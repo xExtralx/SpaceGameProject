@@ -113,6 +113,10 @@ int Renderer::init() {
 // =====================
 
 void Renderer::initPixelFBO() {
+
+    // =====================
+    // 1. Pixel FBO (rendu principal)
+    // =====================
     glGenFramebuffers(1, &pixelFBO);
     glBindFramebuffer(GL_FRAMEBUFFER, pixelFBO);
 
@@ -130,11 +134,41 @@ void Renderer::initPixelFBO() {
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthRBO);
 
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-        std::cerr << "[FBO] Pixel FBO not complete!" << std::endl;
+        std::cerr << "[PIXEL FBO] Not complete!" << std::endl;
+    else
+        std::cerr << "[PIXEL FBO] Complete OK" << std::endl;
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-    // Fullscreen quad (NDC, covers entire screen)
+    // =====================
+    // 2. Mask FBO (object ID)
+    // =====================
+    glGenFramebuffers(1, &maskFBO);
+    glBindFramebuffer(GL_FRAMEBUFFER, maskFBO);
+
+    glGenTextures(1, &maskTexture);
+    glBindTexture(GL_TEXTURE_2D, maskTexture);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, RENDER_WIDTH, RENDER_HEIGHT, 0, GL_RGB, GL_UNSIGNED_BYTE, nullptr);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, maskTexture, 0);
+
+    GLuint maskDepthRBO;
+    glGenRenderbuffers(1, &maskDepthRBO);
+    glBindRenderbuffer(GL_RENDERBUFFER, maskDepthRBO);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, RENDER_WIDTH, RENDER_HEIGHT);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, maskDepthRBO);
+
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+        std::cerr << "[MASK FBO] Not complete!" << std::endl;
+    else
+        std::cerr << "[MASK FBO] Complete OK - maskFBO=" << maskFBO << " maskTexture=" << maskTexture << std::endl;
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    // =====================
+    // 3. Fullscreen quad
+    // =====================
     float screenQuad[] = {
         -1.0f,  1.0f,  0.0f, 1.0f,
         -1.0f, -1.0f,  0.0f, 0.0f,
@@ -155,36 +189,13 @@ void Renderer::initPixelFBO() {
     glEnableVertexAttribArray(1);
     glBindVertexArray(0);
 
+    // =====================
+    // 4. Shaders
+    // =====================
     upscaleShader = new Shader(
         FileManager::LoadTextFile("shader/upscale.vert"),
         FileManager::LoadTextFile("shader/upscale.frag")
     );
-
-    // FBO mask (object ID)
-    glGenFramebuffers(1, &maskFBO);
-    glBindFramebuffer(GL_FRAMEBUFFER, maskFBO);
-
-    glGenTextures(1, &maskTexture);
-    glBindTexture(GL_TEXTURE_2D, maskTexture);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, RENDER_WIDTH, RENDER_HEIGHT, 0, GL_RGB, GL_UNSIGNED_BYTE, nullptr);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, maskTexture, 0);
-
-    GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-    if (status != GL_FRAMEBUFFER_COMPLETE)
-        std::cerr << "[MASK FBO] Not complete! Status: " << status << std::endl;
-    else
-        std::cerr << "[MASK FBO] Complete OK" << std::endl;
-
-    // Depth RBO pour le mask aussi (évite les overdraw entre meshes)
-    GLuint maskDepthRBO;
-    glGenRenderbuffers(1, &maskDepthRBO);
-    glBindRenderbuffer(GL_RENDERBUFFER, maskDepthRBO);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, RENDER_WIDTH, RENDER_HEIGHT);
-    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, maskDepthRBO);
-
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
     maskShader = new Shader(
         FileManager::LoadTextFile("shader/mask.vert"),
