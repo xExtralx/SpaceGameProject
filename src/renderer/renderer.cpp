@@ -123,11 +123,13 @@ void Renderer::initPixelFBO() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, pixelTexture, 0);
 
-    GLuint depthRBO;
-    glGenRenderbuffers(1, &depthRBO);
-    glBindRenderbuffer(GL_RENDERBUFFER, depthRBO);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, RENDER_WIDTH, RENDER_HEIGHT);
-    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthRBO);
+    // Remplacez le RBO par une texture depth
+    glGenTextures(1, &depthTexture);
+    glBindTexture(GL_TEXTURE_2D, depthTexture);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24, RENDER_WIDTH, RENDER_HEIGHT, 0, GL_DEPTH_COMPONENT, GL_FLOAT, nullptr);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthTexture, 0);
 
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
         std::cerr << "[FBO] Pixel FBO not complete!" << std::endl;
@@ -227,19 +229,23 @@ void Renderer::present() const {
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glViewport(0, 0, width, height);
     glClear(GL_COLOR_BUFFER_BIT);
-
-    glDisable(GL_DEPTH_TEST); // ← AJOUTEZ ÇA
+    glDisable(GL_DEPTH_TEST);
 
     upscaleShader->use();
     upscaleShader->setInt("uTexture", 0);
+    upscaleShader->setInt("uDepth", 1);   // ← slot 1
+
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, pixelTexture);
+
+    glActiveTexture(GL_TEXTURE1);          // ← ajoutez
+    glBindTexture(GL_TEXTURE_2D, depthTexture);
+
     glBindVertexArray(screenVAO);
     glDrawArrays(GL_TRIANGLES, 0, 6);
     glBindVertexArray(0);
 
     glEnable(GL_DEPTH_TEST);
-
     glfwSwapBuffers(window);
     glfwPollEvents();
 }

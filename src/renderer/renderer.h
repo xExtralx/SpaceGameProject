@@ -139,6 +139,8 @@ private:
     GLuint screenVAO    = 0;
     GLuint screenVBO    = 0;
 
+    GLuint depthTexture = 0;
+
     void initPixelFBO();
     void initColorBuffer();
     void initTileBuffer();
