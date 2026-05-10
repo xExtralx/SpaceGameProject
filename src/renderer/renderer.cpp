@@ -123,13 +123,11 @@ void Renderer::initPixelFBO() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, pixelTexture, 0);
 
-    // Remplacez le RBO par une texture depth
-    glGenTextures(1, &depthTexture);
-    glBindTexture(GL_TEXTURE_2D, depthTexture);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24, RENDER_WIDTH, RENDER_HEIGHT, 0, GL_DEPTH_COMPONENT, GL_FLOAT, nullptr);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthTexture, 0);
+    GLuint depthRBO;
+    glGenRenderbuffers(1, &depthRBO);
+    glBindRenderbuffer(GL_RENDERBUFFER, depthRBO);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, RENDER_WIDTH, RENDER_HEIGHT);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthRBO);
 
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
         std::cerr << "[FBO] Pixel FBO not complete!" << std::endl;
@@ -160,6 +158,31 @@ void Renderer::initPixelFBO() {
     upscaleShader = new Shader(
         FileManager::LoadTextFile("shader/upscale.vert"),
         FileManager::LoadTextFile("shader/upscale.frag")
+    );
+
+    // FBO mask (object ID)
+    glGenFramebuffers(1, &maskFBO);
+    glBindFramebuffer(GL_FRAMEBUFFER, maskFBO);
+
+    glGenTextures(1, &maskTexture);
+    glBindTexture(GL_TEXTURE_2D, maskTexture);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, RENDER_WIDTH, RENDER_HEIGHT, 0, GL_RGB, GL_UNSIGNED_BYTE, nullptr);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, maskTexture, 0);
+
+    // Depth RBO pour le mask aussi (évite les overdraw entre meshes)
+    GLuint maskDepthRBO;
+    glGenRenderbuffers(1, &maskDepthRBO);
+    glBindRenderbuffer(GL_RENDERBUFFER, maskDepthRBO);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, RENDER_WIDTH, RENDER_HEIGHT);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, maskDepthRBO);
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    maskShader = new Shader(
+        FileManager::LoadTextFile("shader/mask.vert"),
+        FileManager::LoadTextFile("shader/mask.frag")
     );
 }
 
@@ -211,10 +234,15 @@ void Renderer::initTileBuffer() {
 // =====================
 
 void Renderer::clear() {
-    glBindFramebuffer(GL_FRAMEBUFFER, pixelFBO);
     glViewport(0, 0, RENDER_WIDTH, RENDER_HEIGHT);
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    glBindFramebuffer(GL_FRAMEBUFFER, maskFBO);
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // fond = ID 0
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    glBindFramebuffer(GL_FRAMEBUFFER, pixelFBO);
 
     tileVertices.clear();
     colorVertices.clear();
@@ -233,13 +261,13 @@ void Renderer::present() const {
 
     upscaleShader->use();
     upscaleShader->setInt("uTexture", 0);
-    upscaleShader->setInt("uDepth", 1);   // ← slot 1
+    upscaleShader->setInt("uMask", 1);
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, pixelTexture);
 
-    glActiveTexture(GL_TEXTURE1);          // ← ajoutez
-    glBindTexture(GL_TEXTURE_2D, depthTexture);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, maskTexture);
 
     glBindVertexArray(screenVAO);
     glDrawArrays(GL_TRIANGLES, 0, 6);
@@ -667,7 +695,7 @@ Mesh Renderer::loadGLTF(const std::string& path) {
     return mesh;
 }
 
-void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
+void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform, int objectID) {
 
     GLint currentFBO;
     glGetIntegerv(GL_FRAMEBUFFER_BINDING, &currentFBO);
@@ -697,7 +725,6 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
 
     // Texture
     glActiveTexture(GL_TEXTURE0);
-    meshShader->setInt("uTexture", 0);
     if (mesh.textureID)
         glBindTexture(GL_TEXTURE_2D, mesh.textureID);
     else
@@ -723,12 +750,13 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
 
 
     // Passe 2 : outline
-    Mat4 outlineTransform = transform * Mat4::scale(1.05f, 1.05f, 1.05f);
-    meshShader->setMat4("uModel", outlineTransform);
-    meshShader->setInt("uIsOutline", 1);
-    glCullFace(GL_FRONT);
+    glBindFramebuffer(GL_FRAMEBUFFER, maskFBO);
+    maskShader->use();
+    maskShader->setMat4("uViewProj", viewProj);
+    maskShader->setMat4("uModel", transform);
+    maskShader->setInt("uObjectID", objectID);
+    glBindVertexArray(0);
     glDrawElements(GL_TRIANGLES, mesh.indexCount, GL_UNSIGNED_INT, nullptr);
-
 
     // Reset
     glCullFace(GL_BACK);

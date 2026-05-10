@@ -106,7 +106,7 @@ public:
     // Meshes
 
     Mesh loadGLTF(const std::string& path);
-    void renderMesh(const Mesh& mesh, const Mat4& transform);
+    void renderMesh(const Mesh& mesh, const Mat4& transform, int objectID);
     std::unordered_map<std::string, Mesh> meshCache;
 
 private:
@@ -139,7 +139,10 @@ private:
     GLuint screenVAO    = 0;
     GLuint screenVBO    = 0;
 
-    GLuint depthTexture = 0;
+    // Outline FBO
+    GLuint maskFBO = 0;
+    GLuint maskTexture = 0;
+    Shader* maskShader = nullptr;
 
     void initPixelFBO();
     void initColorBuffer();
