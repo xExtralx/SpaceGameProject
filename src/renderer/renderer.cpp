@@ -712,6 +712,7 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
 
     // Draw
     // Passe 1 : mesh normal
+    glDisable(GL_BLEND);
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
     meshShader->setInt("uIsOutline", 0);
@@ -729,6 +730,8 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
     // Reset
     glCullFace(GL_BACK);
     glDisable(GL_CULL_FACE);
+    glEnable(GL_BLEND);
     glBindVertexArray(0);
     meshShader->setInt("uIsOutline", 0);
+    
 }
