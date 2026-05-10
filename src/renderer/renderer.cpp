@@ -234,15 +234,13 @@ void Renderer::initTileBuffer() {
 // =====================
 
 void Renderer::clear() {
-    glViewport(0, 0, RENDER_WIDTH, RENDER_HEIGHT);
+    glBindFramebuffer(GL_FRAMEBUFFER, maskFBO);
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    glBindFramebuffer(GL_FRAMEBUFFER, maskFBO);
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // fond = ID 0
+    glBindFramebuffer(GL_FRAMEBUFFER, pixelFBO); // ← toujours en dernier
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    glBindFramebuffer(GL_FRAMEBUFFER, pixelFBO);
 
     tileVertices.clear();
     colorVertices.clear();
@@ -764,4 +762,5 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform, int objectID)
     glEnable(GL_BLEND);
     glBindVertexArray(0);
     meshShader->setInt("uIsOutline", 0);
+    glBindFramebuffer(GL_FRAMEBUFFER, pixelFBO);
 }
