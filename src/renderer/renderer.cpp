@@ -720,11 +720,11 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
     glDrawElements(GL_TRIANGLES, mesh.indexCount, GL_UNSIGNED_INT, nullptr);
 
     // Passe 2 : outline
-    Mat4 outlineTransform = transform * Mat4::scale(1.05f, 1.05f, 1.05f); // ← ordre inversé !
-    meshShader->setMat4("uModel", outlineTransform);
-    meshShader->setInt("uIsOutline", 1);
-    glCullFace(GL_FRONT);
-    glDrawElements(GL_TRIANGLES, mesh.indexCount, GL_UNSIGNED_INT, nullptr);
+    //Mat4 outlineTransform = transform * Mat4::scale(1.05f, 1.05f, 1.05f); // ← ordre inversé !
+    //meshShader->setMat4("uModel", outlineTransform);
+    //meshShader->setInt("uIsOutline", 1);
+    //glCullFace(GL_FRONT);
+    //glDrawElements(GL_TRIANGLES, mesh.indexCount, GL_UNSIGNED_INT, nullptr);
 
     // Reset
     glCullFace(GL_BACK);
