@@ -711,10 +711,28 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
     std::cerr << "Viewport: " << viewport[0] << " " << viewport[1] << " " << viewport[2] << " " << viewport[3] << std::endl;
 
     // Draw
+    // Passe 1 : mesh normal
     glDisable(GL_BLEND);
-    glDisable(GL_CULL_FACE);
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
+    meshShader->setInt("uIsOutline", 0);
+    meshShader->setMat4("uModel", transform);
     glBindVertexArray(mesh.VAO);
     glDrawElements(GL_TRIANGLES, mesh.indexCount, GL_UNSIGNED_INT, nullptr);
-    glBindVertexArray(0);
+
+
+    // Passe 2 : outline
+    //Mat4 outlineTransform = transform * Mat4::scale(1.05f, 1.05f, 1.05f); // ← ordre inversé !
+    //meshShader->setMat4("uModel", outlineTransform);
+    //meshShader->setInt("uIsOutline", 1);
+    //glCullFace(GL_FRONT);
+    //glDrawElements(GL_TRIANGLES, mesh.indexCount, GL_UNSIGNED_INT, nullptr);
+
+
+    // Reset
+    glCullFace(GL_BACK);
+    glDisable(GL_CULL_FACE);
     glEnable(GL_BLEND);
+    glBindVertexArray(0);
+    meshShader->setInt("uIsOutline", 0);
 }
