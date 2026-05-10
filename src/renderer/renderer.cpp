@@ -171,6 +171,12 @@ void Renderer::initPixelFBO() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, maskTexture, 0);
 
+    GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+    if (status != GL_FRAMEBUFFER_COMPLETE)
+        std::cerr << "[MASK FBO] Not complete! Status: " << status << std::endl;
+    else
+        std::cerr << "[MASK FBO] Complete OK" << std::endl;
+
     // Depth RBO pour le mask aussi (évite les overdraw entre meshes)
     GLuint maskDepthRBO;
     glGenRenderbuffers(1, &maskDepthRBO);
@@ -749,6 +755,7 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform, int objectID)
 
     // Passe 2 : outline
     glBindFramebuffer(GL_FRAMEBUFFER, maskFBO);
+    std::cerr << "[MASK] Drawing objectID=" << objectID << std::endl; // ← voyez-vous ce log ?
     maskShader->use();
     maskShader->setMat4("uViewProj", viewProj);
     maskShader->setMat4("uModel", transform);
