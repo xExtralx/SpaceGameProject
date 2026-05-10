@@ -712,9 +712,23 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
 
     // Draw
     glDisable(GL_BLEND);
-    glDisable(GL_CULL_FACE);
+    // Passe 1 : mesh normal
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
     glBindVertexArray(mesh.VAO);
     glDrawElements(GL_TRIANGLES, mesh.indexCount, GL_UNSIGNED_INT, nullptr);
+
+    // Passe 2 : outline (backfaces agrandies, noires)
+    Mat4 outlineTransform = Mat4::scale(1.05f, 1.05f, 1.05f) * transform; // léger scale
+    meshShader->setMat4("uModel", outlineTransform);
+    // Uniform pour forcer la couleur noire
+    meshShader->setVec4("uOutlineColor", 0.0f, 0.0f, 0.0f, 1.0f);
+    meshShader->setInt("uIsOutline", 1);
+
+    glCullFace(GL_FRONT); // dessine seulement les backfaces
+    glDrawElements(GL_TRIANGLES, mesh.indexCount, GL_UNSIGNED_INT, nullptr);
+    glCullFace(GL_BACK);
     glBindVertexArray(0);
+    meshShader->setInt("uIsOutline", 0);
     glEnable(GL_BLEND);
 }
