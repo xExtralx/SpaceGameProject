@@ -1,12 +1,4 @@
-#version 430 core
-in vec2 vUV;
-
-uniform sampler2D uTexture;
-
-out vec4 FragColor;
-
+// mesh.frag — test
 void main() {
-    vec4 color = texture(uTexture, vUV);
-    if (color.a < 0.01) discard;
-    FragColor = color;
+    FragColor = vec4(1.0, 0.0, 0.0, 1.0); // rouge fixe
 }
