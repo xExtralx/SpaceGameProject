@@ -697,6 +697,7 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
 
     // Texture
     glActiveTexture(GL_TEXTURE0);
+    meshShader->setInt("uTexture", 0);
     if (mesh.textureID)
         glBindTexture(GL_TEXTURE_2D, mesh.textureID);
     else
