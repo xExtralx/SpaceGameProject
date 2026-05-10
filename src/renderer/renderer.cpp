@@ -713,7 +713,7 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
     // Draw
     // Passe 1 : mesh normal
     glDisable(GL_BLEND);
-    glEnable(GL_CULL_FACE);
+    glDisable(GL_CULL_FACE);
     glCullFace(GL_BACK);
     meshShader->setInt("uIsOutline", 0);
     meshShader->setMat4("uModel", transform);
