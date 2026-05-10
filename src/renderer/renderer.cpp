@@ -753,7 +753,6 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform, int objectID)
     glGetIntegerv(GL_VIEWPORT, viewport);
     std::cerr << "Viewport: " << viewport[0] << " " << viewport[1] << " " << viewport[2] << " " << viewport[3] << std::endl;
 
-    // Draw
     // Passe 1 : mesh normal
     glDisable(GL_BLEND);
     glEnable(GL_CULL_FACE);
@@ -763,22 +762,18 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform, int objectID)
     glBindVertexArray(mesh.VAO);
     glDrawElements(GL_TRIANGLES, mesh.indexCount, GL_UNSIGNED_INT, nullptr);
 
-
-    // Passe 2 : outline
+    // Passe 2 : mask (VAO encore bindé !)
     glBindFramebuffer(GL_FRAMEBUFFER, maskFBO);
-    std::cerr << "[MASK] Drawing objectID=" << objectID << std::endl; // ← voyez-vous ce log ?
     maskShader->use();
     maskShader->setMat4("uViewProj", viewProj);
     maskShader->setMat4("uModel", transform);
     maskShader->setInt("uObjectID", objectID);
-    glBindVertexArray(0);
-    glDrawElements(GL_TRIANGLES, mesh.indexCount, GL_UNSIGNED_INT, nullptr);
+    glDrawElements(GL_TRIANGLES, mesh.indexCount, GL_UNSIGNED_INT, nullptr); // ← VAO toujours bindé
 
     // Reset
+    glBindVertexArray(0); // ← seulement ici
     glCullFace(GL_BACK);
     glDisable(GL_CULL_FACE);
     glEnable(GL_BLEND);
-    glBindVertexArray(0);
-    meshShader->setInt("uIsOutline", 0);
     glBindFramebuffer(GL_FRAMEBUFFER, pixelFBO);
 }
