@@ -680,18 +680,12 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
     }
 
     meshShader->use();
-    std::cerr << "meshShader ID: " << meshShader->ID << std::endl;
-
-    meshShader->setInt("uTexture", 0); // ← AJOUTEZ ÇA aussi
+    meshShader->setInt("uTexture", 0);
+    meshShader->setInt("uIsOutline", 0);
+    meshShader->setVec4("uOutlineColor", 0.0f, 0.0f, 0.0f, 1.0f);
 
     // Matrices
     Mat4 viewProj = camera.getViewProj(RENDER_WIDTH, RENDER_HEIGHT);
-    std::cerr << "viewProj[0]=" << viewProj.data[0] 
-            << " viewProj[5]=" << viewProj.data[5]
-            << " viewProj[10]=" << viewProj.data[10] << std::endl;
-    std::cerr << "transform[12]=" << transform.data[12]
-            << " transform[13]=" << transform.data[13]
-            << " transform[14]=" << transform.data[14] << std::endl;
     meshShader->setMat4("uViewProj", viewProj);
     meshShader->setMat4("uModel",    transform);
 
@@ -722,11 +716,11 @@ void Renderer::renderMesh(const Mesh& mesh, const Mat4& transform) {
 
 
     // Passe 2 : outline
-    //Mat4 outlineTransform = transform * Mat4::scale(1.05f, 1.05f, 1.05f); // ← ordre inversé !
-    //meshShader->setMat4("uModel", outlineTransform);
-    //meshShader->setInt("uIsOutline", 1);
-    //glCullFace(GL_FRONT);
-    //glDrawElements(GL_TRIANGLES, mesh.indexCount, GL_UNSIGNED_INT, nullptr);
+    Mat4 outlineTransform = transform * Mat4::scale(1.05f, 1.05f, 1.05f); // ← ordre inversé !
+    meshShader->setMat4("uModel", outlineTransform);
+    meshShader->setInt("uIsOutline", 1);
+    glCullFace(GL_FRONT);
+    glDrawElements(GL_TRIANGLES, mesh.indexCount, GL_UNSIGNED_INT, nullptr);
 
 
     // Reset
