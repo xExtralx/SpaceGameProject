@@ -63,7 +63,7 @@ int Renderer::init() {
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
 
-    glfwSwapInterval(1);
+    glfwSwapInterval(0);
     glfwSetMouseButtonCallback(window, Renderer::mouse_button_callback);
     glfwSetKeyCallback(window, Renderer::key_callback);
 
