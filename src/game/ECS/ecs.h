@@ -195,7 +195,6 @@ public:
     // -----------------------------------------------------------------
     void updateCrafters(float dt);
     void updateBelts(float dt);
-    void renderMeshes(Renderer& renderer);
 
     // -----------------------------------------------------------------
     // Queries

@@ -223,33 +223,6 @@ void ECSWorld::updateBelts(float dt) {
 }
 
 // =====================================================================
-// System — Render meshes
-// =====================================================================
-
-void ECSWorld::renderMeshes(Renderer& renderer) {
-    auto view = m_registry.view<CMesh, CPosition>();
-
-    for (auto [entity, mesh, pos] : view.each()) {
-        if (!mesh.visible) continue;
-
-        if (!renderer.meshCache.contains(mesh.modelPath))
-            renderer.meshCache[mesh.modelPath] = renderer.loadGLTF(mesh.modelPath);
-
-        const auto& rotation = m_registry.get_or_emplace<CRotation>(entity);
-        const auto& scale    = m_registry.get_or_emplace<CScale>(entity);
-
-        Mat4 transform = Mat4::translate(pos.x, pos.y, pos.z)
-                       * Mat4::rotate(-35.264f, 45.0f, rotation.degrees)
-                       * Mat4::scale(scale.x, scale.y, scale.z);
-
-        // entity cast en int — unique par entité, jamais 0 (réservé au fond)
-        int objectID = static_cast<int>(entity) + 1;
-
-        renderer.renderMesh(renderer.meshCache[mesh.modelPath], transform, objectID);
-    }
-}
-
-// =====================================================================
 // Query — entity at world position
 // =====================================================================
 

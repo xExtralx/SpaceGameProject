@@ -103,12 +103,6 @@ public:
     void renderChunks(const ChunkManager& chunkManager);
     Vec2 tileTypeToUV(TileType type) const;
 
-    // Meshes
-
-    Mesh loadGLTF(const std::string& path);
-    void renderMesh(const Mesh& mesh, const Mat4& transform, int objectID);
-    std::unordered_map<std::string, Mesh> meshCache;
-
 private:
 
     int width  = 0;
@@ -123,7 +117,6 @@ private:
     Shader* colorShader   = nullptr;
     Shader* imageShader   = nullptr;
     Shader* upscaleShader = nullptr;
-    Shader* meshShader    = nullptr;
 
     // Tile geometry (textured)
     std::vector<TileVertex>  tileVertices;

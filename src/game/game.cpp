@@ -75,7 +75,6 @@ void Game::update() {
 
 void Game::render() {
     renderer.clear();           // Nettoyage de l'écran
-    world.renderMeshes(renderer);
     renderer.draw();            // Envoi au GPU (Flush)
     renderer.present();         // Affichage (Swap buffers)
   }
