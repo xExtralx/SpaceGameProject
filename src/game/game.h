@@ -30,8 +30,7 @@ public:
 
     Renderer& getRenderer() { return this->renderer; }
 
-    float deltaTime;
-    float lastFrame;
+    float    dt = 0.0f;
 private:
     int width = 0;
     int height = 0;
@@ -44,7 +43,11 @@ private:
     bool keys[1024] = {};  // tracks which keys are held down
 
     ECSWorld world;
-    float    dt = 0.0f;
+
+    float lastFrame = 0.0f;
+
+    double fpsTimer = 0.0;
+    int fpsFrames = 0;
 };
 
 

@@ -19,6 +19,9 @@ void Game::init() {
 
     std::cout << "Game Initialized" << std::endl;
 
+    lastFrame = (float)glfwGetTime();
+    fpsTimer = glfwGetTime();
+
     glfwSetWindowUserPointer(renderer.getWindow(), this);
     glfwSetMouseButtonCallback(renderer.getWindow(), Renderer::mouse_button_callback);
     glfwSetScrollCallback(renderer.getWindow(), Game::scroll_callback);
@@ -31,7 +34,7 @@ void Game::init() {
 }
 
 void Game::update() {
-    deltaTime = (float)glfwGetTime() - lastFrame;
+    dt = (float)glfwGetTime() - lastFrame;
     lastFrame = (float)glfwGetTime();
 
     const float speed = 100.0f;
@@ -48,7 +51,7 @@ void Game::update() {
     if (dir.length() > 0.0f)
         dir.normalize();
 
-    renderer.camera.position += dir * speed * deltaTime;
+    renderer.camera.position += dir * speed * dt;
 
     // In Game::update() convert camera pixel pos to tile grid pos
     float tileW = 32.0f; // must match shader uTileSize.x
@@ -69,8 +72,25 @@ void Game::update() {
 
     // ECS
 
-    world.updateCrafters(deltaTime);
-    world.updateBelts(deltaTime);
+    world.updateCrafters(dt);
+    world.updateBelts(dt);
+
+        fpsFrames++;
+    double currentTime = glfwGetTime();
+
+    if (currentTime - fpsTimer >= 1.0) {
+        double elapsed = currentTime - fpsTimer;
+        double fps = fpsFrames / elapsed;
+        double ms = 1000.0 / fps;
+
+        std::string title = "My Game - FPS: " + std::to_string((int)fps)
+                        + " | " + std::to_string(ms).substr(0, 4) + " ms";
+
+        glfwSetWindowTitle(renderer.getWindow(), title.c_str());
+
+        fpsFrames = 0;
+        fpsTimer = currentTime;
+    }
 }
 
 void Game::render() {
@@ -78,7 +98,7 @@ void Game::render() {
     renderer.renderChunks(chunkManager);
     renderer.draw();            // Envoi au GPU (Flush)
     renderer.present();         // Affichage (Swap buffers)
-  }
+}
 
 bool Game::shouldClose() const {
     return renderer.shouldClose();
